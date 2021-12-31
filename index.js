@@ -47,7 +47,7 @@ app.get('/recover', (req, res) => {
     res.render('recover')
 })
 
-app.get('/index', isLoggedIn, (req, res) => {
+app.get('/index', (req, res) => {
 // app.get('/index', (req, res) => {
     res.render('index', { data: data, username: req.session.username })
 })
@@ -81,11 +81,11 @@ app.post('/recover', async(req, res) => {
     
 })
 
-app.get('/institution', isLoggedIn, (req, res) => {
+app.get('/institution', (req, res) => {
     res.render('institution', {data: data_two, username: req.session.username})
 })
 
-app.get('/business-owners', isLoggedIn, async(req, res) => {
+app.get('/business-owners', async(req, res) => {
     res.render('business', { data: data, username: req.session.username })
 
     // const data = await axios.get('http://localhost:5000/admin-business')
@@ -98,19 +98,19 @@ app.get('/business-owners', isLoggedIn, async(req, res) => {
 
 })
 
-app.get('/consultants/:id', isLoggedIn, (req, res) => {
+app.get('/consultants/:id', (req, res) => {
     const { id } = req.params
     const d = data.find(element => element.id === id)
     res.render('profile/consultant', {data: d, username: req.session.username})
 })
 
-app.get('/institution/:id', isLoggedIn, (req, res) => {
+app.get('/institution/:id', (req, res) => {
     const { id } = req.params;
     const d = data_two.find(element => element.id ===  id)
     res.render('profile/institution', { data: d, username: req.session.username})
 })
 
-app.get('/business/:id', isLoggedIn, (req, res) => {
+app.get('/business/:id', (req, res) => {
     const { id } = req.params
     const d = data.find(element => element.id === id)
     res.render('profile/business', {data: d, username: req.session.username})
