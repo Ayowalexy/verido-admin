@@ -1,0 +1,280 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Verido - Admin</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- jvectormap -->
+        <link href="assets/plugins/jvectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet">
+
+        <!-- App css -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/metisMenu.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="assets/css/custom.css">
+        <link rel="stylesheet" href="assets/css/pagination.css">
+        <link rel="stylesheet" href="assets/css/all.min.css">
+
+       
+
+    </head>
+
+    <body class="">
+        <!-- Left Sidenav -->
+        <div class="left-sidenav">
+            <!-- LOGO -->
+            <div class="brand">
+                <a href="index.html" class="logo">
+                    <span>
+                        <!-- <img src="assets/images/logo-sm.png" alt="logo-small" class="logo-sm"> -->
+                    </span>
+                    <span class="custom-logo">
+                        Verido
+                        <!-- <img src="assets/images/logo.png" alt="logo-large" class="logo-lg logo-light"> -->
+                        <!-- <img src="assets/images/logo-dark.png" alt="logo-large" class="logo-lg logo-dark"> -->
+                    </span>
+                </a>
+            </div>
+            <!--end logo-->
+            <div class="menu-content h-100" data-simplebar>
+                <ul class="metismenu left-sidenav-menu">
+                    <li class="menu-label mt-0">Main</li>
+                    <li>
+                        <a href="javascript: void(0);"> <i data-feather="home" class="align-self-center menu-icon"></i><span>Dashboard</span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="/index"><i class="align-self-center fas fa-chart-line menu-icon"></i>Analytics</a></li>
+                        </ul>
+                    </li>
+    
+                    <li>
+                        <a href="javascript: void(0);"><i data-feather="grid" class="align-self-center menu-icon"></i><span>Apps</span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            
+                            <li class="nav-item"><a class="nav-link" href="#"><i  class="align-self-center fas fa-comments menu-icon"></i>Chat</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-address-book menu-icon align-self-center"></i>Contact List</a></li>
+                 
+                        </ul>
+                    </li> 
+    
+                    <li>
+                        <a href="javascript: void(0);"><i data-feather="list" class="align-self-center menu-icon"></i><span>Pages</span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="/index"><i class="fas fa-handshake menu-icon align-self-center"></i>Consultants</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/business-owners"><i class="fas fa-wallet menu-icon align-self-center"></i>Business Owners</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/institution"><i class="fas fa-building menu-icon align-self-center"></i>Institutions</a></li>
+                        </ul>
+                    </li>  
+                    
+                            
+                    <li>
+                        <a href="javascript: void(0);"><i data-feather="lock" class="align-self-center menu-icon"></i><span>Authentication</span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="auth-register.html"><i class="fas fa-sign-in-alt menu-icon align-self-center"></i>Register</a></li>
+                            <li class="nav-item"><a class="nav-link" href="auth-recover-pw.html"><i class="fas fa-key menu-icon align-self-center"></i>Recover Password</a></li>
+                        </ul>
+                    </li>               
+                    <li>
+                        <a href="javascript: void(0);"><i data-feather="filter" class="align-self-center menu-icon"></i><span>Filters</span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link">
+                                <form action="">
+                                    <input type="checkbox" name="active" id="active">
+                                    <label for="active">Active</label> <br>
+                                    <input type="checkbox" name="expired" id="expired">
+                                    <label for="expired">Expired</label> <br>
+                                    <input type="checkbox" name="suspended" id="suspended">
+                                    <label for="suspended">Suspended</label> <br>
+                                    <input type="checkbox" name="pending" id="pending">
+                                    <label for="pending">Pending Approval</label> <br>
+                                    <input type="checkbox" name="reported" id="reported">
+                                    <label for="reported">Reported</label> <br>
+                                    <input type="checkbox" name="reported" id="reported">
+                                    <label for="reported">Include Archived</label>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>                
+                </ul>
+    
+               
+            </div>
+        </div>
+        <!-- end left-sidenav-->
+        
+
+        <div class="page-wrapper">
+            <!-- Top Bar Start -->
+            <div class="topbar">            
+                <!-- Navbar -->
+                <nav class="navbar-custom">    
+                    <ul class="list-unstyled topbar-nav float-end mb-0">  
+                        <li class="dropdown hide-phone">
+                            <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-bs-toggle="dropdown" href="#" role="button"
+                                aria-haspopup="false" aria-expanded="false">
+                                <i data-feather="search" class="topbar-icon"></i>
+                            </a>
+                            
+                            <div class="dropdown-menu dropdown-menu-end dropdown-lg p-0">
+                                <!-- Top Search Bar -->
+                                <div class="app-search-topbar">
+                                    <form action="#" method="get">
+                                        <input type="search" name="search" class="from-control top-search mb-0" placeholder="Type text...">
+                                        <button type="submit"><i class="ti-search"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>                      
+
+                     
+
+                        <li class="dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-bs-toggle="dropdown" href="#" role="button"
+                                aria-haspopup="false" aria-expanded="false">
+                                <span class="ms-1 nav-user-name hidden-sm"> <%=username %> </span>
+                                <img src="assets/images/users/user-5.jpg" alt="profile-user" class="rounded-circle thumb-xs" />                                 
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" href="#"><i data-feather="user" class="align-self-center icon-xs icon-dual me-1"></i> Profile</a>
+                                <a class="dropdown-item" href="#"><i data-feather="settings" class="align-self-center icon-xs icon-dual me-1"></i> Settings</a>
+                                <div class="dropdown-divider mb-0"></div>
+                                <a class="dropdown-item" href="#"><i data-feather="power" class="align-self-center icon-xs icon-dual me-1"></i> Logout</a>
+                            </div>
+                        </li>
+                    </ul><!--end topbar-nav-->
+        
+                    <ul class="list-unstyled topbar-nav mb-0">                        
+                        <li>
+                            <button class="nav-link button-menu-mobile">
+                                <i data-feather="menu" class="align-self-center topbar-icon"></i>
+                            </button>
+                        </li> 
+                                                 
+                    </ul>
+                </nav>
+                <!-- end navbar-->
+            </div>
+            <!-- Top Bar End -->
+
+            <!-- Page Content-->
+            <div class="page-content">
+                <div class="container-fluid">
+                    <!-- Page-Title -->
+                   
+                    <div class="row mt-3">                        
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row align-items-center">
+                                        <div class="col">                      
+                                            <h4 class="card-title title-tag">Business Owners</h4>                      
+                                        </div><!--end col-->                                        
+                                    </div>  <!--end row-->                                  
+                                </div><!--end card-header-->
+                                <div class="card-body">
+                                    <div class="table-responsive browser_users">
+                                        <table class="table mb-0">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th class="border-top-0">Enterprise Name</th>
+                                                    <th class="border-top-0">Name</th>
+                                                    <th class="border-top-0">Consultants</th>
+                                                    <th class="border-top-0">Status</th>
+                                                    <th class="border-top-0">Subscription Ends</th>
+                                                </tr><!--end tr-->
+                                            </thead>
+                                            <tbody id="pagination-data-pages">
+                                                <% for( let index = 0; index < data.length; index++ ) { %>
+                                                    <tr>                                                        
+                                                        <td><a href="/business/<%=data[index].id %> " class="text-primary"><%=data[index].enterprise_name %> </a></td>
+                                                        <td><a href="/business/<%=data[index].id %> " class="text-primary"><%=data[index].name %> </a></td>
+                                                        <td><a href="/business/<%=data[index].id %> " class="text-primary"><%=data[index].consultants %> </a></td>                
+                                                        <td><a href="/business/<%=data[index].id %> " class="text-primary"><%=data[index].status %> </a></td>                
+                                                        <td><a href="/business/<%=data[index].id %> " class="text-primary"><%=data[index].expires %> </a></td>                
+                                                    </tr> 
+                                                    <% if (index === 10) { %>
+                                                        <% break %> 
+                                                    <% } %>
+                                                <% } %> 
+                                            </tbody>
+                                            
+                                        </table> <!--end table--> 
+                                        <section>
+                                            <div class="data-container"></div>
+                                            <div id="pagination-demo1"></div>
+                                            <div class="data-container"></div>
+                                            <div id="pagination-demo2"></div>
+                                        </section>                                        
+                                    </div><!--end /div-->
+                                </div><!--end card-body--> 
+                            </div><!--end card-->
+                           
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                  <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                      <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                  </li>
+                                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                  <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                      <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                  </li>
+                                </ul>
+                              </nav>    
+                        </div> <!--end col-->   
+                        
+                        
+                    </div><!--end row-->
+                    
+
+                </div><!-- container -->
+
+                <footer class="footer text-center text-sm-start">
+                    &copy; <script>
+                        document.write(new Date().getFullYear())
+                    </script> Verido 
+                </footer><!--end footer-->
+            </div>
+            <!-- end page content -->
+        </div>
+        <!-- end page-wrapper -->
+
+        
+
+
+        <!-- jQuery  -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/pagination.js"></script>        
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/metismenu.min.js"></script>
+        <script src="assets/js/waves.js"></script>
+        <script src="assets/js/feather.min.js"></script>
+        <script src="assets/js/simplebar.min.js"></script>
+        <script src="assets/js/moment.js"></script>
+        <script src="assets/plugins/daterangepicker/daterangepicker.js"></script>
+
+        <script src="assets/plugins/apex-charts/apexcharts.min.js"></script>
+        <script src="assets/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
+        <script src="assets/plugins/jvectormap/jquery-jvectormap-us-aea-en.js"></script>
+        <script src="assets/pages/jquery.analytics_dashboard.init.js"></script>
+        <script src="assets/js/all.min.js"></script>
+
+        <!-- App js -->
+        <script src="assets/js/app.js"></script>
+        
+    </body>
+
+</html>
