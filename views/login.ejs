@@ -11,20 +11,30 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="/assets/images/favicon.ico">
 
         <!-- App css -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/app.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="/assets/css/custom.css">
 
     </head>
 
     <body class="account-body accountbg">
+        <div class="loader-parent">
+            <div class="loader-anim">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
 
         <!-- Log In page -->
         <div class="container">
-            <div class="row vh-100 d-flex justify-content-center">
+
+            
+            <div class="row vh-100 d-flex justify-content-center" id="page-content">
                 <div class="col-12 align-self-center">
                     <div class="row">
                         <div class="col-lg-5 mx-auto">
@@ -54,7 +64,7 @@
                                      <!-- Tab panes -->
                                     <div class="tab-content">
                                         <div class="tab-pane active p-3" id="LogIn_Tab" role="tabpanel">                                        
-                                            <form class="form-horizontal auth-form" action="login" method='POST'>
+                                            <form class="form-horizontal auth-form" id="form-anim" action="login" method='POST'>
                 
                                                 <div class="form-group mb-2">
                                                     <label class="form-label" for="username">Username</label>
@@ -108,11 +118,12 @@
 
 
         <!-- jQuery  -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/js/waves.js"></script>
-        <script src="assets/js/feather.min.js"></script>
-        <script src="assets/js/simplebar.min.js"></script>
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/bootstrap.bundle.min.js"></script>
+        <script src="/assets/js/waves.js"></script>
+        <script src="/assets/js/feather.min.js"></script>
+        <script src="/assets/js/simplebar.min.js"></script>
+        <script src="/assets/js/custom.js"></script>
 
         
     </body>
