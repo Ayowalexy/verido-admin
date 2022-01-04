@@ -391,7 +391,7 @@
                                                                 <%='Unassigned' %> 
                                                              
                                                             <% } else {%>
-                                                                <%=organization_id %> 
+                                                                <%=data.organization_id %> 
                                                             <% } %> 
                                                                  disabled >
                                                         </div>
@@ -526,17 +526,25 @@
                                                         <div class="form-group row">
                                                             <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">BVN</label>
                                                             <div class="col-lg-9 col-xl-8">
-                                                                <input class="form-control custom-input" style="pointer-events: none;" type="text" name='BVN' value="<%=data.userID.BVN %>" required  >
+                                                                <input class="form-control custom-input" style="pointer-events: none;" type="text" name='BVN' value="<% if (data.userID) { %>
+                                                                    <%=data.userID.BVN %> 
+                                                                   <% } else { %>
+                                                                       <%="" %> 
+                                                                   <% } %> " required  >
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">NIN</label>
                                                             <div class="col-lg-9 col-xl-8">
-                                                                <input class="form-control custom-input" style="pointer-events: none;" name="NIN" type="text" value="<%=data.userID.NIN%> " required  >
+                                                                <input class="form-control custom-input" style="pointer-events: none;" name="NIN" type="text" value="<% if (data.userID) { %>
+                                                                 <%=data.userID.NIN %> 
+                                                                <% } else { %>
+                                                                    <%="" %> 
+                                                                <% } %> " required  >
                                                             </div>
                                                         </div>
                                                         <div style="float: right;" class="px-5">
-                                                            <button disabled=<% if (data.userID.BVN.length && data.userID.NIN.length) { %>
+                                                            <button disabled=<% if (data.userID) { %>
                                                                 <%=true %> 
                                                              
                                                             <% } else { %>

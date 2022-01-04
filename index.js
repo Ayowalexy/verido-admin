@@ -141,7 +141,10 @@ app.get('/business/:id', async (req, res) => {
 
 })
 
-app.get('/chat', (req, res) => {
+app.get('/chat', async (req, res) => {
+    const data_three = await axios.get('https://verido-2-ihdqs.ondigitalocean.app/admin-business')
+    // const data_three = await axios.get('http://localhost:5000/admin-business')
+    .then(resp => resp.data.response)
     res.render('chat', {consultant: data, business: data_three, institution: data_two, username: req.session.username})
 })
 
@@ -158,7 +161,7 @@ app.get('/chat/:details/:id', async (req, res) => {
             break;
         
         case 'business':
-            chat_data = data_three.find(element => element.id === id)
+            chat_data = data_three.find(element => element._id === id)
             break;
         
         case 'institution':
