@@ -49,7 +49,7 @@
                     <a href="javascript: void(0);"> <i data-feather="home"
                             class="align-self-center menu-icon"></i><span>Dashboard</span></a>
                     <ul class="nav-second-level" aria-expanded="false">
-                        <li class="nav-item"><a class="nav-link" href="/index"><i
+                        <li class="nav-item"><a class="nav-link" href="/homepage"><i
                                     class="align-self-center fas fa-chart-line menu-icon"></i>Analytics</a></li>
                     </ul>
                 </li>
@@ -329,8 +329,7 @@
             <footer class="footer text-center text-sm-start">
                 &copy; <script>
                     document.write(new Date().getFullYear())
-                </script> Dastone <span class="text-muted d-none d-sm-inline-block float-end">Crafted with <i
-                        class="mdi mdi-heart text-danger"></i> by Mannatthemes</span>
+                </script> Verido 
             </footer>
             <!--end footer-->
         </div>
@@ -359,7 +358,8 @@
         <script src="/assets/js/app.js"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script>
-            let socket = io('http://localhost:8000')
+            let socket = io('https://verido-2-ihdqs.ondigitalocean.app')
+            // let socket = io('http://localhost:8000')
     
             socket.on('message.sent', function(data){
                 console.log(data.index)

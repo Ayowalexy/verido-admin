@@ -1,0 +1,445 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Verido - Admin</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta content="Verido Admin Dashboard" name="description" />
+        <meta content="" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="/assets/images/favicon.ico">
+
+        <!-- DataTables -->
+        <link href="/assets/plugins/datatables/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/plugins/datatables/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <!-- Responsive datatable examples -->
+        <link href="/assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" /> 
+
+        <!-- App css -->
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/metisMenu.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/app.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="/assets/css/custom.css">
+
+
+    </head>
+
+    <body>
+        <!-- Left Sidenav -->
+        <div class="left-sidenav">
+            <!-- LOGO -->
+            <div class="brand">
+                <a href="index.html" class="logo">
+                    <span>
+                        <!-- <img src="assets/images/logo-sm.png" alt="logo-small" class="logo-sm"> -->
+                    </span>
+                    <span class="custom-logo">
+                        Verido
+                        <!-- <img src="assets/images/logo.png" alt="logo-large" class="logo-lg logo-light">
+                        <img src="assets/images/logo-dark.png" alt="logo-large" class="logo-lg logo-dark"> -->
+                    </span>
+                </a>
+            </div>
+            <!--end logo-->
+            <div class="menu-content h-100" data-simplebar>
+                <ul class="metismenu left-sidenav-menu">
+                    <li class="menu-label mt-0">Main</li>
+                    <li>
+                        <a href="javascript: void(0);"> <i data-feather="home" class="align-self-center menu-icon"></i><span>Dashboard</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="/homepage"><i class="align-self-center fas fa-chart-line menu-icon"></i>Analytics</a></li>
+                        </ul>
+                    </li>
+    
+                    <li>
+                        <a href="javascript: void(0);"><i data-feather="grid" class="align-self-center menu-icon"></i><span>Apps</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            
+                            <li class="nav-item"><a class="nav-link" href="/chat"><i  class="align-self-center fas fa-comments menu-icon"></i>Chat</a></li>
+                            <!-- <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-address-book menu-icon align-self-center"></i>Contact List</a></li> -->
+                 
+                        </ul>
+                    </li> 
+    
+                    <li>
+                        <a href="javascript: void(0);"><i data-feather="lock" class="align-self-center menu-icon"></i><span>Authentication</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-sign-in-alt menu-icon align-self-center"></i>Register</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/recover"><i class="fas fa-key menu-icon align-self-center"></i>Recover Password</a></li>
+                        </ul>
+                    </li> 
+    
+                   
+    
+                    
+    
+                    <li>
+                        <a href="javascript: void(0);"><i data-feather="file-plus" class="align-self-center menu-icon"></i><span>Pages</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                         <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="/index"><i class="fas fa-handshake menu-icon align-self-center"></i>Consultants</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/business-owners"><i class="fas fa-wallet menu-icon align-self-center"></i>Business Owners</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/institution"><i class="fas fa-building menu-icon align-self-center"></i>Institutions</a></li>
+                        </ul>
+                    </li>           
+                </ul>
+    
+                
+            </div>
+        </div>
+        <!-- end left-sidenav-->
+        
+
+        <div class="page-wrapper">
+            <!-- Top Bar Start -->
+            <div class="topbar">            
+                <!-- Navbar -->
+                <nav class="navbar-custom">    
+                    <ul class="list-unstyled topbar-nav float-end mb-0">  
+                        <li class="dropdown hide-phone">
+                            
+                            
+                            <div class="dropdown-menu dropdown-menu-end dropdown-lg p-0">
+                                <!-- Top Search Bar -->
+                                <div class="app-search-topbar">
+                                    <form action="#" method="get">
+                                        <input type="search" name="search" class="from-control top-search mb-0" placeholder="Type text...">
+                                        <button type="submit"><i class="ti-search"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>                      
+
+                        <li class="dropdown notification-list">
+                            <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-bs-toggle="dropdown" href="#" role="button"
+                                aria-haspopup="false" aria-expanded="false">
+                                <i data-feather="bell" class="align-self-center topbar-icon"></i>
+                                <span class="badge bg-danger rounded-pill noti-icon-badge">2</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-lg pt-0">
+                            
+                                <h6 class="dropdown-item-text font-15 m-0 py-3 border-bottom d-flex justify-content-between align-items-center">
+                                    Notifications <span class="badge bg-primary rounded-pill">2</span>
+                                </h6> 
+                                <div class="notification-menu" data-simplebar>
+                                    <!-- item-->
+                                    <a href="#" class="dropdown-item py-3">
+                                        <small class="float-end text-muted ps-2">2 min ago</small>
+                                        <div class="media">
+                                            <div class="avatar-md bg-soft-primary">
+                                                <i data-feather="shopping-cart" class="align-self-center icon-xs"></i>
+                                            </div>
+                                            <div class="media-body align-self-center ms-2 text-truncate">
+                                                <h6 class="my-0 fw-normal text-dark">Your order is placed</h6>
+                                                <small class="text-muted mb-0">Dummy text of the printing and industry.</small>
+                                            </div><!--end media-body-->
+                                        </div><!--end media-->
+                                    </a><!--end-item-->
+                                   
+                                   
+                                    <a href="#" class="dropdown-item py-3">
+                                        <small class="float-end text-muted ps-2">1 hr ago</small>
+                                        <div class="media">
+                                            <div class="avatar-md bg-soft-primary">
+                                                <img src="/assets/images/users/user-5.jpg" alt="" class="thumb-sm rounded-circle">
+                                            </div>
+                                            <div class="media-body align-self-center ms-2 text-truncate">
+                                                <h6 class="my-0 fw-normal text-dark">Your order is placed</h6>
+                                                <small class="text-muted mb-0">It is a long established fact that a reader.</small>
+                                            </div><!--end media-body-->
+                                        </div><!--end media-->
+                                    </a><!--end-item-->
+                                    <!-- item-->
+                                    
+                                </div>
+                                <!-- All-->
+                                <a href="javascript:void(0);" class="dropdown-item text-center text-primary">
+                                    View all <i class="fi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </li>
+
+                        <li class="dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-bs-toggle="dropdown" href="#" role="button"
+                                aria-haspopup="false" aria-expanded="false">
+                                <span class="ms-1 nav-user-name hidden-sm"> </span>
+                                <!-- <img src="assets/images/users/user-5.jpg" alt="profile-user" class="rounded-circle thumb-xs" />                                  -->
+                                <i class="fas fa-user fa-1x text-muted"></i>
+
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" href="#"><i data-feather="user" class="align-self-center icon-xs icon-dual me-1"></i> Profile</a>
+                                <a class="dropdown-item" href="#"><i data-feather="settings" class="align-self-center icon-xs icon-dual me-1"></i> Settings</a>
+                                <div class="dropdown-divider mb-0"></div>
+                                <a class="dropdown-item" href="#"><i data-feather="power" class="align-self-center icon-xs icon-dual me-1"></i> Logout</a>
+                            </div>
+                        </li>
+                    </ul><!--end topbar-nav-->
+        
+                    <ul class="list-unstyled topbar-nav mb-0">                        
+                        <li>
+                            <button class="nav-link button-menu-mobile">
+                                <i data-feather="menu" class="align-self-center topbar-icon"></i>
+                            </button>
+                        </li> 
+                                                 
+                    </ul>
+                </nav>
+                <!-- end navbar-->
+            </div>
+            <!-- Top Bar End -->
+
+            <!-- Page Content-->
+            <div class="page-content">
+                <div class="container-fluid">
+                    <!-- Page-Title -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-title-box">
+                                <div class="row">
+                                    <div class="col">
+                                        <h4 class="page-title">Analytics</h4>
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="javascript:void(0);">Verido</a></li>
+                                            <li class="breadcrumb-item active">Dashboard</li>
+                                        </ol>
+                                    </div><!--end col-->
+                                   
+                                </div><!--end row-->                                                              
+                            </div><!--end page-title-box-->
+                        </div><!--end col-->
+                    </div><!--end row-->
+                    <!-- end page title end breadcrumb -->
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <div class="row justify-content-center">
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="card report-card">
+                                        <div class="card-body">
+                                            <div class="row d-flex justify-content-center">
+                                                <div class="col">
+                                                    <p class="text-dark mb-0 fw-semibold">Business Owners</p>
+                                                    <h3 class="m-0"><%=business %> </h3>
+                                                    <p class="mb-0 text-truncate text-muted" style="font-size: 12px;"><span class="text-success"><i class="mdi mdi-trending-up"></i><%=signUps %> </span> New Sign Up This week</p>
+                                                </div>
+                                                <div class="col-auto align-self-center">
+                                                    <div class="report-main-icon bg-light-alt">
+                                                        <i data-feather="users" class="align-self-center text-muted icon-sm"></i>  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!--end card-body-->  
+                                    </div><!--end card--> 
+                                </div> <!--end col--> 
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="card report-card">
+                                        <div class="card-body">
+                                            <div class="row d-flex justify-content-center">                                                
+                                                <div class="col">
+                                                    <p class="text-dark mb-0 fw-semibold">Consultants</p>
+                                                    <h3 class="m-0"><%=consultant %> </h3>
+                                                    <p class="mb-0 text-truncate text-muted" style="font-size: 13px;"><span class="text-success"><i class="mdi mdi-trending-up"></i>6</span> Accounts created</p>
+                                                </div>
+                                                <div class="col-auto align-self-center">
+                                                    <div class="report-main-icon bg-light-alt">
+                                                        <i data-feather="clock" class="align-self-center text-muted icon-sm"></i>  
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div><!--end card-body--> 
+                                    </div><!--end card--> 
+                                </div> <!--end col--> 
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="card report-card">
+                                        <div class="card-body">
+                                            <div class="row d-flex justify-content-center">                                                
+                                                <div class="col">
+                                                    <p class="text-dark mb-0 fw-semibold">Institutions</p>
+                                                    <h3 class="m-0"><%=institution - 3 %> </h3>
+                                                    <p class="mb-0 text-truncate text-muted"><span class="text-danger"><i class="mdi mdi-trending-down"></i>12</span>Accounts Added</p>
+                                                </div>
+                                                <div class="col-auto align-self-center">
+                                                    <div class="report-main-icon bg-light-alt">
+                                                        <i data-feather="activity"  class="align-self-center text-muted icon-sm"></i>  
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div><!--end card-body--> 
+                                    </div><!--end card--> 
+                                </div> <!--end col--> 
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="card report-card">
+                                        <div class="card-body">
+                                            <div class="row d-flex justify-content-center">
+                                                <div class="col">  
+                                                    <p class="text-dark mb-0 fw-semibold">Subscribers</p>                                         
+                                                    <h3 class="m-0"><%=totalSubs %> </h3>
+                                                    <p class="mb-0 text-truncate text-muted" style="font-size: 12px;"><span class="text-success"><i class="mdi mdi-trending-up"></i><%=subs %> </span>New Subscribers This Week</p>
+                                                </div>
+                                                <div class="col-auto align-self-center">
+                                                    <div class="report-main-icon bg-light-alt">
+                                                        <i data-feather="briefcase" class="align-self-center text-muted icon-sm"></i>  
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div><!--end card-body--> 
+                                    </div><!--end card--> 
+                                </div> <!--end col-->                               
+                            </div><!--end row-->
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="row align-items-center">
+                                                <div class="col">                      
+                                                    <h4 class="card-title">Payment Intents</h4>                      
+                                                </div><!--end col-->
+                                                <div class="col-auto"> 
+                                                              
+                                                </div><!--end col-->
+                                            </div>  <!--end row-->                                  
+                                        </div><!--end card-header-->                                
+                                        <div class="card-body ins">
+                                            <ul class="list-group custom-list-group mb-n3">
+                                                
+                                              <% for( let index = 0; index < paymentIntents.length; index++ ) { %>
+                                                <li class="list-group-item align-items-center d-flex justify-content-between">
+                                                         <div class="media">
+                                                            <i class="fas fa-check font-15" style="color: green;" ></i>                                                            
+                                                             <div class="media-body align-self-center ps-2"> 
+                                                                 <h6 class="m-0">Amount Received: $<%=paymentIntents[index].amount %> </h6>
+                                                                 <p class="mb-0 text-muted">Payment Method: <%=paymentIntents[index].payment_method_types %> </p>                                                                                           
+                                                             </div><!--end media body-->
+                                                         </div>
+                                                         <div class="align-self-center">
+                                                             <a href="#" class="btn btn-sm btn-soft-primary"><%=paymentIntents[index].currency %> <i class="las la-external-link-alt font-15"></i></a>                                                                                               
+                                                         </div>   
+                                                     </li>
+                                              <% } %>
+                                                
+                                            </ul>                                
+                                        </div><!--end card-body--> 
+                                    </div><!--end card--> 
+                                    
+                                </div> <!--end col--> 
+                                <div class="col-lg-6"> 
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="row align-items-center">
+                                                <div class="col">                      
+                                                    <h4 class="card-title">Subcription Amount</h4>                      
+                                                </div><!--end col-->                                        
+                                            </div>  <!--end row-->                                  
+                                        </div><!--end card-header-->  
+                                        <div class="card-body">                                    
+                                            <div id="barchart" class="apex-charts ms-n4"></div>                                                               
+                                        </div><!--end card-body--> 
+                                    </div><!--end card--> 
+                                </div><!--end col-->
+                                
+                                
+                               
+                               
+                            </div><!--end row-->
+                            
+                        </div><!--end col-->
+                        <div class="col-lg-3">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row align-items-center">
+                                        <div class="col">                      
+                                            <h4 class="card-title">Account Verification</h4>                      
+                                        </div><!--end col-->
+                                        <div class="col-auto"> 
+                                                   
+                                        </div><!--end col-->
+                                    </div>  <!--end row-->                                  
+                                </div><!--end card-header-->
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <div id="ana_device" class="apex-charts"></div>
+                                        
+                                    </div>  
+                                    <div class="table-responsive mt-2">
+                                        <table class="table border-dashed mb-0">
+                                            <thead>
+                                            <tr>
+                                                <th>Accounts</th>
+                                                <th class="text-end">ID Verified</th>
+                                                <th class="text-end">NO Verified</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>Business</td>
+                                                <td class="text-end"><%=idVerified %> </td>
+                                                <td class="text-end"><%=phoneVerified %> </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Consultants</td>
+                                                <td class="text-end">3</td>
+                                                <td class="text-end">5</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Institutions</td>
+                                                <td class="text-end">4</td>
+                                                <td class="text-end">5</td>
+                                            </tr>
+                                            
+                                            </tbody>
+                                        </table><!--end /table-->
+                                    </div><!--end /div-->                                 
+                                </div><!--end card-body--> 
+                            </div><!--end card--> 
+                        </div> <!--end col--> 
+                    </div><!--end row-->
+
+                
+                    
+
+                </div><!-- container -->
+
+                <footer class="footer text-center text-sm-start">
+                    &copy; <script>
+                        document.write(new Date().getFullYear())
+                    </script> Verido
+                </footer><!--end footer-->
+            </div>
+            <!-- end page content -->
+        </div>
+        <!-- end page-wrapper -->
+
+
+
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/bootstrap.bundle.min.js"></script>
+        <script src="/assets/js/metismenu.min.js"></script>
+        <script src="/assets/js/waves.js"></script>
+        <script src="/assets/js/feather.min.js"></script>
+        <script src="/assets/js/simplebar.min.js"></script>
+        
+        <script src="/assets/js/moment.js"></script>
+        <script src="/assets/plugins/apex-charts/apexcharts.min.js"></script>
+        <script src="/assets/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
+        <script src="/assets/plugins/jvectormap/jquery-jvectormap-us-aea-en.js"></script>
+        <script src="/assets/js/stripe.js"></script>
+        <script src="/assets/pages/jquery.analytics_dashboard.init.js"></script>
+
+
+        <script src="/assets/plugins/daterangepicker/daterangepicker.js"></script>
+
+
+        <!-- App js -->
+        <script src="/assets/js/app.js"></script>
+        <!-- <script src="https://js.stripe.com/v3/"></script>
+         -->
+
+        
+    </body>
+
+</html>

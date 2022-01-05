@@ -1,3 +1,6 @@
+if(process.env.NODE_ENV !== "production"){
+    require('dotenv').config()
+}
 const express = require('express')
 const app = express()
 const path = require('path')
@@ -9,7 +12,9 @@ const data_two = require('./institution.json')
 // const data_three = require('./business.json')
 const socketIO = require('socket.io')
 const http = require('http')
-
+const DateFormatter = require('./utils')
+const STRIPE_LIVE_KEY = process.env.STRIPE_LIVE_KEY
+const stripe = require('stripe')(STRIPE_LIVE_KEY)
 
 let server, io;
 
@@ -59,6 +64,57 @@ app.get('/recover', (req, res) => {
     res.render('recover')
 })
 
+app.get('/stripe-customers', async(req, res) => {
+   
+    const paymentIntents = await stripe.paymentIntents.list();
+    // console.log(paymentIntents)
+    res.send(paymentIntents)
+
+})
+app.get('/homepage', async (req, res) => {
+
+    const paymentIntents = await stripe.paymentIntents.list();
+       
+    const data_three = await axios.get('https://verido-2-ihdqs.ondigitalocean.app/admin-business')
+    // const data_three = await axios.get('http://localhost:5000/admin-business')
+    .then(resp => resp.data.response)
+    let val = DateFormatter(data_three)
+    const arr = data_three.map(data =>  {
+        return {
+                dateJoined: data.subscription_status.started,
+                type: data.subscription_status.type}
+            })
+
+    let subs = DateFormatter(arr).map(data => data !== null)
+
+    let totalSubs = []
+    let idVerified = []
+    let phoneVerified = []
+    data_three.filter(data => {
+        if(data.subscription_status.type === 'Subscribed'){
+            totalSubs.push(data)
+        } else if (data.idVerified){
+            idVerified.push(data)
+        } else if(data.phoneVerified){
+            phoneVerified.push(data)
+        }
+    })
+
+
+    res.render('homepage',{ consultant: data.length, 
+                            institution: data_two.length, 
+                            business: data_two.length, 
+                            username: req.session.username, 
+                            signUps: val.length,
+                            subs: subs.length,
+                            totalSubs: totalSubs.length,
+                            idVerified: idVerified.length,
+                            phoneVerified: phoneVerified.length,
+                            paymentIntents: paymentIntents.data
+
+                         })
+})
+
 app.get('/index', (req, res) => {
 // app.get('/index', (req, res) => {
     res.render('index', { data: data, username: req.session.username })
@@ -82,7 +138,7 @@ app.post('/login', async( req, res) => {
 
         req.session.token = data.response.token
         req.session.username = data.response.username
-        return res.redirect('/index')
+        return res.redirect('/homepage')
     } else {
         res.render('login', {message: "Username or Password is incorrect"})
     }
