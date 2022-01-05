@@ -281,7 +281,8 @@
         <script src="/assets/js/app.js"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script>
-            let socket = io('http://localhost:8000')
+            let socket = io('https://verido-admin-ri2er.ondigitalocean.app/')
+            // let socket = io('http://localhost:8000')
 
             socket.on('message.sent', function(data){
                 $('#messages').prepend(`
