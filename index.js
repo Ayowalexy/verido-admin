@@ -74,6 +74,8 @@ app.get('/stripe-customers', async(req, res) => {
 app.get('/homepage', async (req, res) => {
 
     const paymentIntents = await stripe.paymentIntents.list();
+
+    // const custom = await stripe.customers.list()
        
     const data_three = await axios.get('https://verido-2-ihdqs.ondigitalocean.app/admin-business')
     // const data_three = await axios.get('http://localhost:5000/admin-business')
@@ -84,6 +86,10 @@ app.get('/homepage', async (req, res) => {
                 dateJoined: data.subscription_status.started,
                 type: data.subscription_status.type}
             })
+
+    
+            // console.log(custom)
+    console.log(data_three)
 
     let subs = DateFormatter(arr).map(data => data !== null)
 
@@ -100,6 +106,20 @@ app.get('/homepage', async (req, res) => {
         }
     })
 
+    let recent_business;
+     if(data_three.length >= 5){
+        // recent_business = data_three.slice()
+        recent_business = data_three.slice(data_three.length - 5)
+    } else {
+        recent_business =  data_three
+    }
+
+    let recent_consultants;
+    if(data.length >= 5){
+        recent_consultants = data.slice(data_three.length - 7)
+    } else {
+        recent_consultants =  data
+    }
 
     res.render('homepage',{ consultant: data.length, 
                             institution: data_two.length, 
@@ -110,6 +130,8 @@ app.get('/homepage', async (req, res) => {
                             totalSubs: totalSubs.length,
                             idVerified: idVerified.length,
                             phoneVerified: phoneVerified.length,
+                            recent_business: recent_business,
+                            recent_consultants: recent_consultants,
                             paymentIntents: paymentIntents.data
 
                          })
@@ -122,8 +144,8 @@ app.get('/index', (req, res) => {
 
 app.post('/login', async( req, res) => {
     const { password, email } = req.body
-    const data = await axios.post('https://verido-2-ihdqs.ondigitalocean.app/admin-login', req.body)
-    // const data = await axios.post('http://localhost:5000/admin-login', req.body)
+    // const data = await axios.post('https://verido-2-ihdqs.ondigitalocean.app/admin-login', req.body)
+    const data = await axios.post('http://localhost:5000/admin-login', req.body)
             .then(res => {
                 return res.data })
             .catch (e => {

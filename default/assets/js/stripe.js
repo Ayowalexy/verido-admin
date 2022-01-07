@@ -51,4 +51,19 @@
 //   })();
 
 
+<% for( let index = 0; index < paymentIntents.length; index++ ) { %>
+    <li class="list-group-item align-items-center d-flex justify-content-between">
+             <div class="media">
+                <i class="fas fa-check font-15" style="color: green;" ></i>                                                            
+                 <div class="media-body align-self-center ps-2"> 
+                     <h6 class="m-0">Amount Received: $<%=paymentIntents[index].amount %> </h6>
+                     <p class="mb-0 text-muted">Payment Method: <%=paymentIntents[index].payment_method_types %> </p>                                                                                           
+                 </div><!--end media body-->
+             </div>
+             <div class="align-self-center">
+                 <a href="#" class="btn btn-sm btn-soft-primary"><%=paymentIntents[index].currency %> <i class="las la-external-link-alt font-15"></i></a>                                                                                               
+             </div>   
+         </li>
+  <% } %>
+
 

@@ -22,6 +22,7 @@
         <!-- App css -->
         <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
         <link href="/assets/css/metisMenu.min.css" rel="stylesheet" type="text/css" />
         <link href="/assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
         <link href="/assets/css/app.min.css" rel="stylesheet" type="text/css" />
@@ -225,11 +226,11 @@
                                                 <div class="col">
                                                     <p class="text-dark mb-0 fw-semibold">Business Owners</p>
                                                     <h3 class="m-0"><%=business %> </h3>
-                                                    <p class="mb-0 text-truncate text-muted" style="font-size: 12px;"><span class="text-success"><i class="mdi mdi-trending-up"></i><%=signUps %> </span> New Sign Up This week</p>
+                                                    <p class="mb-0 text-truncate text-muted" style="font-size: 12px;"><span class="text-success"><i class="mdi mdi-account"></i><%=signUps %> </span> New Sign Up This week</p>
                                                 </div>
                                                 <div class="col-auto align-self-center">
                                                     <div class="report-main-icon bg-light-alt">
-                                                        <i data-feather="users" class="align-self-center text-muted icon-sm"></i>  
+                                                        <i style="font-size: 17px;" class="fa fa-business-time align-self-center text-muted fa-sm"></i>  
                                                     </div>
                                                 </div>
                                             </div>
@@ -247,7 +248,7 @@
                                                 </div>
                                                 <div class="col-auto align-self-center">
                                                     <div class="report-main-icon bg-light-alt">
-                                                        <i data-feather="clock" class="align-self-center text-muted icon-sm"></i>  
+                                                        <i style="font-size: 17px;" class="fa fa-handshake align-self-center text-muted fa-sm"></i>  
                                                     </div>
                                                 </div> 
                                             </div>
@@ -265,7 +266,7 @@
                                                 </div>
                                                 <div class="col-auto align-self-center">
                                                     <div class="report-main-icon bg-light-alt">
-                                                        <i data-feather="activity"  class="align-self-center text-muted icon-sm"></i>  
+                                                        <i style="font-size: 17px;" class="fa fa-building align-self-center text-muted fa-sm"></i>  
                                                     </div>
                                                 </div> 
                                             </div>
@@ -279,11 +280,11 @@
                                                 <div class="col">  
                                                     <p class="text-dark mb-0 fw-semibold">Subscribers</p>                                         
                                                     <h3 class="m-0"><%=totalSubs %> </h3>
-                                                    <p class="mb-0 text-truncate text-muted" style="font-size: 12px;"><span class="text-success"><i class="mdi mdi-trending-up"></i><%=subs %> </span>New Subscribers This Week</p>
+                                                    <p class="mb-0 text-truncate text-muted" style="font-size: 12px;"><span class="text-success"><i class="mdi mdi-trending-up m2-2"></i><%=subs %> </span>New Subscribers This Week</p>
                                                 </div>
                                                 <div class="col-auto align-self-center">
                                                     <div class="report-main-icon bg-light-alt">
-                                                        <i data-feather="briefcase" class="align-self-center text-muted icon-sm"></i>  
+                                                        <i style="font-size: 17px;" class="fa fa-credit-card align-self-center text-muted fa-sm"></i>  
                                                     </div>
                                                 </div> 
                                             </div>
@@ -300,27 +301,40 @@
                                                     <h4 class="card-title">Payment Intents</h4>                      
                                                 </div><!--end col-->
                                                 <div class="col-auto"> 
+                                                    
                                                               
                                                 </div><!--end col-->
                                             </div>  <!--end row-->                                  
                                         </div><!--end card-header-->                                
                                         <div class="card-body ins">
                                             <ul class="list-group custom-list-group mb-n3">
+                                                <% for( let index = 0; index < paymentIntents.length; index++ ) { %>
+                                                    <li class="list-group-item align-items-center d-flex justify-content-between pt-0">
+                                                        <div class="media">
+                                                            <div class="align-self-center me-2">
+                                                                <a href="#" class="<% if (paymentIntents[index].status  === 'succeeded') { %>
+                                                                    <%="btn btn-sm btn-soft-primary" %> 
+                                                                <% } else { %>
+                                                                    <%="btn btn-sm btn-soft-danger" %> 
+                                                                <% } %> 
+                                                                    "> 
+
+                                                                    <% if (paymentIntents[index].status === 'succeeded') { %>
+                                                                        <i class="fas fa-check font-15"></i>
+                                                                    <% } else { %>
+                                                                        <i class="fas fa-times font-15"></i>
+                                                                    <% } %> 
+                                                                </a>  
+                                                            </div>                                                             <div class="media-body align-self-center"> 
+                                                                <h6 class="m-0">Amount Paid: $<%=paymentIntents[index].amount / 100 %> </h6>
+                                                                <p class="mb-0 text-muted">Date: <%=new Date(paymentIntents[index].created * 1000).toLocaleDateString() %></p>                                                                                           
+                                                            </div><!--end media body-->
+                                                        </div>
+                                                                                                   
+                                                    </li>
+                                                <% } %>
                                                 
-                                              <% for( let index = 0; index < paymentIntents.length; index++ ) { %>
-                                                <li class="list-group-item align-items-center d-flex justify-content-between">
-                                                         <div class="media">
-                                                            <i class="fas fa-check font-15" style="color: green;" ></i>                                                            
-                                                             <div class="media-body align-self-center ps-2"> 
-                                                                 <h6 class="m-0">Amount Received: $<%=paymentIntents[index].amount %> </h6>
-                                                                 <p class="mb-0 text-muted">Payment Method: <%=paymentIntents[index].payment_method_types %> </p>                                                                                           
-                                                             </div><!--end media body-->
-                                                         </div>
-                                                         <div class="align-self-center">
-                                                             <a href="#" class="btn btn-sm btn-soft-primary"><%=paymentIntents[index].currency %> <i class="las la-external-link-alt font-15"></i></a>                                                                                               
-                                                         </div>   
-                                                     </li>
-                                              <% } %>
+                                                
                                                 
                                             </ul>                                
                                         </div><!--end card-body--> 
@@ -397,6 +411,93 @@
                                 </div><!--end card-body--> 
                             </div><!--end card--> 
                         </div> <!--end col--> 
+                    </div><!--end row-->
+                    <div class="row">                        
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row align-items-center">
+                                        <div class="col">                      
+                                            <h4 class="card-title">Recent Business Sign Up</h4>                      
+                                        </div><!--end col-->                                        
+                                    </div>  <!--end row-->                                  
+                                </div><!--end card-header-->
+                                <div class="card-body">
+                                    <div class="table-responsive browser_users">
+                                        <table class="table mb-0">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th class="border-top-0">Full Name</th>
+                                                    <th class="border-top-0">Business Name</th>
+                                                    <th class="border-top-0">Status</th>
+                                                    <th class="border-top-0">Phone Verified</th>
+                                                </tr><!--end tr-->
+                                            </thead>
+                                            <tbody>
+                                                <% for( let index = 0; index < recent_business.length; index++ ) { %>
+                                                    <tr>                                                        
+                                                        <td><a href="#" class="text-primary"><%=recent_business[index].full_name %> </a></td>
+                                                        <td><% if (recent_business[index].business.name) { %>
+                                                            <%=recent_business[index].business.name %>
+                                                        <% } else { %>
+                                                            <%='No Busiess Created'%>
+                                                        <% } %> 
+                                                        </td>
+                                                        <td style="text-transform: capitalize;"><%=recent_business[index].subscription_status.type %></td>
+                                                        <td><% if (recent_business[index].phoneVerified ) { %>
+                                                         <%='Verified' %> 
+                                                        <% } else { %>
+                                                            <%='Unverified' %> 
+                                                        <% } %> 
+                                                        </td>
+                                                    </tr><!--end tr--> 
+                                                <% } %>
+                                                    
+                                                                          
+                                            </tbody>
+                                        </table> <!--end table-->                                               
+                                    </div><!--end /div-->
+                                </div><!--end card-body--> 
+                            </div><!--end card--> 
+                        </div> <!--end col-->   
+                        
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row align-items-center">
+                                        <div class="col">                      
+                                            <h4 class="card-title">Recent Consultants Sign Up</h4>                      
+                                        </div><!--end col-->                                        
+                                    </div>  <!--end row-->                                  
+                                </div><!--end card-header-->
+                                <div class="card-body">
+                                    <div class="table-responsive browser_users">
+                                        <table class="table mb-0">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th class="border-top-0">Consultant Name</th>
+                                                    <th class="border-top-0">Businesses</th>
+                                                    <th class="border-top-0">Rating</th>
+                                                    <th class="border-top-0">ID Verified</th>
+                                                </tr><!--end tr-->
+                                            </thead>
+                                            <tbody>
+                                                <% for( let index = 0; index < recent_consultants.length; index++ ) { %>
+                                                    <tr>                                                        
+                                                        <td><i class="fas fa-user me-2"></i> <%=recent_consultants[index].name %> </td>
+                                                        <td><%=Math.floor(Math.random() * 10) %> </td>                                   
+                                                        <td><%=Math.floor((Math.random() * 10 / 2))  %></td>
+                                                        <td>Not Verified</td>
+                                                    </tr><!--end tr-->   
+                                                <% } %>
+                                                  
+                                                             
+                                            </tbody>
+                                        </table> <!--end table-->                                               
+                                    </div><!--end /div--> 
+                                </div><!--end card-body--> 
+                            </div><!--end card--> 
+                        </div> <!--end col-->
                     </div><!--end row-->
 
                 
