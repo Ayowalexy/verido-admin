@@ -41,17 +41,26 @@ const DateFormatter = (data_three) => {
         let d_1 = new Date(data.dateJoined).getTime()
         let d_2 = newDate.getTime();
 
+        console.log(newDate.toDateString())
        
-        if(data.type === 'Subscribed' && d_2 < d_1){
+        // if(data.type === 'Subscribed' && d_2 < d_1){
+        //     return data
+        // } else if(d_2 < d_1 && data.type === undefined){
+        //     console.log('======')
+            // return data
+        // } else {
+        //     return null
+        // }
+
+        if(d_2 < d_1){
+            
             return data
-        } else if(d_2 < d_1 && data.type === undefined){
-            return data
-        } else {
-            return null
         }
+
 
     })
 
+    console.log(val.length)
     return val
 }
 

@@ -73,7 +73,9 @@ app.get('/stripe-customers', async(req, res) => {
 })
 app.get('/homepage', async (req, res) => {
 
-    const paymentIntents = await stripe.paymentIntents.list();
+    const paymentIntents = await stripe.paymentIntents.list({
+        limit: 8
+    });
 
     // const custom = await stripe.customers.list()
        
@@ -83,15 +85,17 @@ app.get('/homepage', async (req, res) => {
     let val = DateFormatter(data_three)
     const arr = data_three.map(data =>  {
         return {
-                dateJoined: data.subscription_status.started,
+                // dateJoined: data.subscription_status.started,
+                dateJoined: data.dateJoined,
                 type: data.subscription_status.type}
             })
 
     
             // console.log(custom)
-    console.log(data_three)
-
     let subs = DateFormatter(arr).map(data => data !== null)
+    // let subs_2 = DateFormatter(arr)
+
+    // console.log(subs_2, '-----')
 
     let totalSubs = []
     let idVerified = []
@@ -144,8 +148,8 @@ app.get('/index', (req, res) => {
 
 app.post('/login', async( req, res) => {
     const { password, email } = req.body
-    // const data = await axios.post('https://verido-2-ihdqs.ondigitalocean.app/admin-login', req.body)
-    const data = await axios.post('http://localhost:5000/admin-login', req.body)
+    const data = await axios.post('https://verido-2-ihdqs.ondigitalocean.app/admin-login', req.body)
+    // const data = await axios.post('http://localhost:5000/admin-login', req.body)
             .then(res => {
                 return res.data })
             .catch (e => {
