@@ -36,16 +36,21 @@ const DateFormatter = (data_three) => {
 
 
 
-        let newDate = new Date(`Sun ${dateJoinedMonth} ${currentDay} ${dateJoinedYear}`)
+        // let newDate = new Date(`Sun ${dateJoinedMonth} ${currentDay} ${dateJoinedYear}`)
 
         let d_1 = new Date(data.dateJoined).getTime()
-        let d_2 = newDate.getTime();
+        // let d_2 = newDate.getTime();
+
+        let newDate = new Date()
+        let d_2 = newDate.getDate() - newDate.getDay()
+        let d_3 = new Date(newDate.setDate(d_2)).getTime()
+
+        console.log(new Date(newDate.setDate(d_2)).toDateString(), data.dateJoined)
 
        
-        if(data.type === 'Subscribed' && d_2 < d_1){
+        if(data.type === 'Subscribed' && d_3 < d_1){
             return data
-        } else if(d_2 < d_1 && data.type === undefined){
-            console.log('======')
+        } else if(d_3 < d_1 && data.type === undefined){
             return data
         } else {
             return null

@@ -85,9 +85,8 @@ app.get('/homepage', async (req, res) => {
     let val = DateFormatter(data_three)
     const arr = data_three.map(data =>  {
         return {
-                // dateJoined: data.subscription_status.started,
-                dateJoined: data.dateJoined,
-                type: data.subscription_status.type}
+                type: data.subscription_status.type,
+                dateJoined: data.subscription_status.started}
             })
 
     
