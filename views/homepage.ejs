@@ -172,10 +172,15 @@
                     <div class="row">
                         <div class="col-lg-9">
                             <div class="row justify-content-center">
+                                
+                               
+                           
+                           
                                 <div class="col-md-6 col-lg-3">
+                                    <a href="/business-owners">
                                     <div class="card report-card">
                                         <div class="card-body">
-                                            <div class="row d-flex justify-content-center">
+                                            <div class="row d-flex justify-content-center">                                                
                                                 <div class="col">
                                                     <p class="text-dark mb-0 fw-semibold">Business Owners</p>
                                                     <h3 class="m-0"><%=business %> </h3>
@@ -185,12 +190,14 @@
                                                     <div class="report-main-icon bg-light-alt">
                                                         <i style="font-size: 17px;" class="fa fa-business-time align-self-center text-muted fa-sm"></i>  
                                                     </div>
-                                                </div>
+                                                </div> 
                                             </div>
-                                        </div><!--end card-body-->  
+                                        </div><!--end card-body--> 
                                     </div><!--end card--> 
+                                </a>
                                 </div> <!--end col--> 
                                 <div class="col-md-6 col-lg-3">
+                                    <a href="/index">
                                     <div class="card report-card">
                                         <div class="card-body">
                                             <div class="row d-flex justify-content-center">                                                
@@ -207,8 +214,12 @@
                                             </div>
                                         </div><!--end card-body--> 
                                     </div><!--end card--> 
+                                </a>
                                 </div> <!--end col--> 
+                          
+                               
                                 <div class="col-md-6 col-lg-3">
+                                    <a href="/institution">
                                     <div class="card report-card">
                                         <div class="card-body">
                                             <div class="row d-flex justify-content-center">                                                
@@ -225,7 +236,9 @@
                                             </div>
                                         </div><!--end card-body--> 
                                     </div><!--end card--> 
+                                </a>
                                 </div> <!--end col--> 
+                            
                                 <div class="col-md-6 col-lg-3">
                                     <div class="card report-card">
                                         <div class="card-body">
@@ -300,7 +313,10 @@
                                             <div class="row align-items-center">
                                                 <div class="col">                      
                                                     <h4 class="card-title">Subcription Amount</h4>                      
-                                                </div><!--end col-->                                        
+                                                </div><!--end col--> 
+                                                <div class="col-auto"> 
+                                                    <h5 class="card-title">Total: $<%=total %> </h5>      
+                                                </div><!--end col-->                                       
                                             </div>  <!--end row-->                                  
                                         </div><!--end card-header-->  
                                         <div class="card-body">                                    
@@ -451,6 +467,59 @@
                                 </div><!--end card-body--> 
                             </div><!--end card--> 
                         </div> <!--end col-->
+                        <div class="col-lg-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row align-items-center">
+                                        <div class="col">                      
+                                            <h4 class="card-title">Recent Institution Registration</h4>                      
+                                        </div><!--end col-->                                        
+                                    </div>  <!--end row-->                                  
+                                </div><!--end card-header-->
+                                <div class="card-body">
+                                    <div class="table-responsive browser_users">
+                                        <table class="table mb-0">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th class="border-top-0">Institution Name</th>
+                                                    <th class="border-top-0">Name</th>
+                                                    <th class="border-top-0">Status</th>
+                                                </tr><!--end tr-->
+                                            </thead>
+                                            <tbody>
+                                                <% for( let index = 0; index < recent_institution.length; index++ ) { %>
+                                                    <tr>                                                        
+                                                        <td><i class="fas fa-user me-2"></i> <%=recent_institution[index].institution_name %> </td>
+                                                        <td><%=recent_institution[index].name %> </td>                                   
+                                                        <td><%=recent_institution[index].status %></td>
+                                                    </tr><!--end tr-->   
+                                                <% } %>
+                                                  
+                                                             
+                                            </tbody>
+                                        </table> <!--end table-->                                               
+                                    </div><!--end /div--> 
+                                </div><!--end card-body--> 
+                            </div><!--end card--> 
+                        </div> <!--end col-->
+                        <div class="col-lg-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row align-items-center">
+                                        <div class="col">                      
+                                            <h4 class="card-title">Subscription Overview</h4>                      
+                                        </div><!--end col-->
+                                       
+                                    </div>  <!--end row-->                                  
+                                </div><!--end card-header-->
+                                <div class="card-body">
+                                    <div class="">
+                                        <div id="ana_dash_1" class="apex-charts"></div>
+                                    </div> 
+                                </div><!--end card-body--> 
+                            </div><!--end card--> 
+                        </div>     
+                        </div> <!--end col-->
                     </div><!--end row-->
 
                 
@@ -487,7 +556,7 @@
 
         <script src="/assets/plugins/daterangepicker/daterangepicker.js"></script>
 
-
+        <script src="/assets/js/chart_custom.js"></script>
         <!-- App js -->
         <script src="/assets/js/app.js"></script>
         <!-- <script src="https://js.stripe.com/v3/"></script>

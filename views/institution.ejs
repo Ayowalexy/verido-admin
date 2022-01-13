@@ -87,6 +87,25 @@
                             <li class="nav-item"><a class="nav-link" href="/institution"><i class="fas fa-building menu-icon align-self-center"></i>Institutions</a></li>
                         </ul>
                     </li>           
+                    <li>
+                        <a href="javascript: void(0);"><i data-feather="filter" class="align-self-center menu-icon"></i><span>Filters</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+
+                            <form action="" id="filt">
+                                <li data-active='true' class="nav-item">
+                                    <input class="filter" type="checkbox" id="active" value="Active">
+                                    <label for="active">Active</label>
+                                </li>
+                                <li data-active='true' class="nav-item">
+                                    <input class="filter" type="checkbox" id="expired" value="Archived">
+                                    <label for="expired">Archived</label>
+                                </li>
+                               
+
+                               
+                            </form>
+                        </ul>
+                    </li>                
                 </ul>
     
                 
@@ -236,10 +255,46 @@
         <!-- Responsive examples -->
         <script src="/assets/plugins/datatables/dataTables.responsive.min.js"></script>
         <script src="/assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
-        <script src="/assets/pages/jquery.datatable.init.js"></script>
+        <!-- <script src="/assets/pages/jquery.datatable.init.js"></script> -->
 
         <!-- App js -->
         <script src="/assets/js/app.js"></script>
+        <script>
+            $(document).ready(function() {
+
+                
+                var table = $('#datatable').dataTable({
+                    responsive: true,
+                    "info": false,
+                    "pagingType": "numbers",
+                    button: true
+                });
+
+                $('input.filter').on('change', function() {
+                    table.fnDraw();
+                });
+                $.fn.dataTable.ext.search.push(
+                    function(settings, searchData, index, rowData, counter) {
+                    // No filtered checked - show all rows
+                    if ($('.filter:checked').length === 0) {
+                        return true;
+                    }
+
+                    // Filter(s) checked, apply logic
+                    var found = false;
+                    $('.filter').each(function(index, elem) {
+                        if (elem.checked && rowData[2].includes(elem.value)) {
+                        found = true;
+                        }
+                    });
+
+                    
+                    return found;
+                    }
+                );
+
+                });
+        </script>
         
     </body>
 

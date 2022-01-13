@@ -45,7 +45,6 @@ const DateFormatter = (data_three) => {
         let d_2 = newDate.getDate() - newDate.getDay()
         let d_3 = new Date(newDate.setDate(d_2)).getTime()
 
-        console.log(new Date(newDate.setDate(d_2)).toDateString(), data.dateJoined)
 
        
         if(data.type === 'Subscribed' && d_3 < d_1){

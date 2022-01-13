@@ -119,10 +119,26 @@ app.get('/homepage', async (req, res) => {
 
     let recent_consultants;
     if(data.length >= 5){
-        recent_consultants = data.slice(data_three.length - 7)
+        recent_consultants = data.slice(data.length - 5)
     } else {
         recent_consultants =  data
     }
+    let recent_institution;
+    if(data.length >= 5){
+        recent_institution = data_two.slice(data_two.length - 5)
+    } else {
+        recent_institution =  data_two
+    }
+
+
+    let total = 0;
+    paymentIntents.data.map(element => {
+        if(element.status === 'succeeded'){
+            console.log(element.amount)
+            total += element.amount
+    }})
+
+
 
     res.render('homepage',{ consultant: data.length, 
                             institution: data_two.length, 
@@ -135,7 +151,9 @@ app.get('/homepage', async (req, res) => {
                             phoneVerified: phoneVerified.length,
                             recent_business: recent_business,
                             recent_consultants: recent_consultants,
-                            paymentIntents: paymentIntents.data
+                            paymentIntents: paymentIntents.data,
+                            total: total / 100,
+                            recent_institution: recent_institution
 
                          })
 })

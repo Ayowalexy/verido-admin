@@ -1,4 +1,9 @@
 
+const categories = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+const currentMonth = new Date().toDateString().slice(4, 7)
+let useDate = categories.splice(0, categories.indexOf(currentMonth) + 2)
+
+
 
 var options = {
     chart: {
@@ -34,15 +39,15 @@ var options = {
         }
     },
     series: [{
-        name: "New Visits",
-        data: [0, 60, 20, 90, 45, 110, 55, 130, 44, 110, 75, 120]
+        name: "New Subscriptions",
+        data: [ 5, 0]
     }, {
-        name: "Unique Visits",
-        data: [0, 45, 10, 75, 35, 94, 40, 115, 30, 105, 65, 110]
+        name: "New Signups",
+        data: [21, 0]
     }],
     xaxis: {
         type: "month",
-        categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        categories: useDate,
         axisBorder: {
             show: !0
         },
