@@ -345,6 +345,50 @@
                         </div><!--end col-->
                     </div><!--end row-->
 
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row align-items-center">
+                                        <div class="col">                      
+                                            <h4 class="card-title">Business Owners</h4>                      
+                                        </div><!--end col-->
+                                       
+                                    </div>  <!--end row-->                                  
+                                </div><!--end card-header-->
+                               
+                                <div class="card-body">
+                                    <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                        <thead>
+                                        <tr>
+                                            <th>Enterprise Name</th>
+                                            <th>Name</th>
+                                            <th>Status</th>
+                                            <th>Subcription Ends</th>
+                                        </tr>
+                                        </thead>
+    
+    
+                                        <tbody>
+                                            
+                                           <% business.forEach(element => { %>
+                                            
+                                                <tr>
+                                                    <td><a href="/chat/business/<%=element._id %> "><%=element.business.name %></a></td>
+                                                    <td><a href="/chat/business/<%=element._id %> "><%=element.full_name %></a></td>
+                                                    <td style="text-transform: capitalize;"><a href="/chat/business/<%=element.id %> "><%=element.subscription_status.type %></a></td>
+                                                    <td><a href="/chat/business/<%=element._id %> "><%=element.subscription_status.expires %></a></td>
+                                                </tr>
+                                           <% }) %>
+                                        </tbody>
+                                    </table>
+    
+                                </div>
+                            </div>
+                        </div> <!-- end col -->
+                    </div> <!-- end row -->
+
                 </div><!-- container -->
 
                  <footer class="footer text-center text-sm-start">

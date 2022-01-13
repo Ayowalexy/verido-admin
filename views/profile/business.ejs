@@ -428,6 +428,31 @@
                                                     
                                                 </div><!--end card-body-->
                                             </div><!--end card-->
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4 class="card-title">Database</h4>
+                                                </div><!--end card-header-->
+                                                <div class="card-body"> 
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Click to Download</label>
+                                                            <div class="col-auto align-self-center">
+                                                                
+                                                                <a href="<% if (data.database) { %>
+                                                                 <%=data.database %> 
+                                                                <% } else { %>
+                                                                    <%='#' %> 
+                                                                <% } %> 
+                                                                    " class="btn btn-sm btn-outline-primary">
+                                                                    <i data-feather="download" class="align-self-center icon-xs"></i>
+                                                                </a>
+                                                            </div><!--end col--> 
+                                                        </div>
+                                                        
+                                                       
+
+                                                    
+                                                </div><!--end card-body-->
+                                            </div><!--end card-->
                                         </div> <!--end col--> 
                                         <div class="col-lg-6 col-xl-6">
                                             <div class="card">

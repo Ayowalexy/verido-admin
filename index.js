@@ -139,7 +139,6 @@ app.get('/homepage', async (req, res) => {
     }})
 
 
-
     res.render('homepage',{ consultant: data.length, 
                             institution: data_two.length, 
                             business: data_two.length, 
@@ -201,7 +200,6 @@ app.get('/business-owners', async(req, res) => {
     // const data_three = await axios.get('http://localhost:5000/admin-business')
     const data_three = await axios.get('https://verido-2-ihdqs.ondigitalocean.app/admin-business')
     .then(resp => resp.data.response)
-    console.log(data_three)
     res.render('business', { data: data_three, username: req.session.username })
 
     // const data = await axios.get('http://localhost:5000/admin-business')
@@ -214,17 +212,25 @@ app.get('/business-owners', async(req, res) => {
 
 })
 
-app.get('/consultants/:id', (req, res) => {
+app.get('/consultants/:id', async (req, res) => {
     const { id } = req.params
     const d = data.find(element => element.id === id)
-    res.render('profile/consultant', {data: d, username: req.session.username})
+    const data_three = await axios.get('https://verido-2-ihdqs.ondigitalocean.app/admin-business')
+    .then(resp => resp.data.response)
+    res.render('profile/consultant', {data: d, username: req.session.username, business: data_three.slice(0, 7)})
 })
 
-app.get('/institutions/:id', (req, res) => {
+app.get('/institutions/:id', async (req, res) => {
     const { id } = req.params;
     const d = data_two.find(element => element.id ===  id)
     const consultant = data.find(element => element.index === d.consultant_id)
-    res.render('profile/institution', { data: d, username: req.session.username, consultant: consultant.enterprise_name})
+    const data_three = await axios.get('https://verido-2-ihdqs.ondigitalocean.app/admin-business')
+    .then(resp => resp.data.response)
+    res.render('profile/institution', { data: d, 
+                                        username: req.session.username, 
+                                        consultant: consultant.enterprise_name,
+                                        business: data_three.slice(5, 11)
+                                    })
 })
 
 app.get('/business/:id', async (req, res) => {

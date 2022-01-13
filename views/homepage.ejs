@@ -405,19 +405,24 @@
                                             <tbody>
                                                 <% for( let index = 0; index < recent_business.length; index++ ) { %>
                                                     <tr>                                                        
-                                                        <td><a href="#" class="text-primary"><%=recent_business[index].full_name %> </a></td>
-                                                        <td><% if (recent_business[index].business.name) { %>
+                                                        <td><a href="/business/<%=recent_business[index]._id %>" class="text-primary"><%=recent_business[index].full_name %> </a></td>
+                                                        <td><a href="/business/<%=recent_business[index]._id %>"><% if (recent_business[index].business.name) { %>
                                                             <%=recent_business[index].business.name %>
                                                         <% } else { %>
                                                             <%='No Busiess Created'%>
                                                         <% } %> 
+                                                    </a></td>
+                                                        <td style="text-transform: capitalize;"><a href="/business/<%=recent_business[index]._id %>">
+                                                            <%=recent_business[index].subscription_status.type %>
+                                                        </a>
                                                         </td>
-                                                        <td style="text-transform: capitalize;"><%=recent_business[index].subscription_status.type %></td>
-                                                        <td><% if (recent_business[index].phoneVerified ) { %>
+                                                        <td><a href="/business/<%=recent_business[index]._id %>">
+                                                            <% if (recent_business[index].phoneVerified ) { %>
                                                          <%='Verified' %> 
                                                         <% } else { %>
                                                             <%='Unverified' %> 
                                                         <% } %> 
+                                                    </a>
                                                         </td>
                                                     </tr><!--end tr--> 
                                                 <% } %>
@@ -453,10 +458,10 @@
                                             <tbody>
                                                 <% for( let index = 0; index < recent_consultants.length; index++ ) { %>
                                                     <tr>                                                        
-                                                        <td><i class="fas fa-user me-2"></i> <%=recent_consultants[index].name %> </td>
-                                                        <td><%=Math.floor(Math.random() * 10) %> </td>                                   
-                                                        <td><%=Math.floor((Math.random() * 10 / 2))  %></td>
-                                                        <td>Not Verified</td>
+                                                        <td><a href="/consultants/<%=recent_consultants[index].id %>"><i class="fas fa-user me-2"></i> <%=recent_consultants[index].name %> </a></td>
+                                                        <td><a href="/consultants/<%=recent_consultants[index].id %>"><%=Math.floor(Math.random() * 10) %></a> </td>                                   
+                                                        <td> <a href="/consultants/<%=recent_consultants[index].id %>"><%=Math.floor((Math.random() * 10 / 2))  %></a></td>
+                                                        <td> <a href="/consultants/<%=recent_consultants[index].id %>"> Not Verified </a></td>
                                                     </tr><!--end tr-->   
                                                 <% } %>
                                                   
