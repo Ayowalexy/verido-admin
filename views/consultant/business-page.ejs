@@ -1,0 +1,539 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Verido - Admin</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <!-- App favicon -->
+        <link rel="shortcut icon" href=/"assets/images/favicon.ico">
+
+        <!-- jvectormap -->
+        <link href="/assets/plugins/jvectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet">
+
+        <!-- App css -->
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
+
+        <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/metisMenu.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/app.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="/assets/css/custom.css">
+        <link rel="stylesheet" href="/assets/css/all.min.css">
+
+       
+
+    </head>
+
+    <body class="">
+        <!-- Left Sidenav -->
+        <div class="left-sidenav">
+            <!-- LOGO -->
+            <div class="brand">
+                <a href="/" class="logo">
+                    <span>
+                        <!-- <img src="assets/images/logo-sm.png" alt="logo-small" class="logo-sm"> -->
+                    </span>
+                    <span class="custom-logo">
+                        Verido
+                        <!-- <img src="assets/images/logo.png" alt="logo-large" class="logo-lg logo-light"> -->
+                        <!-- <img src="assets/images/logo-dark.png" alt="logo-large" class="logo-lg logo-dark"> -->
+                    </span>
+                </a>
+            </div>
+            <!--end logo-->
+            <div class="menu-content h-100" data-simplebar>
+                <ul class="metismenu left-sidenav-menu">
+                    <li class="menu-label mt-0">Main</li>
+                    <li>
+                        <a href="javascript: void(0);"> <i data-feather="home" class="align-self-center menu-icon"></i><span>Dashboard</span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="/dashboard-consultant"><i class="align-self-center fas fa-chart-line menu-icon"></i>Analytics</a></li>
+                        </ul>
+                    </li>
+    
+                    <li>
+                        <a href="javascript: void(0);"><i data-feather="grid" class="align-self-center menu-icon"></i><span>Apps</span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            
+                            <li class="nav-item"><a class="nav-link" href="/consultant-chat-page"><i  class="align-self-center fas fa-comments menu-icon"></i>Chat</a></li>
+                            <!-- <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-address-book menu-icon align-self-center"></i>Contact List</a></li> -->
+                 
+                        </ul>
+                    </li> 
+    
+                    <li>
+                        <a href="javascript: void(0);"><i data-feather="list" class="align-self-center menu-icon"></i><span>Pages</span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="/consultant-index"><i class="fas fa-wallet menu-icon align-self-center"></i>Business Owners</a></li>
+                        </ul>
+                    </li>  
+                    
+                            
+                    <li>
+                        <a href="javascript: void(0);"><i data-feather="lock" class="align-self-center menu-icon"></i><span>Authentication</span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-sign-in-alt menu-icon align-self-center"></i>Register</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/recover"><i class="fas fa-key menu-icon align-self-center"></i>Recover Password</a></li>
+                        </ul>
+                    </li>   
+                                  
+                </ul>
+    
+               
+            </div>
+        </div>
+        <!-- end left-sidenav-->
+        
+
+        <div class="page-wrapper">
+            <!-- Top Bar Start -->
+            <div class="topbar">            
+                <!-- Navbar -->
+                <nav class="navbar-custom">    
+                    <ul class="list-unstyled topbar-nav float-end mb-0"> 
+                        
+                        <li class="dropdown hide-phone">
+                            <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect"  href="/consultant-chat/<%=data._id %> " 
+                                >
+                               
+                                <button data-bs-target="#exampleModalDefault" data-bs-toggle="modal" type="button" class="btn btn-primary">
+                                    Message
+                                </button>
+                            </a>
+                            
+                           
+                        </li> 
+
+                        <li class="dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-bs-toggle="dropdown" href="#" role="button"
+                                aria-haspopup="false" aria-expanded="false">
+                                <span class="ms-1 nav-user-name hidden-sm"><%=username %>  </span>
+                                <!-- <img src="/assets/images/users/user-5.jpg" alt="profile-user" class="rounded-circle thumb-xs" />                                  -->
+                                <i class="fas fa-user fa-1x text-muted"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" href="#">Company Logo</a>
+                                <div class="dropdown-divider mb-0"></div>
+                                <a class="dropdown-item" href="#"><i data-feather="file" class="align-self-center icon-xs icon-dual me-1"></i> Choose File</a>
+                            </div>
+                        </li>
+                    </ul><!--end topbar-nav-->
+        
+                    <ul class="list-unstyled topbar-nav mb-0">                        
+                        <li>
+                            <button class="nav-link button-menu-mobile">
+                                <i data-feather="menu" class="align-self-center topbar-icon"></i>
+                            </button>
+                        </li> 
+                                                 
+                    </ul>
+                </nav>
+                <!-- end navbar-->
+            </div>
+            <!-- Top Bar End -->
+
+            <div class="page-content">
+                <div class="container-fluid">
+                    <!-- Page-Title -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-title-box">
+                                <div class="row">
+                                    <div class="col">
+                                        <h4 class="page-title">Business Page</h4>
+
+                                  
+                                        
+                                         
+                                    </div><!--end col-->
+                                    
+                                </div><!--end row-->                                                              
+                            </div><!--end page-title-box-->
+                        </div><!--end col-->
+                    </div><!--end row-->
+                    <!-- end page title end breadcrumb -->
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body p-0">
+                                </div><!--end card-body-->                                
+                                <div class="card-body">
+                                    <div class="dastone-profile">
+                                        <div class="row">
+                                            <div class="col-lg-4 align-self-center mb-3 mb-lg-0">
+                                                <div class="dastone-profile-main">
+                                                    <div class="dastone-profile-main-pic">
+                                                        <!-- <img src="/assets/images/users/user-4.jpg" alt="" height="110" class="rounded-circle"> -->
+                                                        <i class="fas fa-user fa-7x"></i>
+                                                        <span class="dastone-profile_main-pic-change">
+                                                            <i class="fas fa-camera"></i>
+                                                            
+                                                        </span>
+                                                    </div>
+                                                    <div class="dastone-profile_user-detail">
+                                                        <h5 class="dastone-user-name"><%=data.business.name %> </h5>                                                        
+                                                        <p class="mb-0 dastone-user-name-post"><%=data.full_name %> </p>                                                        
+                                                    </div>
+                                                </div>                                                
+                                            </div><!--end col-->
+                                            
+                                            <div class="col-lg-4 ms-auto align-self-center">
+                                                <ul class="list-unstyled personal-detail mb-0">
+                                                    <li class=""><i class="ti ti-mobile me-2 text-secondary font-16 align-middle"></i> <b> phone </b> : <%=data.username %> </li>
+                                                    <li class="mt-2"><i class="ti ti-email text-secondary font-16 align-middle me-2"></i> <b> Email </b> : <%=data.email %> </li>
+                                                    <li style="text-transform: capitalize;" class="mt-2"><i class="ti ti-world text-secondary font-16 align-middle me-2"></i> <b> Status </b> : <%=data.subscription_status.type %> </li>                                                   
+                                                </ul>
+                                               
+                                            </div><!--end col-->
+                                            <div class="col-lg-4 align-self-center">
+                                                                                            
+                                            </div><!--end col-->
+                                        </div><!--end row-->
+                                    </div><!--end f_profile-->                                                                                
+                                </div><!--end card-body-->          
+                            </div> <!--end card-->    
+                        </div><!--end col-->
+                    </div><!--end row-->
+                    <div class="pb-4">
+                        <ul class="nav-border nav nav-pills mb-0" id="pills-tab" role="tablist">
+                
+                            <li class="nav-item">
+                                <a class="nav-link" id="settings_detail_tab" data-bs-toggle="pill" href="#Profile_Settings">Settings</a>
+                            </li>
+                        </ul>        
+                    </div><!--end card-body-->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="tab-content" id="pills-tabContent">
+                                
+               
+                                <div class="tab-pane active " id="Profile_Settings" role="tabpanel" aria-labelledby="settings_detail_tab">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-xl-6">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <div class="row align-items-center">
+                                                        <div class="col">                      
+                                                            <h4 class="card-title">Personal Information</h4>                      
+                                                        </div><!--end col-->                                                       
+                                                    </div>  <!--end row-->                                  
+                                                </div><!--end card-header-->
+                                                <div class="card-body">                       
+                                                    
+                                                   
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Consultant</label>
+                                                        <div class="col-lg-9 col-xl-8">
+                                                            <input class="form-control" type="text" value="<%=consultant %> " disabled>
+                                                        </div>
+                                                    </div>
+                        
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Phone 1</label>
+                                                        <div class="col-lg-9 col-xl-8">
+                                                            <div class="input-group">
+                                                                <span class="input-group-text"><i class="las la-phone"></i></span>
+                                                                <input type="text" class="form-control" value="-- --- ---" disabled placeholder="Phone" aria-describedby="basic-addon1">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Phone 2</label>
+                                                        <div class="col-lg-9 col-xl-8">
+                                                            <div class="input-group">
+                                                                <span class="input-group-text"><i class="las la-phone"></i></span>
+                                                                <input type="text" class="form-control" value="-- --- ---" disabled placeholder="Phone" aria-describedby="basic-addon1">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Verification</label>
+                                                        <div class="col-lg-9 col-xl-8">
+                                                            <div class="input-group">
+                                                                <span class="input-group-text"><i class="las la-phone"></i></span>
+                                                                <input type="text" class="form-control" value="-- --- ---" disabled placeholder="Phone" aria-describedby="basic-addon1">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Date Joined</label>
+                                                        <div class="col-lg-9 col-xl-8">
+                                                            <input class="form-control" type="text" value="<%=data.dateJoined %> " disabled >
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Phone Verification</label>
+                                                        <div class="col-lg-9 col-xl-8">
+                                                            <input class="form-control" type="text" value=<% if (data.phoneVerified) { %>
+                                                                <%='Verified' %> 
+                                                            <% } else { %>
+                                                                <%='Unverified' %> 
+                                                            <% } %> 
+                                                                 disabled >
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Postcode</label>
+                                                        <div class="col-lg-9 col-xl-8">
+                                                            <input class="form-control" type="text" value="- - -" disabled >
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Organization ID</label>
+                                                        <div class="col-lg-9 col-xl-8">
+                                                            <input class="form-control" type="text" value=<% if (data.organization_id === null) { %>
+                                                                <%='Unassigned' %> 
+                                                             
+                                                            <% } else {%>
+                                                                <%=data.organization_id %> 
+                                                            <% } %> 
+                                                                 disabled >
+                                                        </div>
+                                                    </div>
+                                                   
+                                                    
+                                                                                                   
+                                                </div>                                            
+                                            </div>
+
+
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4 class="card-title">Subscription Details</h4>
+                                                </div><!--end card-header-->
+                                                <div class="card-body"> 
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Subscription Status</label>
+                                                            <div class="col-lg-9 col-xl-8">
+                                                                <input style="text-transform: capitalize;" class="form-control custom-input" type="text" disabled  value="<%=data.subscription_status.type%> "  >
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Subscription Started</label>
+                                                            <div class="col-lg-9 col-xl-8">
+                                                                <input class="form-control custom-input"  type="text" value="<%=data.subscription_status.started %> "  >
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Subscription Expires</label>
+                                                            <div class="col-lg-9 col-xl-8">
+                                                                <input class="form-control custom-input"  type="text" value="<%=data.subscription_status.expires %> "  >
+                                                            </div>
+                                                        </div>
+                                                       
+                                                       
+
+                                                    
+                                                </div><!--end card-body-->
+                                            </div><!--end card-->
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4 class="card-title">Database</h4>
+                                                </div><!--end card-header-->
+                                                <div class="card-body"> 
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Click to Download</label>
+                                                            <div class="col-auto align-self-center">
+                                                                
+                                                                <a href="<% if (data.database) { %>
+                                                                 <%=data.database %> 
+                                                                <% } else { %>
+                                                                    <%='#' %> 
+                                                                <% } %> 
+                                                                    " class="btn btn-sm btn-outline-primary">
+                                                                    <i data-feather="download" class="align-self-center icon-xs"></i>
+                                                                </a>
+                                                            </div><!--end col--> 
+                                                        </div>
+                                                        
+                                                       
+
+                                                    
+                                                </div><!--end card-body-->
+                                            </div><!--end card-->
+                                        </div> <!--end col--> 
+                                        <div class="col-lg-6 col-xl-6">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4 class="card-title">Address Information</h4>
+                                                </div><!--end card-header-->
+                                                <div class="card-body"> 
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Address Line 1</label>
+                                                        <div class="col-lg-9 col-xl-8">
+                                                            <div class="input-group">
+                                                                <span class="input-group-text"><i class="las la-at"></i></span>
+                                                                <input type="text" class="form-control" value="<%=data.address_line_1 %> " disabled placeholder="Email" aria-describedby="basic-addon1">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Address Line 2</label>
+                                                        <div class="col-lg-9 col-xl-8">
+                                                            <div class="input-group">
+                                                                <span class="input-group-text"><i class="las la-at"></i></span>
+                                                                <input type="text" class="form-control" value="<%=data.address_line_2 %> " disabled placeholder="Email" aria-describedby="basic-addon1">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">City</label>
+                                                        <div class="col-lg-9 col-xl-8">
+                                                            <input class="form-control" type="text" value='<%=data.city %> ' disabled >
+                                                        </div>
+                                                    </div>
+                                                   
+                                                   
+                                                   
+                                                     
+                                                </div><!--end card-body-->
+                                            </div><!--end card-->
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4 class="card-title">Business Informations</h4>
+                                                </div><!--end card-header-->
+                                                <div class="card-body"> 
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Business Name</label>
+                                                            <div class="col-lg-9 col-xl-8">
+                                                                <input class="form-control custom-input" type="text" disabled  value="<%=data.business.name%> "  >
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Sector</label>
+                                                            <div class="col-lg-9 col-xl-8">
+                                                                <input class="form-control custom-input"  type="text" value="<%=data.business.sector %> "  >
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Business Type</label>
+                                                            <div class="col-lg-9 col-xl-8">
+                                                                <input class="form-control custom-input"  type="text" value="<%=data.business.type %> "  >
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Currency</label>
+                                                            <div class="col-lg-9 col-xl-8">
+                                                                <input class="form-control custom-input"  type="text" value="<%=data.business.currency %> "  >
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Currency Type</label>
+                                                            <div class="col-lg-9 col-xl-8">
+                                                                <input class="form-control custom-input"  type="text" value="<%=data.business.currencySymbol %> "  >
+                                                            </div>
+                                                        </div>
+                                                       
+
+                                                    
+                                                </div><!--end card-body-->
+                                            </div><!--end card-->
+                                            
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4 class="card-title">Verification</h4>
+                                                    <button class="btn btn-secondary btn-sm">
+                                                        <% if (data.idVerified) { %>
+                                                           <%='Verified' %> 
+                                                        <% } else { %>
+                                                            <%='Not Verified' %> 
+                                                        <% } %> 
+                                                    </button>
+                                                </div><!--end card-header-->
+                                                <div class="card-body"> 
+                                                    <form action="/verification/<%=data._id %> " method="POST">
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">BVN</label>
+                                                            <div class="col-lg-9 col-xl-8">
+                                                                <input class="form-control custom-input" style="pointer-events: none;" type="text" name='BVN' value="<% if (data.userID) { %>
+                                                                    <%=data.userID.BVN %> 
+                                                                   <% } else { %>
+                                                                       <%="" %> 
+                                                                   <% } %> " required  >
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">NIN</label>
+                                                            <div class="col-lg-9 col-xl-8">
+                                                                <input class="form-control custom-input" style="pointer-events: none;" name="NIN" type="text" value="<% if (data.userID) { %>
+                                                                 <%=data.userID.NIN %> 
+                                                                <% } else { %>
+                                                                    <%="" %> 
+                                                                <% } %> " required  >
+                                                            </div>
+                                                        </div>
+                                                        <div style="float: right;" class="px-5">
+                                                            <button disabled=<% if (data.userID) { %>
+                                                                <%=true %> 
+                                                             
+                                                            <% } else { %>
+                                                                <%=false %> 
+                                                            <% } %>  class="btn btn-success btn-sm">VALIDATE</button>
+                                                        </div>
+                                                    </form>
+
+                                                    
+                                                </div><!--end card-body-->
+                                            </div><!--end card-->
+                                            
+                                        </div> <!-- end col -->                                                                              
+                                    </div><!--end row-->
+                                </div><!--end tab-pane-->
+                            </div><!--end tab-content-->
+                        </div><!--end col-->
+                    </div><!--end row-->
+
+                </div><!-- container -->
+
+                 <footer class="footer text-center text-sm-start">
+                    &copy; <script>
+                        document.write(new Date().getFullYear())
+                    </script> Verido 
+                </footer><!--end footer-->
+            </div>           
+
+        
+
+
+        <!-- jQuery  -->
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/pagination.js"></script>        
+        <script src="/assets/js/metismenu.min.js"></script>
+        <script src="/assets/js/bootstrap.bundle.min.js"></script>
+        <script src="/assets/js/waves.js"></script>
+        <script src="/assets/js/feather.min.js"></script>
+        <script src="/assets/js/simplebar.min.js"></script>
+        <script src="/assets/js/moment.js"></script>
+        <script src="/assets/plugins/daterangepicker/daterangepicker.js"></script>
+
+        <script src="/assets/plugins/apex-charts/apexcharts.min.js"></script>
+        <script src="/assets/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
+        <script src="/assets/plugins/jvectormap/jquery-jvectormap-us-aea-en.js"></script>
+        <script src="/assets/pages/jquery.analytics_dashboard.init.js"></script>
+        <script src="/assets/js/all.min.js"></script>
+
+        <!-- App js -->
+        <script src="/assets/js/app.js"></script>
+        <script>
+            const doc = Array.from(document.querySelectorAll('.custom-input'))
+            doc.forEach(element => {
+                element.onkeydown = (event) => (
+                        event.preventDefault()
+                )})
+            doc.oninput = function(event){
+                event.preventDefault()
+            }
+        </script>
+        
+    </body>
+
+</html>

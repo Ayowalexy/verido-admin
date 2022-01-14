@@ -171,16 +171,20 @@ app.post('/login', async( req, res) => {
             .catch (e => {
                 console.log(e.message)
             })
-    console.log(data)
-    if(data.code){
+    if(data){
         req.token = {
             token: data.response.token,
             username: data.response.username
+        } 
+
+        if(data.role === 'consultant'){
+            return res.redirect('/dashboard-consultant')
+        } else {
+            return res.redirect('/homepage')
         }
 
         req.session.token = data.response.token
         req.session.username = data.response.username
-        return res.redirect('/homepage')
     } else {
         res.render('login', {message: "Username or Password is incorrect"})
     }
@@ -246,6 +250,24 @@ app.get('/business/:id', async (req, res) => {
 
 })
 
+app.get('/business-page/:id', async (req, res) => {
+    const { id } = req.params
+    const data_three = await axios.get('https://verido-2-ihdqs.ondigitalocean.app/admin-business')
+    // const data_three = await axios.get('http://localhost:5000/admin-business')
+    .then(resp => resp.data.response)
+
+    const d = data_three.find(element => element._id === id)
+    // const consultant = data.find(element => element.index === d.consultant_id)
+
+    res.render('consultant/business-page', {data: d, username: req.session.username, consultant: 'Not Available'})
+
+})
+
+
+
+
+
+
 app.get('/chat', async (req, res) => {
     const data_three = await axios.get('https://verido-2-ihdqs.ondigitalocean.app/admin-business')
     // const data_three = await axios.get('http://localhost:5000/admin-business')
@@ -300,6 +322,142 @@ app.post('/verification/:id', async (req, res) => {
     
     res.redirect(`/business/${id}`)
 
+
+
+})
+
+app.get('/register', (req, res) => {
+    res.render('register')
+})
+
+app.post('/register', async( req, res) => {
+    const data = await axios.post(`https://verido-2-ihdqs.ondigitalocean.app/new-consultant`, {...req.body})
+    // const data = await axios.post(`http://localhost:5000/new-consultant`, {...req.body})
+    .then(respon => {
+        return respon.data })
+    .catch (e => {
+        console.log(e.message)
+    })
+
+    if(data.message){
+        res.redirect('/dashboard-consultant')
+    }
+})
+
+app.get('/dashboard-consultant', async (req, res) => {
+    const paymentIntents = await stripe.paymentIntents.list({
+        limit: 8
+    });
+
+    // const custom = await stripe.customers.list()
+       
+    const data_three = await axios.get('https://verido-2-ihdqs.ondigitalocean.app/admin-business')
+    // const data_three = await axios.get('http://localhost:5000/admin-business')
+    .then(resp => resp.data.response)
+    let val = DateFormatter(data_three)
+    const arr = data_three.map(data =>  {
+        return {
+                type: data.subscription_status.type,
+                dateJoined: data.subscription_status.started}
+            })
+
+    
+            // console.log(custom)
+    let subs = DateFormatter(arr).map(data => data !== null)
+    // let subs_2 = DateFormatter(arr)
+
+    // console.log(subs_2, '-----')
+
+    let totalSubs = []
+    let idVerified = []
+    let phoneVerified = []
+    data_three.filter(data => {
+        if(data.subscription_status.type === 'Subscribed'){
+            totalSubs.push(data)
+        } else if (data.idVerified){
+            idVerified.push(data)
+        } else if(data.phoneVerified){
+            phoneVerified.push(data)
+        }
+    })
+
+    let recent_business;
+     if(data_three.length >= 5){
+        // recent_business = data_three.slice()
+        recent_business = data_three.slice(data_three.length - 5)
+    } else {
+        recent_business =  data_three
+    }
+
+    let recent_consultants;
+    if(data.length >= 5){
+        recent_consultants = data.slice(data.length - 5)
+    } else {
+        recent_consultants =  data
+    }
+    let recent_institution;
+    if(data.length >= 5){
+        recent_institution = data_two.slice(data_two.length - 5)
+    } else {
+        recent_institution =  data_two
+    }
+
+
+    let total = 0;
+    paymentIntents.data.map(element => {
+        if(element.status === 'succeeded'){
+            console.log(element.amount)
+            total += element.amount
+    }})
+
+
+    res.render('consultant/index',{ consultant: data.length, 
+                            institution: data_two.length, 
+                            business: data_two.length, 
+                            username: req.session.username, 
+                            signUps: val.length,
+                            subs: subs.length,
+                            totalSubs: totalSubs.length,
+                            idVerified: idVerified.length,
+                            phoneVerified: phoneVerified.length,
+                            recent_business: recent_business,
+                            recent_consultants: recent_consultants,
+                            paymentIntents: paymentIntents.data,
+                            total: total / 100,
+                            recent_institution: recent_institution
+
+                         })
+})
+
+app.get('/consultant-index', async (req, res) => {
+    const data_three = await axios.get('https://verido-2-ihdqs.ondigitalocean.app/admin-business')
+    .then(resp => resp.data.response)
+    res.render('consultant/business', { data: data_three.slice(data_three.length - 7), username: req.session.username })
+
+})
+
+app.get('/consultant-chat/:id', async (req, res) => {
+
+    const { id } = req.params;
+
+    const data_three = await axios.get('https://verido-2-ihdqs.ondigitalocean.app/admin-business')
+    // const data_three = await axios.get('http://localhost:5000/admin-business')
+    .then(resp => resp.data.response)
+
+    const business = data_three.find(data => data._id === id)
+    res.render('consultant/chat', {data: business, username: req.session.username, business: data_three})
+
+
+})
+app.get('/consultant-chat-page', async (req, res) => {
+
+    const { id } = req.params;
+
+    const data_three = await axios.get('https://verido-2-ihdqs.ondigitalocean.app/admin-business')
+    // const data_three = await axios.get('http://localhost:5000/admin-business')
+    .then(resp => resp.data.response)
+
+    res.render('consultant/chat-index', { username: req.session.username, business: data_three})
 
 
 })

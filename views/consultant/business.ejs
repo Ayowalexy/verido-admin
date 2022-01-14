@@ -1,0 +1,332 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Verido - Admin</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta content="Verido Admin Dashboard" name="description" />
+        <meta content="" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="/assets/images/favicon.ico">
+
+        <!-- DataTables -->
+        <link href="/assets/plugins/datatables/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/plugins/datatables/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <!-- Responsive datatable examples -->
+        <link href="/assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" /> 
+        <link href="/assets/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
+
+
+        <!-- App css -->
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/metisMenu.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/app.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="assets/css/custom.css">
+
+
+    </head>
+
+    <body>
+        <!-- Left Sidenav -->
+        <div class="left-sidenav">
+            <!-- LOGO -->
+            <div class="brand">
+                <a href="index.html" class="logo">
+                    <span>
+                        <!-- <img src="assets/images/logo-sm.png" alt="logo-small" class="logo-sm"> -->
+                    </span>
+                    <span class="custom-logo">
+                        Verido
+                        <!-- <img src="assets/images/logo.png" alt="logo-large" class="logo-lg logo-light">
+                        <img src="assets/images/logo-dark.png" alt="logo-large" class="logo-lg logo-dark"> -->
+                    </span>
+                </a>
+            </div>
+            <!--end logo-->
+            <div class="menu-content h-100" data-simplebar>
+                <ul class="metismenu left-sidenav-menu">
+                    <li class="menu-label mt-0">Main</li>
+                    <li>
+                        <a href="javascript: void(0);"> <i data-feather="home" class="align-self-center menu-icon"></i><span>Dashboard</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="/dashboard-consultant"><i class="align-self-center fas fa-chart-line menu-icon"></i>Analytics</a></li>
+                        </ul>
+                    </li>
+    
+                    <li>
+                        <a href="javascript: void(0);"><i data-feather="grid" class="align-self-center menu-icon"></i><span>Apps</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            
+                            <li class="nav-item"><a class="nav-link" href="/consultant-chat-page"><i  class="align-self-center fas fa-comments menu-icon"></i>Chat</a></li>
+                            <!-- <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-address-book menu-icon align-self-center"></i>Contact List</a></li> -->
+                 
+                        </ul>
+                    </li> 
+
+                    <li>
+                        <a href="javascript: void(0);"><i data-feather="list" class="align-self-center menu-icon"></i><span>Pages</span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="/consultant-index"><i class="fas fa-wallet menu-icon align-self-center"></i>Business Owners</a></li>
+                        </ul>
+                    </li>  
+    
+                    <li>
+                        <a href="javascript: void(0);"><i data-feather="lock" class="align-self-center menu-icon"></i><span>Authentication</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-sign-in-alt menu-icon align-self-center"></i>Register</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/recover"><i class="fas fa-key menu-icon align-self-center"></i>Recover Password</a></li>
+                        </ul>
+                    </li> 
+    
+                   
+    
+                    
+    
+                   
+                    <li>
+                        <a href="javascript: void(0);"><i data-feather="filter" class="align-self-center menu-icon"></i><span>Filters</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="nav-second-level" aria-expanded="false">
+
+                            <form action="" id="filt">
+                                <li data-active='true' class="nav-item">
+                                    <input class="filter" type="checkbox" id="active" value="trial">
+                                    <label for="active">Trial</label>
+                                </li>
+                                <li data-active='true' class="nav-item">
+                                    <input class="filter" type="checkbox" id="expired" value="expired">
+                                    <label for="expired">Expired</label>
+                                </li>
+                                <li data-active='true' class="nav-item">
+                                    <input class="filter" type="checkbox" id="suspended" value="suspended">
+                                    <label for="suspended">Suspended</label>
+                                </li>
+                                <li data-active='true' class="nav-item">
+                                    <input class="filter" type="checkbox" id="pendind" value="pending">
+                                    <label for="pendind">Pending</label>
+                                </li>
+                                <li data-active='true' class="nav-item">
+                                    <input class="filter" type="checkbox" id="reported" value="reported">
+                                    <label for="reported">Reported</label>
+                                </li>
+                                <li data-active='true' class="nav-item">
+                                    <input class="filter" type="checkbox" id="archived" value="archived">
+                                    <label for="archived">Archived</label>
+                                </li>
+                                <li data-active='true' class="nav-item">
+                                    <input class="filter" type="checkbox" id="sunscribed" value="Subscribed">
+                                    <label for="sunscribed">Subscribed</label>
+                                </li>
+
+                               
+                            </form>
+                        </ul>
+                    </li>           
+                </ul>
+    
+                
+            </div>
+        </div>
+        <!-- end left-sidenav-->
+        
+
+        <div class="page-wrapper">
+            <!-- Top Bar Start -->
+            <div class="topbar">            
+                <!-- Navbar -->
+                <nav class="navbar-custom">    
+                    <ul class="list-unstyled topbar-nav float-end mb-0">  
+                        <li class="dropdown hide-phone">
+                            
+                            
+                            <div class="dropdown-menu dropdown-menu-end dropdown-lg p-0">
+                                <!-- Top Search Bar -->
+                                <div class="app-search-topbar">
+                                    <form action="#" method="get">
+                                        <input type="search" name="search" class="from-control top-search mb-0" placeholder="Type text...">
+                                        <button type="submit"><i class="ti-search"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>                      
+
+                   
+
+                        <li class="dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-bs-toggle="dropdown" href="#" role="button"
+                                aria-haspopup="false" aria-expanded="false">
+                                <span class="ms-1 nav-user-name hidden-sm"><%=username %> </span>
+                                <!-- <img src="assets/images/users/user-5.jpg" alt="profile-user" class="rounded-circle thumb-xs" />                                  -->
+                                <i class="fas fa-user fa-1x text-muted"></i>
+
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" href="#"><i data-feather="user" class="align-self-center icon-xs icon-dual me-1"></i> Profile</a>
+                                <a class="dropdown-item" href="#"><i data-feather="settings" class="align-self-center icon-xs icon-dual me-1"></i> Settings</a>
+                                <div class="dropdown-divider mb-0"></div>
+                                <a class="dropdown-item" href="#"><i data-feather="power" class="align-self-center icon-xs icon-dual me-1"></i> Logout</a>
+                            </div>
+                        </li>
+                    </ul><!--end topbar-nav-->
+        
+                    <ul class="list-unstyled topbar-nav mb-0">                        
+                        <li>
+                            <button class="nav-link button-menu-mobile">
+                                <i data-feather="menu" class="align-self-center topbar-icon"></i>
+                            </button>
+                        </li> 
+                                                 
+                    </ul>
+                </nav>
+                <!-- end navbar-->
+            </div>
+            <!-- Top Bar End -->
+
+            <!-- Page Content-->
+            <div class="page-content">
+                <div class="container-fluid">
+                    <!-- Page-Title -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-title-box">
+                                <div class="row">
+                                    <div class="col">
+                                        <h4 class="page-title">Business</h4>
+                                       
+                                    </div><!--end col-->
+                                    
+                                </div><!--end row-->                                                              
+                            </div><!--end page-title-box-->
+                        </div><!--end col-->
+                    </div><!--end row-->
+                    <!-- end page title end breadcrumb -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                               
+                                <div class="card-body">
+                                    <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                        <thead>
+                                        <tr>
+                                            <th>Enterprise Name</th>
+                                            <th>Name</th>
+                                            <th>Consultants</th>
+                                            <th>Status</th>
+                                            <th>Subcription Ends</th>
+                                        </tr>
+                                        </thead>
+    
+    
+                                        <tbody>
+                                            
+                                           <% data.forEach(element => { %>
+                                            
+                                                <tr>
+                                                    <td><a href="/business-page/<%=element._id %> "><%=element.business.name %></a></td>
+                                                    <td><a href="/business-page/<%=element._id %> "><%=element.full_name %></a></td>
+                                                    <td><a href="/business-page/<%=element._id %> ">Not Available</a></td>
+                                                    <td style="text-transform: capitalize;"><a href="/business-page/<%=element._id %> "><%=element.subscription_status.type %></a></td>
+                                                    <td><a href="/business-page/<%=element._id %> "><%=element.subscription_status.expires %></a></td>
+                                                </tr>
+                                           <% }) %>
+                                        </tbody>
+                                    </table>
+    
+                                </div>
+                            </div>
+                        </div> <!-- end col -->
+                    </div> <!-- end row -->
+
+                    
+                </div><!-- container -->
+
+                <footer class="footer text-center text-sm-start">
+                    &copy; <script>
+                        document.write(new Date().getFullYear())
+                    </script> Verido 
+                </footer><!--end footer-->
+            </div>
+            <!-- end page content -->
+        </div>
+        <!-- end page-wrapper -->
+
+        
+
+
+        <!-- jQuery  -->
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/bootstrap.bundle.min.js"></script>
+        <script src="/assets/js/metismenu.min.js"></script>
+        <script src="/assets/js/waves.js"></script>
+        <script src="/assets/js/feather.min.js"></script>
+        <script src="/assets/js/simplebar.min.js"></script>
+        <script src="/assets/js/moment.js"></script>
+        <script src="/assets/plugins/daterangepicker/daterangepicker.js"></script>
+
+        <!-- Required datatable js -->
+        <script src="/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="/assets/plugins/datatables/dataTables.bootstrap5.min.js"></script>
+        <!-- Buttons examples -->
+        <script src="/assets/plugins/datatables/dataTables.buttons.min.js"></script>
+        <script src="/assets/plugins/datatables/buttons.bootstrap5.min.js"></script>
+        <script src="/assets/plugins/datatables/jszip.min.js"></script>
+        <script src="/assets/plugins/datatables/pdfmake.min.js"></script>
+        <script src="/assets/plugins/datatables/vfs_fonts.js"></script>
+        <script src="/assets/plugins/datatables/buttons.html5.min.js"></script>
+        <script src="/assets/plugins/datatables/buttons.print.min.js"></script>
+        <script src="/assets/plugins/datatables/buttons.colVis.min.js"></script>
+        <!-- Responsive examples -->
+        <script src="/assets/plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="/assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
+        <!-- <script src="/assets/pages/jquery.datatable.init.js"></script> -->
+
+        <!-- App js -->
+        <script src="/assets/js/app.js"></script>
+        <script>
+            const filt = document.querySelector('#datatable')
+            $(document).ready(function() {
+
+                
+                var table = $('#datatable').dataTable({
+                    responsive: true,
+                    "info": false,
+                    "pagingType": "numbers",
+                    button: true
+                });
+
+                $('input.filter').on('change', function() {
+                    table.fnDraw();
+                });
+                $.fn.dataTable.ext.search.push(
+                    function(settings, searchData, index, rowData, counter) {
+                    // No filtered checked - show all rows
+                    if ($('.filter:checked').length === 0) {
+                        return true;
+                    }
+
+                    // Filter(s) checked, apply logic
+                    var found = false;
+                    $('.filter').each(function(index, elem) {
+                        if (elem.checked && rowData[3].includes(elem.value)) {
+                        found = true;
+                        }
+                    });
+
+                    
+                    return found;
+                    }
+                );
+
+                });
+        </script>
+        
+       
+        
+    </body>
+
+</html>

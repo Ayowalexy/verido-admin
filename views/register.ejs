@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+    <title>Verido - Consultant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- App css -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+
+    </head>
+
+    <body class="account-body accountbg">
+
+        <!-- Log In page -->
+        <div class="container">
+            <div class="row vh-100 d-flex justify-content-center">
+                <div class="col-12 align-self-center">
+                    <div class="row">
+                        <div class="col-lg-5 mx-auto">
+                            <div class="card">
+                                <div class="card-body p-0 auth-header-box">
+                                    <div class="text-center p-3">
+                                        
+                                        <h4 class="mt-3 mb-1 fw-semibold text-white font-18">Sign Up as a Consultant</h4>   
+                                    </div>
+                                </div>
+                                <div class="card-body p-0">
+                                    
+                                    <div class="tab-content">
+                              
+                                        <div class="tab-pane active px-3 pt-3" id="Register_Tab" role="tabpanel">
+                                            <form class="form-horizontal auth-form" action="/register" method="POST">
+            
+                                                <div class="form-group mb-2">
+                                                    <label class="form-label" for="username">Username</label>
+                                                    <div class="input-group">                                                                                         
+                                                        <input type="text" class="form-control" name="username" id="username" placeholder="Enter username">
+                                                    </div>                                    
+                                                </div><!--end form-group--> 
+            
+                                                <div class="form-group mb-2">
+                                                    <label class="form-label" for="useremail">Email</label>
+                                                    <div class="input-group">                                                                                         
+                                                        <input type="email" class="form-control" name="email" required id="useremail" placeholder="Enter Email">
+                                                    </div>                                    
+                                                </div><!--end form-group-->
+                    
+                                                <div class="form-group mb-2">
+                                                    <label class="form-label" for="userpassword">Password</label>                                            
+                                                    <div class="input-group">                                  
+                                                        <input type="password" class="form-control" name="password" required id="userpassword" placeholder="Enter password">
+                                                    </div>                               
+                                                </div><!--end form-group--> 
+            
+                                                <div class="form-group mb-2">
+                                                    <label class="form-label" for="conf_password">Confirm Password</label>                                            
+                                                    <div class="input-group">                                   
+                                                        <input type="password"  class="form-control" name="conf-password" required id="conf_password" placeholder="Enter Confirm Password">
+                                                       
+                                                    </div>
+                                                    
+                                                </div><!--end form-group-->
+                                                <div class="invalid-feedback" style="display: none; color: red;">Your password must match</div>
+                                                
+                                                <div class="form-group mb-2">
+                                                    <label class="form-label" for="mo_number">Mobile Number</label>                                            
+                                                    <div class="input-group">                                 
+                                                        <input type="text" class="form-control" name="mobile_number" required id="mo_number" placeholder="Enter Mobile Number">
+                                                    </div>                               
+                                                </div><!--end form-group-->  
+                    
+                                                
+                    
+                                                <div class="form-group mb-0 row">
+                                                    <div class="col-12">
+                                                        <button class="btn btn-primary w-100 waves-effect waves-light" id="btn-sub" type="submit">Register <i class="fas fa-sign-in-alt ms-1"></i></button>
+                                                    </div><!--end col--> 
+                                                </div> <!--end form-group-->                           
+                                            </form><!--end form-->
+                                            <p class="my-3 text-muted">Already have an account ?<a href="/" class="text-primary ms-2">Log in</a></p>                                                    
+                                        </div>
+                                    </div>
+                                </div><!--end card-body-->
+                                <div class="card-body bg-light-alt text-center">
+                                                                               
+                                </div>
+                            </div><!--end card-->
+                        </div><!--end col-->
+                    </div><!--end row-->
+                </div><!--end col-->
+            </div><!--end row-->
+        </div><!--end container-->
+        <!-- End Log In page -->
+
+        
+
+
+        <!-- jQuery  -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/waves.js"></script>
+        <script src="assets/js/feather.min.js"></script>
+        <script src="assets/js/simplebar.min.js"></script>
+        <script>
+            const conf_password = document.querySelector('#conf_password')
+            const userpassword = document.querySelector('#userpassword')
+            const btn = document.querySelector('#btn-sub')
+            const invalid = document.querySelector('.invalid-feedback')
+
+            conf_password.addEventListener('blur', function(event){
+                if(conf_password.value !== userpassword.value){
+                    btn.setAttribute('disabled', 'true');
+                    invalid.style.display = 'initial'
+                } else {
+                    btn.removeAttribute('disabled');
+                    invalid.style.display = 'none';
+                }
+            }, false)
+        </script>
+
+        
+    </body>
+
+</html>
