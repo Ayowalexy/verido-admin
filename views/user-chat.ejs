@@ -294,7 +294,7 @@
 
                             </div><!-- end chat-header -->
                             <div class="chat-body" data-simplebar>
-                                <div class="chat-detail">
+                                <div class="chat-detail" id="chat-detail">
                                    
 
                                 </div> <!-- end chat-detail -->
@@ -304,11 +304,11 @@
                                     <div class="col-12 col-md-9">
                                         <!-- <span class="chat-admin"><img src="/assets/images/users/user-8.jpg" alt="user"
                                                 class="rounded-circle thumb-sm"></span> -->
-                                        <form action="" id="message-form">
-                                            <input type="text" class="form-control" id="message"
+                                        <!-- <form action="" id="message-form"> -->
+                                            <input type="text" class="form-control" id="input"
                                                 placeholder="Type something here...">
-                                            <button class="btn btn-secondary btn-sm">SEND</button>
-                                        </form>
+                                            <button class="btn btn-secondary btn-sm" id="btn-sm-send">SEND</button>
+                                        <!-- </form> -->
                                     </div><!-- col-8 -->
                                     <div class="col-3 text-right">
                                         <div class="d-none d-sm-inline-block chat-features">
@@ -356,39 +356,66 @@
 
         <!-- App js -->
         <script src="/assets/js/app.js"></script>
-        <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>       
-         <script>
-            let socket = io('https://verido-admin-ri2er.ondigitalocean.app')
-            // let socket = io('http://localhost:8000')
-    
-            socket.on('message.sent', function(data){
-                console.log(data.index)
-                $('.chat-detail').append(`
-                    <div class="media">
-                        
-                        <div class="media-body ${data.index ? 'reverse' : 'not-reverse'}">
-                            <div class="chat-msg">
-                                <p>${data.data}</p>
-                            </div>
-                            
-                        </div>
-                        <!--end media-body-->
-                    </div>
-                `)
-                                  
-            })
-
-    
-            $(function(){
-                $('#message-form').on('submit', function(e){
-                    e.preventDefault()
-                    socket.emit('message.send', {
-                        message: $('#message').val(),
-                        id: socket.id
-                    })
-                })
-            })
+        <script>
+                          const data =  <%- JSON.stringify(data._id) %>
         </script>
+        <script src=https://cdn.pubnub.com/sdk/javascript/pubnub.4.28.2.min.js></script>
+        <script>
+                   
+                (function() {
+                    const pubnub = new PubNub({
+                        publishKey: "pub-c-3272fe08-52e8-4278-826d-98a0cc703878",
+                        subscribeKey: "sub-c-afe58600-7616-11ec-add2-a260b15b99c5",
+                        uuid: data,
+                    });
+                    function $(id) {
+                        return document.getElementById(id);
+                    }
+                    let box = $('chat-detail'),
+                        input = $('input'),
+                        send = $('btn-sm-send'),
+                        channel = data;
+
+                    pubnub.addListener({
+                        message: function(obj) {
+                            
+                            box.innerHTML = box.innerHTML + (`
+                                <div class="media">
+                                    
+                                    <div class="media-body ${obj.publisher === 'myUniqueUUIDI' ? 'reverse' : 'not-reverse'}">
+                                        <div class="chat-msg">
+                                            <p>${obj.message}</p>
+                                        </div>
+                                        
+                                    </div>
+                                   
+                                </div>
+                            `)
+                        }
+                    });
+                    pubnub.subscribe({
+                        channels: [channel]
+                    });
+                    input.addEventListener('keyup', function(e) {
+                        if ((e.keyCode || e.charCode) === 13) {
+                            pubnub.publish({
+                                channel: channel,
+                                message: input.value,
+                                x: (input.value = '')
+                            });
+                        }
+                    });
+                    send.addEventListener('click', function(e) {
+                            pubnub.publish({
+                                channel: channel,
+                                message: input.value,
+                                x: (input.value = '')
+                            });
+                    });
+                })();
+
+        </script>
+
 
 </body>
 
