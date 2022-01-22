@@ -52,7 +52,7 @@
                     <li>
                         <a href="javascript: void(0);"> <i data-feather="home" class="align-self-center menu-icon"></i><span>Dashboard</span></a>
                         <ul class="nav-second-level" aria-expanded="false">
-                            <li class="nav-item"><a class="nav-link" href="/dashboard-consultant"><i class="align-self-center fas fa-chart-line menu-icon"></i>Analytics</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/dashboard-consultant/<%=id %> "><i class="align-self-center fas fa-chart-line menu-icon"></i>Analytics</a></li>
                         </ul>
                     </li>
     
@@ -60,7 +60,7 @@
                         <a href="javascript: void(0);"><i data-feather="grid" class="align-self-center menu-icon"></i><span>Apps</span></a>
                         <ul class="nav-second-level" aria-expanded="false">
                             
-                            <li class="nav-item"><a class="nav-link" href="/consultant-chat-page"><i  class="align-self-center fas fa-comments menu-icon"></i>Chat</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/consultant-chat-page/<%=id %> "><i  class="align-self-center fas fa-comments menu-icon"></i>Chat</a></li>
                             <!-- <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-address-book menu-icon align-self-center"></i>Contact List</a></li> -->
                  
                         </ul>
@@ -69,7 +69,7 @@
                     <li>
                         <a href="javascript: void(0);"><i data-feather="list" class="align-self-center menu-icon"></i><span>Pages</span></a>
                         <ul class="nav-second-level" aria-expanded="false">
-                            <li class="nav-item"><a class="nav-link" href="/consultant-index"><i class="fas fa-wallet menu-icon align-self-center"></i>Business Owners</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/consultant-index/<%=id %> "><i class="fas fa-wallet menu-icon align-self-center"></i>Business Owners</a></li>
                         </ul>
                     </li>  
                     
@@ -98,7 +98,7 @@
                     <ul class="list-unstyled topbar-nav float-end mb-0"> 
                         
                         <li class="dropdown hide-phone">
-                            <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect"  href="/consultant-chat/<%=data._id %> " 
+                            <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect"  href="/consultant-chat/<%=data._id %>/<%=id %> " 
                                 >
                                
                                 <button data-bs-target="#exampleModalDefault" data-bs-toggle="modal" type="button" class="btn btn-primary">

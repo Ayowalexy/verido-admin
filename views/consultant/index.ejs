@@ -54,7 +54,7 @@
                     <li>
                         <a href="javascript: void(0);"> <i data-feather="home" class="align-self-center menu-icon"></i><span>Dashboard</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                         <ul class="nav-second-level" aria-expanded="false">
-                            <li class="nav-item"><a class="nav-link" href="/dashboard-consultan"><i class="align-self-center fas fa-chart-line menu-icon"></i>Analytics</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/dashboard-consultant/<%=id %> "><i class="align-self-center fas fa-chart-line menu-icon"></i>Analytics</a></li>
                         </ul>
                     </li>
     
@@ -62,7 +62,7 @@
                         <a href="javascript: void(0);"><i data-feather="grid" class="align-self-center menu-icon"></i><span>Apps</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                         <ul class="nav-second-level" aria-expanded="false">
                             
-                            <li class="nav-item"><a class="nav-link" href="/consultant-chat-page"><i  class="align-self-center fas fa-comments menu-icon"></i>Chat</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/consultant-chat-page/<%=id %> "><i  class="align-self-center fas fa-comments menu-icon"></i>Chat</a></li>
                             <!-- <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-address-book menu-icon align-self-center"></i>Contact List</a></li> -->
                  
                         </ul>
@@ -83,7 +83,7 @@
                     <li>
                         <a href="javascript: void(0);"><i data-feather="file-plus" class="align-self-center menu-icon"></i><span>Pages</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                          <ul class="nav-second-level" aria-expanded="false">
-                            <li class="nav-item"><a class="nav-link" href="/consultant-index"><i class="fas fa-wallet menu-icon align-self-center"></i>Business Owners</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/consultant-index/<%=id %> "><i class="fas fa-wallet menu-icon align-self-center"></i>Business Owners</a></li>
                         </ul>
                     </li>           
                 </ul>
@@ -179,7 +179,7 @@
 
 
                                 <div class="col-md-6 col-lg-4">
-                                    <a href="/consultant-index">
+                                    <a href="/consultant-index/<%=id %> ">
                                     <div class="card report-card">
                                         <div class="card-body">
                                             <div class="row d-flex justify-content-center">
@@ -345,18 +345,18 @@
                                             <tbody>
                                                 <% for( let index = 0; index < recent_business.length; index++ ) { %>
                                                     <tr>                                                        
-                                                        <td><a href="/business-page/<%=recent_business[index]._id %>" class="text-primary"><%=recent_business[index].full_name %> </a></td>
-                                                        <td><a href="/business-page/<%=recent_business[index]._id %>"><% if (recent_business[index].business.name) { %>
+                                                        <td><a href="/business-page/<%=id %>/<%=recent_business[index]._id %>" class="text-primary"><%=recent_business[index].full_name %> </a></td>
+                                                        <td><a href="/business-page/<%=id %>/<%=recent_business[index]._id %>"><% if (recent_business[index].business.name) { %>
                                                             <%=recent_business[index].business.name %>
                                                         <% } else { %>
                                                             <%='No Busiess Created'%>
                                                         <% } %> 
                                                     </a></td>
-                                                        <td style="text-transform: capitalize;"><a href="/business-page/<%=recent_business[index]._id %>">
+                                                        <td style="text-transform: capitalize;"><a href="/business-page/<%=id %>/<%=recent_business[index]._id %>">
                                                             <%=recent_business[index].subscription_status.type %>
                                                         </a>
                                                         </td>
-                                                        <td><a href="/business-page/<%=recent_business[index]._id %>">
+                                                        <td><a href="/business-page/<%=id %>/<%=recent_business[index]._id %>">
                                                             <% if (recent_business[index].phoneVerified ) { %>
                                                          <%='Verified' %> 
                                                         <% } else { %>

@@ -49,7 +49,7 @@
                     <a href="javascript: void(0);"> <i data-feather="home"
                             class="align-self-center menu-icon"></i><span>Dashboard</span></a>
                     <ul class="nav-second-level" aria-expanded="false">
-                        <li class="nav-item"><a class="nav-link" href="/dashboard-consultant"><i
+                        <li class="nav-item"><a class="nav-link" href="/dashboard-consultant/<%=id %> "><i
                                     class="align-self-center fas fa-chart-line menu-icon"></i>Analytics</a></li>
                     </ul>
                 </li>
@@ -59,7 +59,7 @@
                             class="align-self-center menu-icon"></i><span>Apps</span></a>
                     <ul class="nav-second-level" aria-expanded="false">
 
-                        <li class="nav-item"><a class="nav-link" href="/consultant-chat-page"><i
+                        <li class="nav-item"><a class="nav-link" href="/consultant-chat-page/<%=id %> "><i
                                     class="align-self-center fas fa-comments menu-icon"></i>Chat</a></li>
                         <!-- <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-address-book menu-icon align-self-center"></i>Contact List</a></li> -->
 
@@ -69,7 +69,7 @@
                 <li>
                     <a href="javascript: void(0);"><i data-feather="list" class="align-self-center menu-icon"></i><span>Pages</span></a>
                     <ul class="nav-second-level" aria-expanded="false">
-                        <li class="nav-item"><a class="nav-link" href="/consultant-index"><i class="fas fa-wallet menu-icon align-self-center"></i>Business Owners</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/consultant-index/<%=id %> "><i class="fas fa-wallet menu-icon align-self-center"></i>Business Owners</a></li>
                     </ul>
                 </li>
 
@@ -174,10 +174,11 @@
 
                             <div class="chat-list" data-simplebar>
                                 <div class="tab-content " id="pills-tabContent">
+                                   
                                     <div class="tab-pane fade show active" id="general_chat">
                                         
                                         <% for( let index = 0; index < business.length; index++ ) { %>
-                                            <a href="/consultant-chat/<%=business[index]._id %>" class="media new-message">
+                                            <a href="/consultant-chat/<%=business[index]._id %>/<%=id %>" class="media new-message">
                                                 <div class="media-left">
                                                     <!-- <img src="assets/images/users/user-1.jpg" alt="user" class="rounded-circle thumb-md"> -->
                                                     <i class="fas fa-user fa-2x"></i>
@@ -198,11 +199,11 @@
                                         <!--end media-->
                                     </div>
                                     <!--end general chat-->
-
                                     
                                     <div class="tab-pane fade" id="admin_chat">
                                         
-                                            <a href="/consultant-chat/<%=business[0]._id %>" class="media new-message">
+                                        <% for( let index = 0; index < admins.length; index++ ) { %>
+                                            <a href="/admin-chat/<%=admins[index]._id %>/<%=id %>" class="media new-message">
                                                 <div class="media-left">
                                                     <!-- <img src="assets/images/users/user-1.jpg" alt="user" class="rounded-circle thumb-md"> -->
                                                     <i class="fas fa-user fa-2x"></i>
@@ -210,12 +211,13 @@
                                                 </div><!-- media-left -->
                                                 <div class="media-body">
                                                     <div class="d-inline-block">
-                                                        <h6>Admin User 1</h6>
+                                                        <h6><%= admins[index].username.slice(0, admins[index].username.indexOf('@')) %> </h6>
                                                     </div>
                                                    
                                                 </div><!-- end media-body -->
                                             </a>
                                             <!--end media-->
+                                            <% } %>
                                            
                                     </div>
                                     <!--end general chat-->
@@ -240,6 +242,7 @@
                                     </div><!-- media-left -->
                                     <div class="media-body">
                                         <div>
+                                            
                                             <% if (data.full_name) { %>
                                                 <% let id = data.id %> 
                                                 <h6 class="m-0"><%=data.full_name %> </h6>

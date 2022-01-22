@@ -458,10 +458,10 @@
                                             <tbody>
                                                 <% for( let index = 0; index < recent_consultants.length; index++ ) { %>
                                                     <tr>                                                        
-                                                        <td><a href="/consultants/<%=recent_consultants[index].id %>"><i class="fas fa-user me-2"></i> <%=recent_consultants[index].name %> </a></td>
-                                                        <td><a href="/consultants/<%=recent_consultants[index].id %>"><%=Math.floor(Math.random() * 10) %></a> </td>                                   
-                                                        <td> <a href="/consultants/<%=recent_consultants[index].id %>"><%=Math.floor((Math.random() * 10 / 2))  %></a></td>
-                                                        <td> <a href="/consultants/<%=recent_consultants[index].id %>"> Not Verified </a></td>
+                                                        <td><a href="/consultants/<%=recent_consultants[index]._id %>"><i class="fas fa-user me-2"></i> <%=recent_consultants[index].username %> </a></td>
+                                                        <td><a href="/consultants/<%=recent_consultants[index]._id %>"><%=recent_consultants[index].business.length %> </a> </td>                                   
+                                                        <td> <a href="/consultants/<%=recent_consultants[index]._id %>"><%=Math.floor((Math.random() * 10 / 2))  %></a></td>
+                                                        <td> <a href="/consultants/<%=recent_consultants[index]._id %>"> Not Verified </a></td>
                                                     </tr><!--end tr-->   
                                                 <% } %>
                                                   

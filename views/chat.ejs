@@ -173,7 +173,7 @@
                                     <div class="tab-content " id="pills-tabContent" >
                                         <div class="tab-pane fade show active" id="general_chat">
                                             <% for( let index = 0; index < consultant.length; index++ ) { %>
-                                                <a href="/chat/consultant/<%=consultant[index].id %> " class="media new-message">
+                                                <a href="/chat/consultant/<%=consultant[index]._id %> " class="media new-message">
                                                     <div class="media-left">
                                                         <!-- <img src="assets/images/users/user-1.jpg" alt="user" class="rounded-circle thumb-md"> -->
                                                         <i class="fas fa-user fa-2x"></i>
@@ -181,7 +181,7 @@
                                                     </div><!-- media-left -->
                                                     <div class="media-body">
                                                         <div class="d-inline-block">
-                                                            <h6><%=consultant[index].name %> </h6>
+                                                            <h6><%=consultant[index].username %> </h6>
                                                         </div>
                                                         
                                                     </div><!-- end media-body -->

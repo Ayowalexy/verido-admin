@@ -100,34 +100,8 @@
                         <li class="dropdown hide-phone">
                             <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-bs-toggle="dropdown" href="#" role="button"
                                 aria-haspopup="false" aria-expanded="false">
-                                <button data-bs-target="#exampleModalDefault" data-bs-toggle="modal" type="button" class="btn
-                                <% if (data.status === 'Active') { %>
-                                    <%='btn-danger' %> 
-                                <% } else if(data.status === 'Pending') { %>
-                                        <%='btn-primary' %> 
-                                <% } else if(data.status === 'Suspended') { %>
-                                        <%='btn-secondary' %> 
-                                <% } else if(data.status === 'Reported') { %>
-                                        <%='btn-secondary' %> 
-                                <% } else if(data.status === 'Inactive') { %>
-                                        <%='btn-info' %> 
-                                <% } else if(data.status === 'expired') { %>
-                                        <%='btn-warning' %> 
-                                <% } %> 
-                                    ">
-                                    <% if (data.status === 'Active') { %>
-                                        <%='Suspend' %> 
-                                    <% } else if(data.status === 'Pending') {%>
-                                        <%='Approve' %> 
-                                    <% } else if(data.status === 'Suspended') {%>
-                                        <%='Re-Activate' %> 
-                                    <% } else if(data.status === 'Reported') {%>
-                                        <%='Re-Activate' %> 
-                                    <% } else if(data.status === 'Inactive') {%>
-                                        <%='Re-Activate' %> 
-                                    <% } else if(data.status === 'expired') {%>
-                                        <%='Expired' %> 
-                                    <% } %> 
+                                <button data-bs-target="#exampleModalDefault" data-bs-toggle="modal" type="button" class="btn btn-danger">
+                                    Suspend
                                 </button>    
                             </a>
                             
@@ -172,11 +146,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h6 class="modal-title m-0" id="exampleModalDefaultLabel">
-                                       <% if (data.status === 'trial') { %>
-                                        <%='Suspend' %> 
-                                       <% } else {%>
-                                        <%='Suspen' %> 
-                                       <% } %> 
+                                      Suspend 
                                     </h6>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div><!--end modal-header-->
@@ -190,20 +160,7 @@
                                             
                                             <!-- <ul class="mt-3 mb-0 ml-0"> -->
                                                 <p style="list-style: none; text-align: left;">Are you sure you want to 
-                                                    <% if (data.status === 'Active') { %>
-                                                        <%='Suspend this user' %> 
-                                                    <% } else if(data.status === 'Subscribed') {%>
-                                                        <%='Suspend this user' %> 
-                                                    <% } else if(data.status === 'Suspended') {%>
-                                                        <%='Re-Activate this user' %> 
-                                                    <% } else if(data.status === 'Reported') {%>
-                                                        <%='Re-Activate this user' %> 
-                                                    <% } else if(data.status === 'Inactive') {%>
-                                                        <%='Re-Activate this user' %> 
-                                                    <% } else if(data.status === 'expired') {%>
-                                                        <%='This User subcription has expired' %> 
-                                                    <% } %> 
-                                                    </p>
+                                                   Suspend</p>
                                                
                                             <!-- </ul> -->
                                         </div><!--end col-->
@@ -211,19 +168,7 @@
                                 </div><!--end modal-body-->
                                 <div class="modal-footer">                                                    
                                     <button type="button" class="btn btn-soft-primary btn-sm">
-                                        <% if (data.status=== 'trial') { %>
-                                            <%='Suspend' %> 
-                                        <% } else if(data.status=== 'Subscribed') {%>
-                                            <%='Approve' %> 
-                                        <% } else if(data.status=== 'Suspended') {%>
-                                            <%='Re-Activate' %> 
-                                        <% } else if(data.status=== 'Reported') {%>
-                                            <%='Re-Activate' %> 
-                                        <% } else if(data.status=== 'Inactive') {%>
-                                            <%='Re-Activate' %> 
-                                        <% } else if(data.status=== 'expired') {%>
-                                            <%='' %> 
-                                        <% } %> 
+                                       Suspend
                                     </button>
                                     <button type="button" class="btn btn-soft-secondary btn-sm" data-bs-dismiss="modal">Close</button>
                                 </div><!--end modal-footer-->
@@ -265,17 +210,17 @@
                                                         </span>
                                                     </div>
                                                     <div class="dastone-profile_user-detail">
-                                                        <h5 class="dastone-user-name"><%=data.enterprise_name %> </h5>                                                        
-                                                        <p class="mb-0 dastone-user-name-post"><%=data.name %> </p>                                                        
+                                                        <h5 class="dastone-user-name"><%=data.username %> </h5>                                                        
+                                                        <p class="mb-0 dastone-user-name-post"><%=data.email %> </p>                                                        
                                                     </div>
                                                 </div>                                                
                                             </div><!--end col-->
                                             
                                             <div class="col-lg-4 ms-auto align-self-center">
                                                 <ul class="list-unstyled personal-detail mb-0">
-                                                    <li class=""><i class="ti ti-mobile me-2 text-secondary font-16 align-middle"></i> <b> phone </b> : <%=data.phone %> </li>
+                                                    <li class=""><i class="ti ti-mobile me-2 text-secondary font-16 align-middle"></i> <b> phone </b> : <%=data.mobile_number %> </li>
                                                     <li class="mt-2"><i class="ti ti-email text-secondary font-16 align-middle me-2"></i> <b> Email </b> : <%=data.email %> </li>
-                                                    <li class="mt-2"><i class="ti ti-world text-secondary font-16 align-middle me-2"></i> <b> Status </b> : <%=data.status %> </li>                                                   
+                                                    <li class="mt-2"><i class="ti ti-world text-secondary font-16 align-middle me-2"></i> <b> Status </b> : Active </li>                                                   
                                                 </ul>
                                                
                                             </div><!--end col-->
@@ -351,7 +296,7 @@
                                                         <div class="col-lg-9 col-xl-8">
                                                             <div class="input-group">
                                                                 <span class="input-group-text"><i class="la la-globe"></i></span>
-                                                                <input type="text" class="form-control" value="<%=data.qualification.slice(20) %> " disabled aria-describedby="basic-addon1">
+                                                                <input type="text" class="form-control" value="nil" disabled aria-describedby="basic-addon1">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -445,7 +390,7 @@
                                                 <tr>
                                                     <td><a href="/chat/business/<%=element._id %> "><%=element.business.name %></a></td>
                                                     <td><a href="/chat/business/<%=element._id %> "><%=element.full_name %></a></td>
-                                                    <td style="text-transform: capitalize;"><a href="/chat/business/<%=element.id %> "><%=element.subscription_status.type %></a></td>
+                                                    <td style="text-transform: capitalize;"><a href="/chat/business/<%=element._id %> "><%=element.subscription_status.type %></a></td>
                                                     <td><a href="/chat/business/<%=element._id %> "><%=element.subscription_status.expires %></a></td>
                                                 </tr>
                                            <% }) %>

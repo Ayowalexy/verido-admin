@@ -53,13 +53,7 @@
                                     class="align-self-center fas fa-chart-line menu-icon"></i>Analytics</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="javascript: void(0);"><i data-feather="list" class="align-self-center menu-icon"></i><span>Pages</span></a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li class="nav-item"><a class="nav-link" href="/consultant-index/<%=id %> "><i class="fas fa-wallet menu-icon align-self-center"></i>Business Owners</a></li>
-                    </ul>
-                </li>
-                
+
                 <li>
                     <a href="javascript: void(0);"><i data-feather="grid"
                             class="align-self-center menu-icon"></i><span>Apps</span></a>
@@ -69,6 +63,13 @@
                                     class="align-self-center fas fa-comments menu-icon"></i>Chat</a></li>
                         <!-- <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-address-book menu-icon align-self-center"></i>Contact List</a></li> -->
 
+                    </ul>
+                </li>
+                
+                <li>
+                    <a href="javascript: void(0);"><i data-feather="list" class="align-self-center menu-icon"></i><span>Pages</span></a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li class="nav-item"><a class="nav-link" href="/consultant-index/<%=id %> "><i class="fas fa-wallet menu-icon align-self-center"></i>Business Owners</a></li>
                     </ul>
                 </li>
 
@@ -173,10 +174,11 @@
 
                             <div class="chat-list" data-simplebar>
                                 <div class="tab-content " id="pills-tabContent">
+                                   
                                     <div class="tab-pane fade show active" id="general_chat">
                                         
                                         <% for( let index = 0; index < business.length; index++ ) { %>
-                                            <a href="/consultant-chat/<%=business[index]._id%>/<%=id %>" class="media new-message">
+                                            <a href="/consultant-chat/<%=business[index]._id %>/<%=id %>" class="media new-message">
                                                 <div class="media-left">
                                                     <!-- <img src="assets/images/users/user-1.jpg" alt="user" class="rounded-circle thumb-md"> -->
                                                     <i class="fas fa-user fa-2x"></i>
@@ -197,9 +199,9 @@
                                         <!--end media-->
                                     </div>
                                     <!--end general chat-->
-
-                                   
+                                    
                                     <div class="tab-pane fade" id="admin_chat">
+                                        
                                         <% for( let index = 0; index < admins.length; index++ ) { %>
                                             <a href="/admin-chat/<%=admins[index]._id %>/<%=id %>" class="media new-message">
                                                 <div class="media-left">
@@ -216,9 +218,9 @@
                                             </a>
                                             <!--end media-->
                                             <% } %>
-                                </div>
-                                  
-                                <!--end general chat-->
+                                           
+                                    </div>
+                                    <!--end general chat-->
 
                                     
                                     <!--end group chat-->
@@ -231,6 +233,67 @@
                         </div>
                         <!--end chat-box-left -->
 
+                        <div class="chat-box-right">
+                            <div class="chat-header">
+                                <a href="" class="media">
+                                    <div class="media-left">
+                                        <!-- <img src="/assets/images/users/user-4.jpg" alt="user" class="rounded-circle thumb-md"> -->
+                                        <i class="fas fa-user fa-2x"></i>
+                                    </div><!-- media-left -->
+                                    <div class="media-body">
+                                        <div>
+                                            
+                                            <% if (data.username) { %>
+                                                <h6 class="m-0"><%=data.username %> </h6>
+                                            <% } else { %>
+                                                <h6 class="m-0"><%=data.username %> </h6>
+
+                                            <% } %> 
+                                            <p class="mb-0">Last seen: 2 hours ago</p>
+                                        </div>
+                                    </div><!-- end media-body -->
+                                </a>
+                                <!--end media-->
+
+                            </div><!-- end chat-header -->
+                            <div class="chat-body" data-simplebar>
+                                <div class="chat-detail" id="chat-detail">
+                                   <% for( let index = 0; index < prev_messages.length; index++ ) { %>
+                                    <div class="media">
+                                    
+                                        <div class="media-body 'not-reverse'">
+                                            <div class="chat-msg">
+                                                <p><%=prev_messages[index].message %> </p>
+                                            </div>
+                                            
+                                        </div>
+                                       
+                                    </div>
+                                   <% } %>
+
+                                </div> <!-- end chat-detail -->
+                            </div><!-- end chat-body -->
+                            <div class="chat-footer">
+                                <div class="row">
+                                    <div class="col-12 col-md-9">
+                                        <!-- <span class="chat-admin"><img src="/assets/images/users/user-8.jpg" alt="user"
+                                                class="rounded-circle thumb-sm"></span> -->
+                                        <!-- <form action="" id="message-form"> -->
+                                            <input type="text" class="form-control" id="input"
+                                                placeholder="Type something here...">
+                                            <button class="btn btn-secondary btn-sm" id="btn-sm-send">SEND</button>
+                                        <!-- </form> -->
+                                    </div><!-- col-8 -->
+                                    <div class="col-3 text-right">
+                                        <div class="d-none d-sm-inline-block chat-features">
+                                            <a href=""><i class="fas fa-camera"></i></a>
+                                            <a href=""><i class="fas fa-paperclip"></i></a>
+                                            <a href=""><i class="fas fa-microphone"></i></a>
+                                        </div>
+                                    </div><!-- end col -->
+                                </div><!-- end row -->
+                            </div><!-- end chat-footer -->
+                        </div>
                         <!--end chat-box-right -->
                     </div> <!-- end col -->
                 </div><!-- end row -->
@@ -267,38 +330,114 @@
 
         <!-- App js -->
         <script src="/assets/js/app.js"></script>
-        <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>       
+        <script src="/assets/js/ejs.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src=https://cdn.pubnub.com/sdk/javascript/pubnub.4.28.2.min.js></script>
+        <script>
+              const data =  <%- JSON.stringify(id) %>
+              const admin =  <%- JSON.stringify(data._id) %>
+              const current_consultant =  <%- JSON.stringify(consultant) %>
+        
+              
+        </script>
+        <script>
+            
+            
+                (function() {
+                    const pubnub = new PubNub({
+                        publishKey: "pub-c-3272fe08-52e8-4278-826d-98a0cc703878",
+                        subscribeKey: "sub-c-afe58600-7616-11ec-add2-a260b15b99c5",
+                        uuid: `consultant-${data}`,
+                        // uuid: data.toString(),
+                    });
+                    function $(id) {
+                        return document.getElementById(id);
+                    }
+                    let box = $('chat-detail'),
+                        input = $('input'),
+                        send = $('btn-sm-send'),
+                        // channel = 'chat';
+                        channel = `chat-${data}`;
+                        
+                    pubnub.addListener({
+                        message:  async function(obj) {
+                            box.innerHTML = box.innerHTML + (`
+                                <div class="media">
+                                    
+                                    <div class="media-body ${obj.publisher === `consultant-${data}` ? 'not-reverse' : 'reverse'}">
+                                        <div class="chat-msg">
+                                            <p>${obj.message}</p>
+                                        </div>
+                                        
+                                    </div>
+                                   
+                                </div>
+                            `)
+                            
+                            await axios.post(`http://localhost:5000/new-consultant-message/${current_consultant}`, {
+                                message: obj.message,
+                                to: `${admin}`,
+                                from: `${current_consultant}`
+                            }).then(response => console.log(response.data.message))
+
+                        }
+                    });
+                    pubnub.subscribe({
+                        channels: [channel]
+                    });
+                    input.addEventListener('keyup', function(e) {
+                        if ((e.keyCode || e.charCode) === 13) {
+                            pubnub.publish({
+                                channel: channel,
+                                message: input.value,
+                                x: (input.value = '')
+                            });
+                        }
+                    });
+                    send.addEventListener('click', function(e) {
+                            pubnub.publish({
+                                channel: channel,
+                                message: input.value,
+                                x: (input.value = '')
+                            });
+                    });
+                })();
+
+        </script>
+
+        <!-- <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>        -->
          <script>
-            let socket = io('https://verido-admin-ri2er.ondigitalocean.app')
+            
+            //let socket = io('https://verido-admin-ri2er.ondigitalocean.app')
             // let socket = io('http://localhost:8000')
     
-            socket.on('message.sent', function(data){
-                console.log(data.index)
-                $('.chat-detail').append(`
-                    <div class="media">
+            // socket.on('message.sent', function(data){
+            //     console.log(data.index)
+            //     $('.chat-detail').append(`
+            //         <div class="media">
                         
-                        <div class="media-body ${data.index ? 'reverse' : 'not-reverse'}">
-                            <div class="chat-msg">
-                                <p>${data.data}</p>
-                            </div>
+            //             <div class="media-body ${data.index ? 'reverse' : 'not-reverse'}">
+            //                 <div class="chat-msg">
+            //                     <p>${data.data}</p>
+            //                 </div>
                             
-                        </div>
-                        <!--end media-body-->
-                    </div>
-                `)
+            //             </div>
+            //             <!--end media-body-->
+            //         </div>
+            //     `)
                                   
-            })
+           // })
 
     
-            $(function(){
-                $('#message-form').on('submit', function(e){
-                    e.preventDefault()
-                    socket.emit('message.send', {
-                        message: $('#message').val(),
-                        id: socket.id
-                    })
-                })
-            })
+            // $(function(){
+            //     $('#message-form').on('submit', function(e){
+            //         e.preventDefault()
+            //         socket.emit('message.send', {
+            //             message: $('#message').val(),
+            //             id: socket.id
+            //         })
+            //     })
+            // })
         </script>
 
 </body>

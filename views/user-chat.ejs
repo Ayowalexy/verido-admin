@@ -109,7 +109,7 @@
                         <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect"
                             data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
                             aria-expanded="false">
-                            <button class="btn btn-primary">Approve</button>
+                            <!-- <button class="btn btn-primary">Approve</button> -->
                         </a>
 
 
@@ -192,7 +192,7 @@
                                 <div class="tab-content " id="pills-tabContent">
                                     <div class="tab-pane fade show active" id="general_chat">
                                         <% for( let index = 0; index < consultant.length; index++ ) { %>
-                                        <a href="/chat/consultant/<%=consultant[index].id %>" class="media new-message">
+                                        <a href="/chat/consultant/<%=consultant[index]._id %>" class="media new-message">
                                             <div class="media-left">
                                                 <!-- <img src="assets/images/users/user-1.jpg" alt="user" class="rounded-circle thumb-md"> -->
                                                 <i class="fas fa-user fa-2x"></i>
@@ -200,7 +200,7 @@
                                             </div><!-- media-left -->
                                             <div class="media-body">
                                                 <div class="d-inline-block">
-                                                    <h6><%=consultant[index].name %> </h6>
+                                                    <h6><%=consultant[index].username %> </h6>
                                                 </div>
                                                 
                                             </div><!-- end media-body -->
@@ -283,7 +283,7 @@
                                             <% if (data.full_name) { %>
                                                 <h6 class="m-0"><%=data.full_name %> </h6>
                                             <% } else { %>
-                                                <h6 class="m-0"><%=data.name %> </h6>
+                                                <h6 class="m-0"><%=data.username %> </h6>
 
                                             <% } %> 
                                             <p class="mb-0">Last seen: 2 hours ago</p>
@@ -295,7 +295,18 @@
                             </div><!-- end chat-header -->
                             <div class="chat-body" data-simplebar>
                                 <div class="chat-detail" id="chat-detail">
-                                   
+                                    <% for( let index = 0; index < prev_messages.length; index++ ) { %>
+                                        <div class="media">
+                                        
+                                            <div class="media-body 'reverse'">
+                                                <div class="chat-msg">
+                                                    <p><%=prev_messages[index].message %> </p>
+                                                </div>
+                                                
+                                            </div>
+                                           
+                                        </div>
+                                       <% } %>
 
                                 </div> <!-- end chat-detail -->
                             </div><!-- end chat-body -->
@@ -353,11 +364,14 @@
         <script src="/assets/plugins/jvectormap/jquery-jvectormap-us-aea-en.js"></script>
         <script src="/assets/pages/jquery.analytics_dashboard.init.js"></script>
         <script src="/assets/js/all.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
         <!-- App js -->
         <script src="/assets/js/app.js"></script>
         <script>
                           const data =  <%- JSON.stringify(data._id) %>
+                          const current_admin =  <%- JSON.stringify(admin) %>
+
         </script>
         <script src=https://cdn.pubnub.com/sdk/javascript/pubnub.4.28.2.min.js></script>
         <script>
@@ -366,7 +380,8 @@
                     const pubnub = new PubNub({
                         publishKey: "pub-c-3272fe08-52e8-4278-826d-98a0cc703878",
                         subscribeKey: "sub-c-afe58600-7616-11ec-add2-a260b15b99c5",
-                        uuid: 'myUniqueUUIDI',
+                        uuid: `admin-${data}`,
+                        // uuid: 'myUniqueUUIDI',
                     });
                     function $(id) {
                         return document.getElementById(id);
@@ -374,15 +389,15 @@
                     let box = $('chat-detail'),
                         input = $('input'),
                         send = $('btn-sm-send'),
-                        channel = 'chat';
+                        // channel = 'chat';
+                        channel = `chat-${data}`;
 
                     pubnub.addListener({
-                        message: function(obj) {
-                            
+                        message: async function(obj) {
                             box.innerHTML = box.innerHTML + (`
                                 <div class="media">
                                     
-                                    <div class="media-body ${obj.publisher === 'myUniqueUUIDI' ? 'reverse' : 'not-reverse'}">
+                                    <div class="media-body ${obj.publisher === `admin-${data}` ? 'reverse' : 'not-reverse'}">
                                         <div class="chat-msg">
                                             <p>${obj.message}</p>
                                         </div>
@@ -391,6 +406,13 @@
                                    
                                 </div>
                             `)
+
+                            await axios.post(`http://localhost:5000/new-admin-message/${current_admin}`, {
+                                message: obj.message,
+                                to: `${data}`,
+                                from: `${current_admin}`
+                            }).then(response => console.log(response.data.messege))
+
                         }
                     });
                     pubnub.subscribe({
