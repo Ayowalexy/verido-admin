@@ -149,7 +149,6 @@ app.get('/homepage', async (req, res) => {
             total += element.amount
     }})
 
-    console.log(recent_institution.length)
 
 
     res.render('homepage',{ consultant: data.length, 
@@ -347,19 +346,19 @@ app.get('/chat/:details/:id', async (req, res) => {
             break
     }
 
-    const messages = await axios.get(`https://verido-2-ihdqs.ondigitalocean.app/fetch-admin-message/${req.session.current_id}`)
+    // const messages = await axios.get(`https://verido-2-ihdqs.ondigitalocean.app/fetch-admin-message/${req.session.current_id}`)
     // const messages = await axios.get(`http://localhost:5000/fetch-admin-message/${req.session.current_id}`)
-    .then(resp => resp.data.messges)
+    // .then(resp => resp.data.messges)
 
     let prev_messages = [];
 
-    if(messages.messages.length){
-        messages.messages.map(msg => {
-            if(msg.to === chat_data._id){
-                prev_messages.push(msg)
-            }
-        }) 
-    }
+    // if(messages.messages.length){
+    //     messages.messages.map(msg => {
+    //         if(msg.to === chat_data._id){
+    //             prev_messages.push(msg)
+    //         }
+    //     }) 
+    // }
 
 
 
@@ -531,9 +530,9 @@ app.get('/admin-chat/:admin/:id', async (req, res) => {
     // const data = await axios.get(`http://localhost:5000/fetch-consultant/${id}`)
     .then(resp => resp.data.consultant)
 
-    const messages = await axios.get(`https://verido-2-ihdqs.ondigitalocean.app/fetch-consultant-message/${data._id}`)
+    // const messages = await axios.get(`https://verido-2-ihdqs.ondigitalocean.app/fetch-consultant-message/${data._id}`)
     // const messages = await axios.get(`http://localhost:5000/fetch-consultant-message/${data._id}`)
-    .then(resp => resp.data.messages)
+    // .then(resp => resp.data.messages)
 
 
 
@@ -545,14 +544,14 @@ app.get('/admin-chat/:admin/:id', async (req, res) => {
 
     let prev_messages = [];
 
-    if(messages.messages.length){
-        messages.messages.map(message => {
-            if(message.to === current_admin._id.toString()){
-                prev_messages.push(message)
-            }
-        })
+    // if(messages.messages.length){
+    //     messages.messages.map(message => {
+    //         if(message.to === current_admin._id.toString()){
+    //             prev_messages.push(message)
+    //         }
+    //     })
 
-    }
+    // }
 
 
     res.render('consultant/admin-chat', {id: data._id,

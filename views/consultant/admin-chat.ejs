@@ -360,7 +360,7 @@
                         channel = `chat-${data}`;
                         
                     pubnub.addListener({
-                        message:  async function(obj) {
+                        message:   function(obj) {
                             box.innerHTML = box.innerHTML + (`
                                 <div class="media">
                                     
@@ -375,11 +375,11 @@
                             `)
                             
                             // await axios.post(`http://localhost:5000/new-consultant-message/${current_consultant}`, {
-                            await axios.post(`https://verido-2-ihdqs.ondigitalocean.app/new-consultant-message/${current_consultant}`, {
-                                message: obj.message,
-                                to: `${admin}`,
-                                from: `${current_consultant}`
-                            }).then(response => console.log(response.data.message))
+                            // await axios.post(`https://verido-2-ihdqs.ondigitalocean.app/new-consultant-message/${current_consultant}`, {
+                            //     message: obj.message,
+                            //     to: `${admin}`,
+                            //     from: `${current_consultant}`
+                            // }).then(response => console.log(response.data.message))
 
                         }
                     });

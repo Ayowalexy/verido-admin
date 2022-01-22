@@ -393,7 +393,7 @@
                         channel = `chat-${data}`;
 
                     pubnub.addListener({
-                        message: async function(obj) {
+                        message: function(obj) {
                             box.innerHTML = box.innerHTML + (`
                                 <div class="media">
                                     
@@ -407,12 +407,12 @@
                                 </div>
                             `)
 
-                            await axios.post(`https://verido-2-ihdqs.ondigitalocean.app/new-admin-message/${current_admin}`, {
+                            // await axios.post(`https://verido-2-ihdqs.ondigitalocean.app/new-admin-message/${current_admin}`, {
                             // await axios.post(`http://localhost:5000/new-admin-message/${current_admin}`, {
-                                message: obj.message,
-                                to: `${data}`,
-                                from: `${current_admin}`
-                            }).then(response => console.log(response.data.messege))
+                            //     message: obj.message,
+                            //     to: `${data}`,
+                            //     from: `${current_admin}`
+                            // }).then(response => console.log(response.data.messege))
 
                         }
                     });
