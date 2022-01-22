@@ -370,8 +370,7 @@
         <script src="/assets/js/app.js"></script>
         <script>
                           const data =  <%- JSON.stringify(data._id) %>
-                          const current_admin =  <%- JSON.stringify(admin) %>
-
+            console.log(data)
         </script>
         <script src=https://cdn.pubnub.com/sdk/javascript/pubnub.4.28.2.min.js></script>
         <script>
@@ -394,6 +393,7 @@
 
                     pubnub.addListener({
                         message: function(obj) {
+                            console.log(obj)
                             box.innerHTML = box.innerHTML + (`
                                 <div class="media">
                                     
