@@ -374,7 +374,8 @@
                                 </div>
                             `)
                             
-                            await axios.post(`http://localhost:5000/new-consultant-message/${current_consultant}`, {
+                            // await axios.post(`http://localhost:5000/new-consultant-message/${current_consultant}`, {
+                            await axios.post(`https://verido-2-ihdqs.ondigitalocean.app/new-consultant-message/${current_consultant}`, {
                                 message: obj.message,
                                 to: `${admin}`,
                                 from: `${current_consultant}`

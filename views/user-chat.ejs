@@ -407,7 +407,8 @@
                                 </div>
                             `)
 
-                            await axios.post(`http://localhost:5000/new-admin-message/${current_admin}`, {
+                            await axios.post(`https://verido-2-ihdqs.ondigitalocean.app/new-admin-message/${current_admin}`, {
+                            // await axios.post(`http://localhost:5000/new-admin-message/${current_admin}`, {
                                 message: obj.message,
                                 to: `${data}`,
                                 from: `${current_admin}`
