@@ -261,12 +261,23 @@
                                    <% for( let index = 0; index < prev_messages.length; index++ ) { %>
                                     <div class="media">
                                     
-                                        <div class="media-body 'not-reverse'">
-                                            <div class="chat-msg">
-                                                <p><%=prev_messages[index].message %> </p>
+                                        <% if (prev_messages[index].to === admin) { %>
+                                            <div class="media-body not-reverse">
+                                                <div class="chat-msg">
+                                                    <p><%=prev_messages[index].message %> </p>
+                                                </div>
+                                               
                                             </div>
-                                            
-                                        </div>
+                                        <% } else {%>
+                                            <div class="media-body reverse">
+                                                <div class="chat-msg">
+                                                    <p><%=prev_messages[index].message %> </p>
+                                                </div>
+                                               
+                                            </div>
+                                        <% } %> 
+                                        
+                                       
                                        
                                     </div>
                                    <% } %>
@@ -335,8 +346,9 @@
         <script src=https://cdn.pubnub.com/sdk/javascript/pubnub.4.28.2.min.js></script>
         <script>
               const data =  <%- JSON.stringify(id) %>
+              const current_admin =  <%- JSON.stringify(admin) %>
             
-            console.log(data)
+            console.log(current_admin, 'current admin')
               
         </script>
         <script>
@@ -356,15 +368,16 @@
                         input = $('input'),
                         send = $('btn-sm-send'),
                         // channel = 'chat';
-                        channel = `chat-${data}`;
+                        channel = `chat-${current_admin}-${data}`;
+                        // channel = `chat-${data}`;
                         
                     pubnub.addListener({
-                        message:   function(obj) {
+                        message:   async function(obj) {
                             console.log(obj)
                             box.innerHTML = box.innerHTML + (`
                                 <div class="media">
                                     
-                                    <div class="media-body ${obj.publisher === `consultant-${data}` ? 'not-reverse' : 'reverse'}">
+                                    <div class="media-body ${obj.publisher === `consultant-${data}` ? 'reverse' : 'not-reverse'}">
                                         <div class="chat-msg">
                                             <p>${obj.message}</p>
                                         </div>
@@ -374,12 +387,14 @@
                                 </div>
                             `)
                             
-                            // await axios.post(`http://localhost:5000/new-consultant-message/${current_consultant}`, {
-                            // await axios.post(`https://verido-2-ihdqs.ondigitalocean.app/new-consultant-message/${current_consultant}`, {
-                            //     message: obj.message,
-                            //     to: `${admin}`,
-                            //     from: `${current_consultant}`
-                            // }).then(response => console.log(response.data.message))
+                            // await axios.post(`http://localhost:5000/new-consultant-message/${data}`, {
+                            await axios.post(`https://verido-2-ihdqs.ondigitalocean.app/new-consultant-message/${data}`, {
+                                message: obj.message,
+                                // to: `${current_admin}`,
+                                channel: obj.channel,
+                                to: `${obj.publisher.slice(obj.publisher.indexOf('-') + 1)}`,
+                                // from: `${data}`
+                            }).then(response => console.log(response.data.message))
 
                         }
                     });

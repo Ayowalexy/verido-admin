@@ -347,8 +347,8 @@ app.get('/chat/:details/:id', async (req, res) => {
     }
 
     // const messages = await axios.get(`https://verido-2-ihdqs.ondigitalocean.app/fetch-admin-message/${req.session.current_id}`)
-    // const messages = await axios.get(`http://localhost:5000/fetch-admin-message/${req.session.current_id}`)
-    // .then(resp => resp.data.messges)
+    const messages = await axios.get(`http://localhost:5000/fetch-admin-message/${req.session.current_id}`)
+    .then(resp => resp.data.messges)
 
     let prev_messages = [];
 
@@ -360,12 +360,25 @@ app.get('/chat/:details/:id', async (req, res) => {
     //     }) 
     // }
 
+    if(messages.messages.length){
+        messages.messages.map(message => {
+            if(message.channel === `chat-${req.session.current_id}-${chat_data._id}`){
+                prev_messages.push(message)
+            }
+            // if(message.to === current_admin._id.toString()){
+            //     prev_messages.push(message)
+            // }
+        })
 
+    }
+
+console.log(prev_messages)
 
     res.render('user-chat', {data: chat_data, 
         prev_messages: prev_messages,
         consultant: data, business: data_three, 
-        institution: data_two, username: req.session.username, admin: req.session.current_id})
+        institution: data_two, username: req.session.username, 
+        admin: req.session.current_id})
 })
 
 app.post('/verification/:id', async (req, res) => {
@@ -530,9 +543,9 @@ app.get('/admin-chat/:admin/:id', async (req, res) => {
     // const data = await axios.get(`http://localhost:5000/fetch-consultant/${id}`)
     .then(resp => resp.data.consultant)
 
-    // const messages = await axios.get(`https://verido-2-ihdqs.ondigitalocean.app/fetch-consultant-message/${data._id}`)
+    const messages = await axios.get(`https://verido-2-ihdqs.ondigitalocean.app/fetch-consultant-message/${data._id}`)
     // const messages = await axios.get(`http://localhost:5000/fetch-consultant-message/${data._id}`)
-    // .then(resp => resp.data.messages)
+    .then(resp => resp.data.messages)
 
 
 
@@ -544,18 +557,23 @@ app.get('/admin-chat/:admin/:id', async (req, res) => {
 
     let prev_messages = [];
 
-    // if(messages.messages.length){
-    //     messages.messages.map(message => {
-    //         if(message.to === current_admin._id.toString()){
-    //             prev_messages.push(message)
-    //         }
-    //     })
+    if(messages.messages.length){
+        messages.messages.map(message => {
+            if(message.channel === `chat-${current_admin._id.toString()}-${data._id}`){
+                prev_messages.push(message)
+            }
+            // if(message.to === current_admin._id.toString()){
+            //     prev_messages.push(message)
+            // }
+        })
 
-    // }
+    }
 
+    console.log(current_admin._id, messages)
 
     res.render('consultant/admin-chat', {id: data._id,
         prev_messages: prev_messages,
+        admin: admin,
          business: data.business, consultant: req.session.current_consultant_id,
         data: current_admin, username: req.session.username, admins: admins})
 
