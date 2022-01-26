@@ -346,8 +346,8 @@ app.get('/chat/:details/:id', async (req, res) => {
             break
     }
 
-    // const messages = await axios.get(`https://verido-2-ihdqs.ondigitalocean.app/fetch-admin-message/${req.session.current_id}`)
-    const messages = await axios.get(`http://localhost:5000/fetch-admin-message/${req.session.current_id}`)
+    const messages = await axios.get(`https://verido-2-ihdqs.ondigitalocean.app/fetch-admin-message/${req.session.current_id}`)
+    // const messages = await axios.get(`http://localhost:5000/fetch-admin-message/${req.session.current_id}`)
     .then(resp => resp.data.messges)
 
     let prev_messages = [];
