@@ -15,10 +15,12 @@ const http = require('http')
 const DateFormatter = require('./utils')
 const STRIPE_LIVE_KEY = process.env.STRIPE_LIVE_KEY
 const stripe = require('stripe')(STRIPE_LIVE_KEY)
+const MongoStore = require('connect-mongo');
 
 let server, io;
 
 
+const DB = `mongodb+srv://seinde4:${PASSWORD}@cluster0.pp8yv.mongodb.net/${DATABASE}?retryWrites=true&w=majority` || 'mongodb://localhost:27017/verido';
 
 
 const sessionConfig = {
@@ -28,8 +30,13 @@ const sessionConfig = {
     cookie: {
         httpOnly: true,
         expire: Date.now() + 1000 * 60 * 60 * 24 * 7,
-        maxAge: 1000 * 60 * 60 * 24 * 7
-    }
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+        sameSite: 'none'
+    },
+    store: MongoStore.create({
+        mongoUrl: DB,
+        touchAfter: 24 * 3600 // time period in seconds
+      })
 }
 
 app.use(session(sessionConfig))
