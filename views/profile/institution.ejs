@@ -375,10 +375,10 @@
                                            <% business.forEach(element => { %>
                                             
                                                 <tr>
-                                                    <td><a href="/chat/business/<%=element._id %> "><%=element.business.name %></a></td>
-                                                    <td><a href="/chat/business/<%=element._id %> "><%=element.full_name %></a></td>
-                                                    <td style="text-transform: capitalize;"><a href="/chat/business/<%=element.id %> "><%=element.subscription_status.type %></a></td>
-                                                    <td><a href="/chat/business/<%=element._id %> "><%=element.subscription_status.expires %></a></td>
+                                                    <td><a href="/chat/business/<%=admin_id %>/<%=element._id %> "><%=element.business.name %></a></td>
+                                                    <td><a href="/chat/business/<%=admin_id %>/<%=element._id %> "><%=element.full_name %></a></td>
+                                                    <td style="text-transform: capitalize;"><a href="/chat/business/<%=admin_id %>/<%=element.id %> "><%=element.subscription_status.type %></a></td>
+                                                    <td><a href="/chat/business/<%=admin_id %>/<%=element._id %> "><%=element.subscription_status.expires %></a></td>
                                                 </tr>
                                            <% }) %>
                                         </tbody>

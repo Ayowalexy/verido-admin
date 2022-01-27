@@ -79,8 +79,10 @@ app.get('/stripe-customers', async(req, res) => {
     res.send(paymentIntents)
 
 })
-app.get('/homepage', async (req, res) => {
+app.get('/homepage/:id', async (req, res) => {
 
+
+    const { id } = req.params;
     const paymentIntents = await stripe.paymentIntents.list({
         limit: 8
     });
@@ -167,17 +169,19 @@ app.get('/homepage', async (req, res) => {
                             paymentIntents: paymentIntents.data,
                             total: total / 100,
                             recent_institution: recent_institution,
+                            admin_id: id
 
                          })
 })
 
-app.get('/index', async (req, res) => {
+app.get('/index/:id', async (req, res) => {
+    const { id } = req.params;
 // app.get('/index', (req, res) => {
     const data = await axios.get('https://verido-2-ihdqs.ondigitalocean.app/fetch-consultant')
     // const data = await axios.get('http://localhost:5000/fetch-consultant')
     .then(resp => resp.data.consultant)
     
-    res.render('index', { data: data, username: req.session.username })
+    res.render('index', { data: data, admin_id: id, username: req.session.username })
 })
 
 app.post('/login', async( req, res) => {
@@ -202,7 +206,7 @@ app.post('/login', async( req, res) => {
             return res.redirect(`/dashboard-consultant/${data.response._id}`)
         } else {
             req.session.current_id = data.response._id
-            return res.redirect(`/homepage`)
+            return res.redirect(`/homepage/${data.response._id}`)
         }
 
         req.session.token = data.response.token
@@ -218,15 +222,17 @@ app.post('/recover', async(req, res) => {
     
 })
 
-app.get('/institution', (req, res) => {
-    res.render('institution', {data: data_two, username: req.session.username})
+app.get('/institution/:id', (req, res) => {
+    const { id } = req.params;
+    res.render('institution', {data: data_two,admin_id: id, username: req.session.username})
 })
 
-app.get('/business-owners', async(req, res) => {
+app.get('/business-owners/:id', async(req, res) => {
+    const { id } = req.params;
     // const data_three = await axios.get('http://localhost:5000/admin-business')
     const data_three = await axios.get('https://verido-2-ihdqs.ondigitalocean.app/admin-business')
     .then(resp => resp.data.response)
-    res.render('business', { data: data_three, username: req.session.username })
+    res.render('business', { data: data_three, admin_id: id, username: req.session.username })
 
     // const data = await axios.get('http://localhost:5000/admin-business')
     // .then(res => {
@@ -238,8 +244,8 @@ app.get('/business-owners', async(req, res) => {
 
 })
 
-app.get('/consultants/:id', async (req, res) => {
-    const { id } = req.params
+app.get('/consultants/:admin/:id', async (req, res) => {
+    const { id, admin } = req.params
 
     const data = await axios.get(`https://verido-2-ihdqs.ondigitalocean.app/fetch-consultant/${id}`)
     // const data = await axios.get(`http://localhost:5000/fetch-consultant/${id}`)
@@ -248,11 +254,13 @@ app.get('/consultants/:id', async (req, res) => {
     // const d = data.find(element => element.id === id)
     // const data_three = await axios.get('https://verido-2-ihdqs.ondigitalocean.app/admin-business')
     // .then(resp => resp.data.response)
-    res.render('profile/consultant', {data: data, username: req.session.username, business: data.business})
+    res.render('profile/consultant', {data: data,
+        admin_id: admin,
+         username: req.session.username, business: data.business})
 })
 
-app.get('/institutions/:id', async (req, res) => {
-    const { id } = req.params;
+app.get('/institutions/:admin/:id', async (req, res) => {
+    const { id, admin } = req.params;
 
     const data = await axios.get('https://verido-2-ihdqs.ondigitalocean.app/fetch-consultant')
     // const data = await axios.get('http://localhost:5000/fetch-consultant')
@@ -265,14 +273,15 @@ app.get('/institutions/:id', async (req, res) => {
     const data_three = await axios.get('https://verido-2-ihdqs.ondigitalocean.app/admin-business')
     .then(resp => resp.data.response)
     res.render('profile/institution', { data: d, 
+                                        admin_id: admin,
                                         username: req.session.username, 
                                         consultant: consultant.enterprise_name,
                                         business: data_three.slice(5, 11)
                                     })
 })
 
-app.get('/business/:id', async (req, res) => {
-    const { id } = req.params
+app.get('/business/:admin/:id', async (req, res) => {
+    const { id, admin } = req.params
     const data_three = await axios.get('https://verido-2-ihdqs.ondigitalocean.app/admin-business')
     // const data_three = await axios.get('http://localhost:5000/admin-business')
     .then(resp => resp.data.response)
@@ -280,7 +289,9 @@ app.get('/business/:id', async (req, res) => {
     const d = data_three.find(element => element._id === id)
     // const consultant = data.find(element => element.index === d.consultant_id)
 
-    res.render('profile/business', {data: d, username: req.session.username, consultant: 'Not Available'})
+    res.render('profile/business', {data: d,
+        admin_id: admin,
+        username: req.session.username, consultant: 'Not Available'})
 
 })
 
@@ -306,7 +317,9 @@ app.get('/business-page/:consultant/:id', async (req, res) => {
 
 
 
-app.get('/chat', async (req, res) => {
+app.get('/chat/:id', async (req, res) => {
+
+    const { id } = req.params;
     const data_three = await axios.get('https://verido-2-ihdqs.ondigitalocean.app/admin-business')
     // const data_three = await axios.get('http://localhost:5000/admin-business')
     .then(resp => resp.data.response)
@@ -315,11 +328,12 @@ app.get('/chat', async (req, res) => {
     // const data = await axios.get('http://localhost:5000/fetch-consultant')
     .then(resp => resp.data.consultant)
     res.render('chat', {consultant: data, business: data_three,
+        admin_id: id,
          institution: data_two, username: req.session.username})
 })
 
-app.get('/chat/:details/:id', async (req, res) => {
-    const { details, id } = req.params;
+app.get('/chat/:details/:admin/:id', async (req, res) => {
+    const { details, id, admin } = req.params;
     let chat_data;
     const data_three = await axios.get('https://verido-2-ihdqs.ondigitalocean.app/admin-business')
     // const data_three = await axios.get('http://localhost:5000/admin-business')
@@ -348,7 +362,7 @@ app.get('/chat/:details/:id', async (req, res) => {
             break
     }
 
-    const messages = await axios.get(`https://verido-2-ihdqs.ondigitalocean.app/fetch-admin-message/${req.session.current_id}`)
+    const messages = await axios.get(`https://verido-2-ihdqs.ondigitalocean.app/fetch-admin-message/${admin}`)
     // const messages = await axios.get(`http://localhost:5000/fetch-admin-message/${req.session.current_id}`)
     .then(resp => resp.data.messges)
 
@@ -364,7 +378,7 @@ app.get('/chat/:details/:id', async (req, res) => {
 
     if(messages.messages.length){
         messages.messages.map(message => {
-            if(message.channel === `chat-${req.session.current_id}-${chat_data._id}`){
+            if(message.channel === `chat-${admin}-${chat_data._id}`){
                 prev_messages.push(message)
             }
             // if(message.to === current_admin._id.toString()){
@@ -380,7 +394,10 @@ console.log(prev_messages)
         prev_messages: prev_messages,
         consultant: data, business: data_three, 
         institution: data_two, username: req.session.username, 
-        admin: req.session.current_id})
+        admin_id: admin,
+        admin: admin
+        // admin: req.session.current_id
+    })
 })
 
 app.post('/verification/:id', async (req, res) => {
