@@ -17,6 +17,8 @@ const STRIPE_LIVE_KEY = process.env.STRIPE_LIVE_KEY
 const stripe = require('stripe')(STRIPE_LIVE_KEY)
 const mongoose = require('mongoose')
 const MongoStore = require('connect-mongo');
+const MongoDBStore = require('connect-mongodb-session')(session);
+
 
 let server, io;
 
@@ -25,19 +27,17 @@ const DATABASE = process.env.DATABASE
 
 const DB = `mongodb+srv://seinde4:${PASSWORD}@cluster0.pp8yv.mongodb.net/${DATABASE}?retryWrites=true&w=majority` || 'mongodb://localhost:27017/verido';
 
-mongoose.connect(DB,
-    {    
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    }
-)
-
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error'))
-db.once('open', () => {
-    console.log('Database connected')
-})
-
+const store = new MongoDBStore({
+    uri: DB,
+    collection: 'sessions',
+    touchAfter: 24 * 3600 
+  });
+  
+  // Catch errors
+  store.on('error', function(error) {
+    console.log(error);
+  });
+  
 
 const sessionConfig = {
     secret: 'thisshouldbeabettersecret',
@@ -49,10 +49,7 @@ const sessionConfig = {
         maxAge: 1000 * 60 * 60 * 24 * 7,
         sameSite: 'none'
     },
-    store: MongoStore.create({
-        mongoUrl: DB,
-        touchAfter: 24 * 3600 // time period in seconds
-      })
+    store: store
 }
 
 app.use(session(sessionConfig))
