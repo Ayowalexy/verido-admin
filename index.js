@@ -15,12 +15,26 @@ const http = require('http')
 const DateFormatter = require('./utils')
 const STRIPE_LIVE_KEY = process.env.STRIPE_LIVE_KEY
 const stripe = require('stripe')(STRIPE_LIVE_KEY)
+const mongoose = require('mongoose')
 const MongoStore = require('connect-mongo');
 
 let server, io;
 
 
 const DB = `mongodb+srv://seinde4:${PASSWORD}@cluster0.pp8yv.mongodb.net/${DATABASE}?retryWrites=true&w=majority` || 'mongodb://localhost:27017/verido';
+
+mongoose.connect(DB,
+    {    
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    }
+)
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error'))
+db.once('open', () => {
+    console.log('Database connected')
+})
 
 
 const sessionConfig = {
