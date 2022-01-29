@@ -265,7 +265,29 @@
                             </div><!-- end chat-header -->
                             <div class="chat-body" data-simplebar>
                                 <div class="chat-detail" id="chat-detail">
-                                    
+                                    <% for( let index = 0; index < prev_messages.length; index++ ) { %>
+                                        <div class="media">
+                                        
+                                            <% if (prev_messages[index].to === admin) { %>
+                                                <div class="media-body not-reverse">
+                                                    <div class="chat-msg">
+                                                        <p><%=prev_messages[index].message %> </p>
+                                                    </div>
+                                                   
+                                                </div>
+                                            <% } else {%>
+                                                <div class="media-body reverse">
+                                                    <div class="chat-msg">
+                                                        <p><%=prev_messages[index].message %> </p>
+                                                    </div>
+                                                   
+                                                </div>
+                                            <% } %> 
+                                            
+                                           
+                                           
+                                        </div>
+                                       <% } %>
 
                                 </div> <!-- end chat-detail -->
                             </div><!-- end chat-body -->
@@ -329,65 +351,82 @@
         <script src="/assets/js/ejs.min.js"></script>
         <script src=https://cdn.pubnub.com/sdk/javascript/pubnub.4.28.2.min.js></script>
         <script>
-              const data =  <%- JSON.stringify(data._id) %>
+              const data =  <%- JSON.stringify(user._id) %>
+              const current_business =  <%- JSON.stringify(data._id) %>
+          
+          console.log(current_business, 'current admin')
               
         </script>
-        <script>
-            
-            
-                (function() {
-                    const pubnub = new PubNub({
-                        publishKey: "pub-c-3272fe08-52e8-4278-826d-98a0cc703878",
-                        subscribeKey: "sub-c-afe58600-7616-11ec-add2-a260b15b99c5",
-                        uuid: 'myUniqueUUID',
-                    });
-                    function $(id) {
-                        return document.getElementById(id);
-                    }
-                    let box = $('chat-detail'),
-                        input = $('input'),
-                        send = $('btn-sm-send'),
-                        channel = 'chat';
-                        
-                    pubnub.addListener({
-                        message: function(obj) {
+    
+      <script>
+          
+          
+              (function() {
+                  const pubnub = new PubNub({
+                      publishKey: "pub-c-3272fe08-52e8-4278-826d-98a0cc703878",
+                      subscribeKey: "sub-c-afe58600-7616-11ec-add2-a260b15b99c5",
+                      uuid: `consultant-${data}`,
+                      // uuid: data.toString(),
+                  });
+                  function $(id) {
+                      return document.getElementById(id);
+                  }
+                  let box = $('chat-detail'),
+                      input = $('input'),
+                      send = $('btn-sm-send'),
+                      // channel = 'chat';
+                      channel = `chat-${current_business}-${data}`;
+                      // channel = `chat-${data}`;
+                      
+                  pubnub.addListener({
+                      message:   async function(obj) {
+                          console.log(obj)
+                          box.innerHTML = box.innerHTML + (`
+                              <div class="media">
+                                  
+                                  <div class="media-body ${obj.publisher === `consultant-${data}` ? 'reverse' : 'not-reverse'}">
+                                      <div class="chat-msg">
+                                          <p>${obj.message}</p>
+                                      </div>
+                                      
+                                  </div>
+                                 
+                              </div>
+                          `)
                           
-                            box.innerHTML = box.innerHTML + (`
-                                <div class="media">
-                                    
-                                    <div class="media-body ${obj.publisher === 'myUniqueUUID' ? 'not-reverse' : 'reverse'}">
-                                        <div class="chat-msg">
-                                            <p>${obj.message}</p>
-                                        </div>
-                                        
-                                    </div>
-                                   
-                                </div>
-                            `)
-                        }
-                    });
-                    pubnub.subscribe({
-                        channels: [channel]
-                    });
-                    input.addEventListener('keyup', function(e) {
-                        if ((e.keyCode || e.charCode) === 13) {
-                            pubnub.publish({
-                                channel: channel,
-                                message: input.value,
-                                x: (input.value = '')
-                            });
-                        }
-                    });
-                    send.addEventListener('click', function(e) {
-                            pubnub.publish({
-                                channel: channel,
-                                message: input.value,
-                                x: (input.value = '')
-                            });
-                    });
-                })();
+                          // await axios.post(`http://localhost:5000/new-consultant-message/${data}`, {
+                          await axios.post(`https://verido-2-ihdqs.ondigitalocean.app/new-consultant-message/${data}`, {
+                              message: obj.message,
+                              // to: `${current_admin}`,
+                              channel: obj.channel,
+                              to: `${obj.publisher.slice(obj.publisher.indexOf('-') + 1)}`,
+                              // from: `${data}`
+                          }).then(response => console.log(response.data.message))
 
-        </script>
+                      }
+                  });
+                  pubnub.subscribe({
+                      channels: [channel]
+                  });
+                  input.addEventListener('keyup', function(e) {
+                      if ((e.keyCode || e.charCode) === 13) {
+                          pubnub.publish({
+                              channel: channel,
+                              message: input.value,
+                              x: (input.value = '')
+                          });
+                      }
+                  });
+                  send.addEventListener('click', function(e) {
+                          pubnub.publish({
+                              channel: channel,
+                              message: input.value,
+                              x: (input.value = '')
+                          });
+                  });
+              })();
+
+      </script>
 
         <!-- <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>        -->
          <script>
