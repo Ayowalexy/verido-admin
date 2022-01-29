@@ -387,7 +387,7 @@ app.get('/chat/:details/:admin/:id', async (req, res) => {
 
     }
 
-console.log(prev_messages)
+console.log(prev_messages, chat_data)
 
     res.render('user-chat', {data: chat_data, 
         prev_messages: prev_messages,
@@ -574,6 +574,7 @@ app.get('/consultant-chat/:consultant/:id', async (req, res) => {
 
     res.render('consultant/chat', {id: data._id, 
         user: data,
+        admin: consultant,
         prev_messages: prev_messages,
         data: business, username: req.session.username, business: data.business, admins: admins})
 
