@@ -14,7 +14,9 @@ const socketIO = require('socket.io')
 const http = require('http')
 const DateFormatter = require('./utils')
 const STRIPE_LIVE_KEY = process.env.STRIPE_LIVE_KEY
-const stripe = require('stripe')(STRIPE_LIVE_KEY)
+const stripe = require('stripe')(STRIPE_LIVE_KEY);
+const schedule = require('node-schedule');
+
 
 
 
@@ -60,8 +62,6 @@ const isLoggedIn = (req, res, next) => {
    
 //     return res
 // })()
-
-
 
 app.get('/', (req, res) => {
     res.render('login', {message: ''})
@@ -152,7 +152,6 @@ app.get('/homepage/:id', async (req, res) => {
             console.log(element.amount)
             total += element.amount
     }})
-
 
 
     res.render('homepage',{ consultant: data.length, 
@@ -518,7 +517,8 @@ app.get('/dashboard-consultant/:id', async (req, res) => {
                             recent_business: recent_business,
                             paymentIntents: paymentIntents.data,
                             total: total / 100,
-                            id: data._id
+                            id: data._id,
+                            user: data
 
                          })
 })
@@ -530,7 +530,9 @@ app.get('/consultant-index/:id', async (req, res) => {
      const data = await axios.get(`https://verido-2-ihdqs.ondigitalocean.app/fetch-consultant/${id}`)
     //  const data = await axios.get(`http://localhost:5000/fetch-consultant/${id}`)
      .then(resp => resp.data.consultant)
-    res.render('consultant/business', {id: data._id, data: data.business, username: req.session.username })
+    res.render('consultant/business', {id: data._id,
+        user: data,
+         data: data.business, username: req.session.username })
 
 })
 
@@ -550,6 +552,7 @@ app.get('/consultant-chat/:consultant/:id', async (req, res) => {
     const business = data.business.find(data => data._id === consultant);
 
     res.render('consultant/chat', {id: data._id, 
+        user: data,
         data: business, username: req.session.username, business: data.business, admins: admins})
 
 
@@ -593,6 +596,7 @@ app.get('/admin-chat/:admin/:id', async (req, res) => {
     res.render('consultant/admin-chat', {id: data._id,
         prev_messages: prev_messages,
         admin: admin,
+        user: data,
          business: data.business, consultant: req.session.current_consultant_id,
         data: current_admin, username: req.session.username, admins: admins})
 
@@ -614,7 +618,8 @@ app.get('/consultant-chat-page/:id', async (req, res) => {
    console.log(admins)
 
     res.render('consultant/chat-index', {id:data._id,
-         username: req.session.username, business: data.business, admins: admins})
+        user: data,
+         username: data.username, business: data.business, admins: admins})
 
 
 })

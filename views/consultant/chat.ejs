@@ -112,11 +112,19 @@
                             <i class="fas fa-user fa-1x text-muted"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
-                            <a class="dropdown-item" href="#">Company Logo</a>
+                            <a class="dropdown-item" href="#"><i data-feather="user" class="align-self-center icon-xs icon-dual me-1"></i><%=user.username %> </a>
+                            <a class="dropdown-item" href="#"><i data-feather="mail" class="align-self-center icon-xs icon-dual me-1"></i> <%=user.email %> </a>
+                            <a class="dropdown-item" href="#"><i data-feather="key" class="align-self-center icon-xs icon-dual me-1"></i> <%=user.consultant_id %> </a>
+                                <% if (user.mobile_number) { %>
+                                    <a class="dropdown-item" href="#"><i data-feather="phone" class="align-self-center icon-xs icon-dual me-1"></i> 
+                                     <%=user.mobile_number %> 
+                                    </a>
+                                <% } %> 
+                           
                             <div class="dropdown-divider mb-0"></div>
-                            <a class="dropdown-item" href="#"><i data-feather="file"
-                                    class="align-self-center icon-xs icon-dual me-1"></i> Choose File</a>
-                        </div>
+                            <a class="dropdown-item" href="/"><i data-feather="power" class="align-self-center icon-xs icon-dual me-1"></i> Logout</a>
+                       
+                            </div>
                     </li>
                 </ul>
                 <!--end topbar-nav-->
