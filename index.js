@@ -457,6 +457,7 @@ app.get('/dashboard-consultant/:id', async (req, res) => {
     // const data = await axios.get(`http://localhost:5000/fetch-consultant/${id}`)
     .then(resp => resp.data.consultant)
 
+    console.log(data)
     // const data_thre = data.find(element => element._id === id)
 
     let val = DateFormatter(data_three)
