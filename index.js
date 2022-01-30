@@ -556,7 +556,7 @@ app.get('/consultant-chat/:consultant/:id', async (req, res) => {
 
     const business = data.business.find(data => data._id === consultant);
 
-    console.log(data._id,'================')
+    console.log(messages,'================')
     
     let prev_messages = [];
 
