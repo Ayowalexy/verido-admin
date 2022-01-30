@@ -113,15 +113,7 @@ app.get('/homepage/:id', async (req, res) => {
     
             // console.log(custom)
     let subs = DateFormatter(arr).map(data => data !== null)
-    // let subs_2 = DateFormatter(arr)
-
-    // console.log(subs_2, '-----')
-
-
-    // data_three.forEach(element => {
-    //     console.log(element.subscription_status)
-    // });
-
+   
     let userTrial = 0;
     let userSubs = 0;
     let expiresSub = 0;
