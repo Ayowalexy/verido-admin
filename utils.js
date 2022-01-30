@@ -60,7 +60,6 @@ const DateFormatter = (data_three) => {
 
     })
 
-    console.log(val.length)
     return val
 }
 

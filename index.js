@@ -111,6 +111,53 @@ app.get('/homepage/:id', async (req, res) => {
 
     // console.log(subs_2, '-----')
 
+
+    // data_three.forEach(element => {
+    //     console.log(element.subscription_status)
+    // });
+
+    let userTrial = 0;
+    let userSubs = 0;
+    let expiresSub = 0;
+    let subButExpired = 0;
+    let trialAndActive = 0;
+
+    data_three.map(element => {
+
+        switch(element.subscription_status.type){
+            case 'Subscribed': 
+                userSubs = userSubs + 1;
+                break
+            case 'trial':
+                userTrial = userTrial + 1;
+                break
+            default: 
+                userSubs = userSubs + 0 ;
+                userTrial =  userTrial + 0;
+                break
+        }
+
+        const today = new Date().getTime()
+        const expires = new Date(element.subscription_status.expires).getTime()
+
+        if(today > expires){
+            expiresSub +=1;
+        }
+
+        if((element.subscription_status.type === 'Subscribed') && (today > expires)){
+            subButExpired +=1;
+        }
+        if((element.subscription_status.type === 'trial') && !(today > expires)){
+            trialAndActive +=1;
+        }
+
+        
+
+    })
+
+
+
+    // console.log(userSubs)
     let totalSubs = []
     let idVerified = []
     let phoneVerified = []
@@ -154,7 +201,12 @@ app.get('/homepage/:id', async (req, res) => {
     }})
 
 
-    res.render('homepage',{ consultant: data.length, 
+    res.render('homepage',{userSubs: userSubs, 
+                            userTrial : userTrial, 
+                            expiresSub: expiresSub, 
+                            subButExpired: subButExpired, 
+                            trialAndActive: trialAndActive,
+                            consultant: data.length, 
                             institution: data_two.length, 
                             business: data_three.length, 
                             username: req.session.username, 
@@ -558,7 +610,6 @@ app.get('/consultant-chat/:consultant/:id', async (req, res) => {
     .then(resp => resp.data.admins)
 
 
-    console.log(messages,'================')
     
     let prev_messages = [];
 
