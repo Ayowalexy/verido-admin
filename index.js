@@ -548,8 +548,8 @@ app.get('/consultant-chat/:consultant/:id', async (req, res) => {
 
     const business = data.business.find(data => data._id === consultant);
 
-    const messages = await axios.get(`https://verido-2-ihdqs.ondigitalocean.app/fetch-business-messages/chat-${business._id.toString()}-${data._id}`)
-    // const messages = await axios.get(`https://verido-2-ihdqs.ondigitalocean.app/fetch-consultant-message/${data._id}`)
+    // const messages = await axios.get(`https://verido-2-ihdqs.ondigitalocean.app/fetch-business-messages/chat-${business._id.toString()}-${data._id}`)
+    const messages = await axios.get(`https://verido-2-ihdqs.ondigitalocean.app/fetch-consultant-message/${data._id}`)
     // const messages = await axios.get(`http://localhost:5000/fetch-consultant-message/${data._id}`)
     .then(resp => resp.data.messages)
 
@@ -562,22 +562,22 @@ app.get('/consultant-chat/:consultant/:id', async (req, res) => {
     
     let prev_messages = [];
 
-    // if(messages.messages.length){
-    //     messages.messages.map(message => {
-    //         if(message.channel === `chat-${business._id.toString()}-${data._id}`){
-    //             prev_messages.push(message)
-    //         }
-    //         // if(message.to === current_admin._id.toString()){
-    //         //     prev_messages.push(message)
-    //         // }
-    //     })
+    if(messages.messages.length){
+        messages.messages.map(message => {
+            if(message.channel === `chat-${business._id.toString()}-${data._id}`){
+                prev_messages.push(message)
+            }
+            // if(message.to === current_admin._id.toString()){
+            //     prev_messages.push(message)
+            // }
+        })
 
-    // }
+    }
 
     res.render('consultant/chat', {id: data._id, 
         user: data,
         admin: consultant,
-        prev_messages: messages,
+        prev_messages: prev_messages,
         data: business, username: req.session.username, business: data.business, admins: admins})
 
 
