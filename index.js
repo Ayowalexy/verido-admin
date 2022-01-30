@@ -111,7 +111,6 @@ app.get('/homepage/:id', async (req, res) => {
             })
 
     
-            // console.log(custom)
     let subs = DateFormatter(arr).map(data => data !== null)
    
     let userTrial = 0;
