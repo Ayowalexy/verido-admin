@@ -403,14 +403,6 @@
                               to: `${obj.publisher.slice(obj.publisher.indexOf('-') + 1)}`,
                               // from: `${data}`
                           }).then(response => console.log(response.data.message))
-                          
-                          await axios.post(`https://verido-2-ihdqs.ondigitalocean.app/new-business-message/${current_business}`, {
-                              message: obj.message,
-                              // to: `${current_admin}`,
-                              channel: obj.channel,
-                              to: `${obj.publisher.slice(obj.publisher.indexOf('-') + 1)}`,
-                              // from: `${data}`
-                          }).then(response => console.log(response.data.message))
 
                       }
                   });
