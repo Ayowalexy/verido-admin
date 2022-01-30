@@ -93,6 +93,12 @@ app.get('/homepage/:id', async (req, res) => {
     // const data_three = await axios.get('http://localhost:5000/admin-business')
     .then(resp => resp.data.response)
 
+    const videos = await axios.get('https://verido-2-ihdqs.ondigitalocean.app/vidoes')
+    // const data_three = await axios.get('http://localhost:5000/admin-business')
+    .then(resp => resp.data.response)
+
+    console.log(videos, '===============')
+
     const data = await axios.get('https://verido-2-ihdqs.ondigitalocean.app/fetch-consultant')
     // const data = await axios.get('http://localhost:5000/fetch-consultant')
     .then(resp => resp.data.consultant)
@@ -220,9 +226,35 @@ app.get('/homepage/:id', async (req, res) => {
                             paymentIntents: paymentIntents.data,
                             total: total / 100,
                             recent_institution: recent_institution,
-                            admin_id: id
+                            admin_id: id,
+                            videos: videos
 
                          })
+})
+
+app.post('/video/:id', async(req, res) => {
+    const { id } = req.params;
+    
+    const data = await axios.post(`https://verido-2-ihdqs.ondigitalocean.app/vidoes`, {...req.body})
+    .then(respon => {
+        return respon.data.response })
+    .catch (e => {
+        console.log(e.message)
+    })
+
+    res.redirect(`/homepage/${id}`)
+})
+app.post('/delete-video/:videoID/:id', async(req, res) => {
+    const { id, videoID } = req.params;
+    
+    const data = await axios.post(`https://verido-2-ihdqs.ondigitalocean.app/delete-video/${videoID}`, {...req.body})
+    .then(respon => {
+        return respon.data.response })
+    .catch (e => {
+        console.log(e.message)
+    })
+
+    res.redirect(`/homepage/${id}`)
 })
 
 app.get('/index/:id', async (req, res) => {

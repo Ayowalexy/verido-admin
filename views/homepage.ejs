@@ -575,6 +575,59 @@
                             </div><!--end card--> 
                         </div>     
                         </div> <!--end col-->
+                        <div class="col-lg-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row align-items-center">
+                                        <div class="col">                      
+                                            <h4 class="card-title">Verido Videos</h4>                      
+                                        </div><!--end col-->
+                                       
+                                    </div>  <!--end row-->                                  
+                                </div><!--end card-header-->
+                                <div class="card-body">
+                                    <div class="table-responsive browser_users">
+                                        <table class="table mb-0">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th class="border-top-0">Title</th>
+                                                    <th class="border-top-0">Category</th>
+                                                    <th class="border-top-0">VidoeID</th>
+                                                </tr><!--end tr-->
+                                            </thead>
+                                            <tbody>
+                                                <% for( let index = 0; index < videos.length; index++ ) { %>
+                                                    <tr>                                                        
+                                                        
+                                                        
+                                                        <form action="/delete-video/<%=videos[index].vidoeID %>/<%=admin_id %>" method="POST">
+                                                            <td><input class="text-primary" type="text" name='title' value="<%=videos[index].title %>" placeholder="Enter Video title"></td>
+                                                            <td><input type="text" name='category' value="<%=videos[index].category %>" placeholder="Enter Video Category"></td>
+                                                            <td><input type="text" name='vidoeID' value="<%=videos[index].vidoeID %>" placeholder="Enter Video videoID"></td>
+                                                            <td><input type="submit" value="DELETE" class="btn btn-sm btn-soft-danger"></td>
+                                                        </form>
+                                            
+                                                    </tr><!--end tr--> 
+                                                <% } %>
+
+                                                
+                                                <tr>
+                                                    <form action="/video/<%=admin_id %>" method="POST">
+                                                            <td><input type="text" placeholder="Enter Video title" name='title'></td>
+                                                            <td><input type="text" placeholder="Enter Video Category" name='category'></td>
+                                                            <td><input type="text" placeholder="Enter Video VideoID" name='vidoeID'></td>
+                                                            <td><input type="submit" value="ADD" class="btn btn-sm btn-primary"></td>
+                                                    </form>
+                                                </tr>
+                                                
+                                                    
+                                                                          
+                                            </tbody>
+                                        </table> <!--end table-->                                               
+                                    </div><!--end /div-->
+                                </div><!--end card-body--> 
+                            </div><!--end card--> 
+                        </div>     
                     </div><!--end row-->
 
                 
