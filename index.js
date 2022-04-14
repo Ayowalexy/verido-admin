@@ -726,7 +726,7 @@ app.get('/consultant-chat-page/:id', async (req, res) => {
 
 const PORT = process.env.PORT || 8000
 server = http.Server(app)
-server.listen(PORT, () => console.log('Listening on port 5000'))
+server.listen(PORT, () => console.log(`Listening on port ${PORT}`))
 
 io = socketIO(server)
 
