@@ -102,35 +102,23 @@
                             <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-bs-toggle="dropdown" href="#" role="button"
                                 aria-haspopup="false" aria-expanded="false">
                                
-                                <button data-bs-target="#exampleModalDefault" data-bs-toggle="modal" type="button" class="btn 
-                                <% if (data.subscription_status.type === 'trial') { %>
-                                    <%='btn-danger' %> 
-                                <% } else if(data.subscription_status.type === 'Subscribed') { %>
-                                        <%='btn-primary' %> 
-                                <% } else if(data.subscription_status.type === 'Suspended') { %>
-                                        <%='btn-secondary' %> 
-                                <% } else if(data.subscription_status.type === 'Reported') { %>
-                                        <%='btn-secondary' %> 
-                                <% } else if(data.subscription_status.type === 'Inactive') { %>
-                                        <%='btn-info' %> 
-                                <% } else if(data.subscription_status.type === 'expired') { %>
-                                        <%='btn-warning' %> 
-                                <% } %> 
-                                    ">
-                                    <% if (data.subscription_status.type === 'trial') { %>
-                                        <%='Suspend' %> 
-                                    <% } else if(data.subscription_status.type === 'Subscribed') {%>
-                                        <%='Suspend' %> 
-                                    <% } else if(data.subscription_status.type === 'Suspended') {%>
-                                        <%='Re-Activate' %> 
-                                    <% } else if(data.subscription_status.type === 'Reported') {%>
-                                        <%='Re-Activate' %> 
-                                    <% } else if(data.subscription_status.type === 'Inactive') {%>
-                                        <%='Re-Activate' %> 
-                                    <% } else if(data.subscription_status.type === 'expired') {%>
-                                        <%='Expired' %> 
-                                    <% } %> 
-                                </button>    
+                                <form action="/suspend/<%=admin_id%>/<%=business_id %>" method="POST">
+                                    <button data-bs-target="#exampleModalDefault" data-bs-toggle="modal" type="submit" class="btn 
+                                    <% if(data.suspended){ %> 
+                                       btn-secondary
+                                        <% }else { %> 
+                                            btn-danger
+                                            <% } %> 
+                                        ">
+                                       
+                                        <% if(data.suspended){ %> 
+                                            Re-Activate
+                                            <% }else { %> 
+                                                Suspend
+                                                <% } %> 
+                                    </button>    
+                                </form>
+                               
                             </a>
                             
                            
@@ -220,22 +208,29 @@
                                                             </div><!--end col-->
                                                         </div><!--end row-->                                                      
                                                     </div><!--end modal-body-->
-                                                    <div class="modal-footer">                                                    
-                                                        <button type="button" class="btn btn-soft-primary btn-sm">
-                                                            <% if (data.subscription_status.type === 'trial') { %>
-                                                                <%='Suspend' %> 
-                                                            <% } else if(data.subscription_status.type === 'Subscribed') {%>
-                                                                <%='Approve' %> 
-                                                            <% } else if(data.subscription_status.type === 'Suspended') {%>
-                                                                <%='Re-Activate' %> 
-                                                            <% } else if(data.subscription_status.type === 'Reported') {%>
-                                                                <%='Re-Activate' %> 
-                                                            <% } else if(data.subscription_status.type === 'Inactive') {%>
-                                                                <%='Re-Activate' %> 
-                                                            <% } else if(data.subscription_status.type === 'expired') {%>
-                                                                <%='' %> 
-                                                            <% } %> 
-                                                        </button>
+                                                    <div class="modal-footer"> 
+                                                        <form action="
+                                                                /suspend/<%=admin_id%>/<%=business_id %>/
+                                                                <% if (data.suspended) { %>
+                                                                    activate
+                                                                <% } else { %>                                                                    
+                                                                    suspend-user
+                                                                    <% } %> 
+                                                                " method="POST">
+                                                            <button 
+                                                                    type="submit" 
+                                                                    class="btn btn-soft-primary btn-sm" 
+                                                                    
+                                                                    >
+                                                                    <% if(data.suspended){ %> 
+                                                                        Re-Activate
+                                                                        <% }else { %> 
+                                                                            Suspend
+                                                                            <% } %> 
+                                                               
+                                                            </button>
+                                                        </form>                                                   
+                                                        
                                                         <button type="button" class="btn btn-soft-secondary btn-sm" data-bs-dismiss="modal">Close</button>
                                                     </div><!--end modal-footer-->
                                                 </div><!--end modal-content-->

@@ -235,8 +235,11 @@
                         <div class="col-sm-12">
                             <div class="page-title-box">
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col" style="display: flex; justify-content: space-between; align-items: center; width: 100%">
                                         <h4 class="page-title">Business</h4>
+                                        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable">
+                                            NEW BUSINESS
+                                        </button>
                                        
                                     </div><!--end col-->
                                     
@@ -244,6 +247,110 @@
                             </div><!--end page-title-box-->
                         </div><!--end col-->
                     </div><!--end row-->
+
+                    <!-- start of new business modal -->
+
+                    <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h6 class="modal-title m-0" id="exampleModalScrollableTitle">Create a new Business</h6>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div><!--end modal-header-->
+                                <div class="modal-body">
+                                    <form class="form-horizontal auth-form" id="form-anim" action="/create-busniness/<%=admin_id %>" method='POST'>
+                
+                                        <div class="form-group mb-2">
+                                            <label class="form-label" for="username">Full Name</label>
+                                            <div class="input-group">                                                                                         
+                                                <input type="text" class="form-control" name="full_name" id="username" placeholder="Enter Your full name">
+                                            </div>                                    
+                                        </div><!--end form-group--> 
+            
+                                        <div class="form-group mb-2">
+                                            <label class="form-label" for="userpassword">Username</label>                                            
+                                            <div class="input-group">                                  
+                                                <input type="text" class="form-control" name="username" id="userpassword" placeholder="Enter password">
+                                            </div>                               
+                                        </div><!--end form-group--> 
+
+                                        <div class="form-group mb-2">
+                                            <label class="form-label" for="userpassword">Email</label>                                            
+                                            <div class="input-group">                                  
+                                                <input type="text" class="form-control" name="email" id="userpassword" placeholder="Enter password">
+                                            </div>                               
+                                        </div><!--end form-group--> 
+
+                                        <div class="form-group mb-2">
+                                            <label class="form-label" for="userpassword">Organization ID</label>                                            
+                                            <div class="input-group">                                  
+                                                <input type="text" class="form-control" name="organization_id" id="userpassword" placeholder="Enter password">
+                                            </div>                               
+                                        </div><!--end form-group--> 
+                                
+                                        <div class="form-group mb-2">
+                                            <label class="form-label" for="userpassword">Consultant ID</label>                                            
+                                            <div class="input-group">                                  
+                                                <input type="text" class="form-control" name="consultantID" id="userpassword" placeholder="Enter password">
+                                            </div>                               
+                                        </div><!--end form-group--> 
+
+                                        <div class="form-group mb-2">
+                                            <label class="form-label" for="userpassword">Business Name</label>                                            
+                                            <div class="input-group">                                  
+                                                <input type="text" class="form-control" name="business_name" id="userpassword" placeholder="Enter Business Name">
+                                            </div>                               
+                                        </div><!--end form-group--> 
+
+                                        <div class="form-group mb-2">
+                                            <label class="form-label" for="userpassword">Business Sector</label>                                            
+                                            <div class="input-group">                                  
+                                                <input type="text" class="form-control" name="business_sector" id="userpassword" placeholder="Enter Business Sector">
+                                            </div>                               
+                                        </div><!--end form-group--> 
+                                
+                                        <div class="form-group mb-2">
+                                            <label class="form-label" for="userpassword">Business Type</label>                                            
+                                            <div class="input-group">                                  
+                                                <input type="text" class="form-control" name="business_type" id="userpassword" placeholder="Enter Business Type">
+                                            </div>                               
+                                        </div><!--end form-group--> 
+                                
+                                        <div class="form-group mb-2">
+                                            <label class="form-label" for="userpassword">Password</label>                                            
+                                            <div class="input-group">                                  
+                                                <input type="text" class="form-control" name="password" id="userpassword" placeholder="Enter password">
+                                            </div>                               
+                                        </div><!--end form-group--> 
+            
+                                        
+
+            
+                                        <div class="form-group mb-0 row">
+                                            <div class="col-12">
+                                                <button  class="btn btn-primary w-100 waves-effect waves-light sub" type="submit">CONTINUE <i class="fas fa-sign-in-alt ms-1"></i></button>
+                                            </div><!--end col--> 
+                                            <div class="d-flex justify-content-center">
+                                                <div class="spinner-border spinner-border-custom-2 text-primary hid" style="visibility: hidden;" role="status"></div>
+                                            </div>
+
+                                            <script>
+                                                const sub = document.querySelector('.sub')
+                                                sub.onClick = function(){
+                                                    document.querySelector('.hid').styles.visibility = 'initial'
+                                                }
+                                            </script>
+                                        </div> <!--end form-group-->                           
+                                    </form><!--end form-->
+                                    
+                                </div><!--end modal-body-->
+                               
+                            </div><!--end modal-content-->
+                        </div><!--end modal-dialog-->
+                    </div><!--end modal-->
+
+                    <!-- end of new business modal -->
+
                     <!-- end page title end breadcrumb -->
                     <div class="row">
                         <div class="col-12">
@@ -270,7 +377,7 @@
                                                     <td><a href="/business/<%=admin_id %>/<%=element._id %> "><%=element.business.name %></a></td>
                                                     <td><a href="/business/<%=admin_id %>/<%=element._id %> "><%=element.full_name %></a></td>
                                                     <td><a href="/business/<%=admin_id %>/<%=element._id %> ">Not Available</a></td>
-                                                    <td style="text-transform: capitalize;"><a href="/business/<%=admin_id %>/<%=element.id %> "><%=element.subscription_status.type %></a></td>
+                                                    <td style="text-transform: capitalize;"><a href="/business/<%=admin_id %>/<%=element._id %> "><%=element.subscription_status.type %></a></td>
                                                     <td><a href="/business/<%=admin_id %>/<%=element._id %> "><%=element.subscription_status.expires %></a></td>
                                                 </tr>
                                            <% }) %>

@@ -22,7 +22,7 @@ const schedule = require('node-schedule');
 
 let server, io;
 
-
+const live = "https://api.verido.app"
 
 const sessionConfig = {
     secret: 'thisshouldbeabettersecret',
@@ -317,6 +317,14 @@ app.get('/business-owners/:id', async(req, res) => {
     
 
 })
+app.post('/create-busniness/:id', async(req, res) => {
+    const business = await axios.post(`https://api.verido.app/register`, {...req.body});
+    if(business.status === 200){
+        res.redirect(`/business-owners/${req.params.id}`)
+    }
+    console.log(business.data)
+
+})
 
 app.get('/consultants/:admin/:id', async (req, res) => {
     const { id, admin } = req.params
@@ -361,12 +369,31 @@ app.get('/business/:admin/:id', async (req, res) => {
     .then(resp => resp.data.response)
 
     const d = data_three.find(element => element._id === id)
+    console.log(d.password, d.suspended)
     // const consultant = data.find(element => element.index === d.consultant_id)
 
     res.render('profile/business', {data: d,
         admin_id: admin,
+        business_id: id,
         username: req.session.username, consultant: 'Not Available'})
 
+})
+
+app.post('/suspend/:admin_id/:business_id/:type', async(req, res) => {
+
+    if(req.params.type.trim() === 'suspend-user'){
+        console.log("processing")
+        const data = await axios.get(`https://api.verido.app/suspend-user/${req.params.business_id}/suspend-user`)
+        if(data.status === 200){
+            res.redirect(`/business/${req.params.admin_id}/${req.params.business_id}`)
+        }
+    } else {
+        const data = await axios.get(`https://api.verido.app/suspend-user/${req.params.business_id}/activate`)
+        if(data.status === 200){
+            res.redirect(`/business/${req.params.admin_id}/${req.params.business_id}`)
+        }
+    }
+    
 })
 
 app.get('/business-page/:consultant/:id', async (req, res) => {
