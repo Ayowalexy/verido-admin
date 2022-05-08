@@ -317,9 +317,41 @@
                                                    
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Consultant</label>
+
+
+                                                        
+
+
                                                         <div class="col-lg-9 col-xl-8">
-                                                            <input class="form-control" type="text" value="<%=consultant %> " disabled>
+                                                            <!-- <input class="form-control" type="text" value="<%=consultant %> " disabled> -->
+
+
+
+
+                                                            <div class="card" style="margin-top: 10px;">                                                               
+                                                                <!-- <div class="card-body">                                     -->
+                                                                    <div class="button-items">
+                                                                        <button type="button" 
+                                                                            style="width: 100%; text-align: left;" 
+                                                                            class="btn btn-soft-secondary dropdown-toggle" 
+                                                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                                                                <%=data.consultant[0].consultant_id %>
+                                                                            <i class="mdi mdi-chevron-down"></i>
+                                                                        </button>
+                                                                        <div class="dropdown-menu">
+                                                                            <% for( let index = 0; index < allConsultants.length; index++ ) { %>
+                                                                                <div class="consultant-click" style="cursor: pointer;">
+                                                                                    <a class="dropdown-item" > <%=allConsultants[index].consultant_id%></a>
+                                                                                </div>
+                                                                            <% } %>
+                                                                           
+                                                                        </div>
+                                                                    </div><!-- /button-items -->
+                                                               <!-- </div>end card-body-->                                
+                                                            </div><!--end card--> 
                                                         </div>
+
+
                                                     </div>
                         
                                                     <div class="form-group row">
@@ -358,17 +390,53 @@
                                                             <input class="form-control" type="text" value="<%=data.dateJoined %> " disabled >
                                                         </div>
                                                     </div>
+
+
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Phone Verification</label>
                                                         <div class="col-lg-9 col-xl-8">
-                                                            <input class="form-control" type="text" value=<% if (data.phoneVerified) { %>
+
+
+                                                            <div class="card" style="margin-top: 10px;">                                                               
+                                                                <!-- <div class="card-body">                                     -->
+                                                                    <div class="button-items">
+                                                                        <button type="button" 
+                                                                            style="width: 100%; text-align: left;" 
+                                                                            class="btn btn-soft-secondary dropdown-toggle" 
+                                                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                                                            <% if (data.phoneVerified) { %>
+                                                                                <%='Verified' %> 
+                                                                            <% } else { %>
+                                                                                <%='Unverified' %> 
+                                                                            <% } %> 
+                                                                            <i class="mdi mdi-chevron-down"></i>
+                                                                        </button>
+                                                                        <div class="dropdown-menu">
+                                                                                <div class="Verified-click" style="cursor: pointer;">
+                                                                                    <a class="dropdown-item" >Verified</a>
+                                                                                </div>
+                                                                                <div class="Verified-click" style="cursor: pointer;">
+                                                                                    <a class="dropdown-item" >Not Verified</a>
+                                                                                </div>
+                                                                           
+                                                                        </div>
+                                                                    </div><!-- /button-items -->
+                                                               <!-- </div>end card-body-->                                
+                                                            </div><!--end card--> 
+
+                                                            <!-- <input class="form-control" type="text" value=<% if (data.phoneVerified) { %>
                                                                 <%='Verified' %> 
                                                             <% } else { %>
                                                                 <%='Unverified' %> 
                                                             <% } %> 
-                                                                 disabled >
+                                                                 disabled > -->
+
+
+
                                                         </div>
                                                     </div>
+
+
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Postcode</label>
                                                         <div class="col-lg-9 col-xl-8">
@@ -611,6 +679,11 @@
 
         <!-- App js -->
         <script src="/assets/js/app.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script>
+            const data =  <%- JSON.stringify(business_id) %>
+        </script>
+        
         <script>
             const doc = Array.from(document.querySelectorAll('.custom-input'))
             doc.forEach(element => {
@@ -620,6 +693,36 @@
             doc.oninput = function(event){
                 event.preventDefault()
             }
+
+            const consultant = document.querySelectorAll('.consultant-click');
+            const Verification = document.querySelectorAll('.Verified-click');
+
+            consultant.forEach(element => {
+                element.onclick = async function(e){                   
+                    const res = await axios.post('https://api.verido.app/update-consultant', {
+                        userId: data, 
+                        consultantId: e.target.textContent.toString().trim()
+                    })
+                    if(res.status === 200){
+                        window.location.reload(true)
+                    }
+                }
+            })
+
+            Verification.forEach(element => {
+                element.onclick = async function(e){ 
+                    console.log(e.target.textContent)               
+                    const res = await axios.post(`https://api.verido.app/update-user-information/${data}`, {
+                        phoneVerified: e.target.textContent.toString().trim() == 'Verified' ? true : false, 
+                    })
+                    console.log(res.data)
+                    if(res.status === 200){
+                        window.location.reload(true)
+                    }
+                }
+            })
+           
+
         </script>
         
     </body>

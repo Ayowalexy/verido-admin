@@ -369,12 +369,18 @@ app.get('/business/:admin/:id', async (req, res) => {
     .then(resp => resp.data.response)
 
     const d = data_three.find(element => element._id === id)
-    console.log(d.password, d.suspended)
     // const consultant = data.find(element => element.index === d.consultant_id)
 
+    const allConsultants = await axios.get('https://api.verido.app/fetch-consultant')
+    // const data_three = await axios.get('https://api.verido.app/admin-business')
+    .then(resp => resp.data.consultant)
+
+
+    console.log('All data', d)
     res.render('profile/business', {data: d,
         admin_id: admin,
         business_id: id,
+        allConsultants,
         username: req.session.username, consultant: 'Not Available'})
 
 })
