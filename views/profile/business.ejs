@@ -335,7 +335,11 @@
                                                                             style="width: 100%; text-align: left;" 
                                                                             class="btn btn-soft-secondary dropdown-toggle" 
                                                                             data-bs-toggle="dropdown" aria-expanded="false">
-                                                                                <%=data.consultant[0].consultant_id %>
+                                                                                <% if (data.consultant.length) { %>
+                                                                                 <%=data.consultant[0].consultant_id %> 
+                                                                                <% } else { %>
+                                                                                    <%='Not available' %> 
+                                                                                    <% } %> 
                                                                             <i class="mdi mdi-chevron-down"></i>
                                                                         </button>
                                                                         <div class="dropdown-menu">
@@ -558,36 +562,40 @@
                                                     <h4 class="card-title">Business Informations</h4>
                                                 </div><!--end card-header-->
                                                 <div class="card-body"> 
+                                                    <form method="POST" action="/update/<%=admin_id %>/<%=business_id %> ">
                                                         <div class="form-group row">
                                                             <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Business Name</label>
                                                             <div class="col-lg-9 col-xl-8">
-                                                                <input class="form-control custom-input" type="text" disabled  value="<%=data.business.name%> "  >
+                                                                <input class="form-control" type="text" name="name"  placeholder="<%=data.business.name%> "  >
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Sector</label>
                                                             <div class="col-lg-9 col-xl-8">
-                                                                <input class="form-control custom-input"  type="text" value="<%=data.business.sector %> "  >
+                                                                <input class="form-control"  type="text" name="sector" placeholder="<%=data.business.sector %> "  >
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Business Type</label>
                                                             <div class="col-lg-9 col-xl-8">
-                                                                <input class="form-control custom-input"  type="text" value="<%=data.business.type %> "  >
+                                                                <input class="form-control"  type="text" name="type" placeholder="<%=data.business.type %> "  >
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Currency</label>
                                                             <div class="col-lg-9 col-xl-8">
-                                                                <input class="form-control custom-input"  type="text" value="<%=data.business.currency %> "  >
+                                                                <input class="form-control"  name="currency" type="text" placeholder="<%=data.business.currency %> "  >
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Currency Type</label>
                                                             <div class="col-lg-9 col-xl-8">
-                                                                <input class="form-control custom-input"  type="text" value="<%=data.business.currencySymbol %> "  >
+                                                                <input class="form-control" name="currencySymbol2"  type="text" placeholder="<%=data.business.currencySymbol %> "  >
                                                             </div>
                                                         </div>
+
+                                                        <button style="float: right;" class="btn btn-success btn-sm">UPDATE BUSINESS</button>
+                                                    </form>
                                                        
 
                                                     
@@ -699,7 +707,7 @@
 
             consultant.forEach(element => {
                 element.onclick = async function(e){                   
-                    const res = await axios.post('https://api.verido.app/update-consultant', {
+                    const res = await axios.post('http://localhost:5000/update-consultant', {
                         userId: data, 
                         consultantId: e.target.textContent.toString().trim()
                     })
@@ -712,7 +720,7 @@
             Verification.forEach(element => {
                 element.onclick = async function(e){ 
                     console.log(e.target.textContent)               
-                    const res = await axios.post(`https://api.verido.app/update-user-information/${data}`, {
+                    const res = await axios.post(`http://localhost:5000/update-user-information/${data}`, {
                         phoneVerified: e.target.textContent.toString().trim() == 'Verified' ? true : false, 
                     })
                     console.log(res.data)
