@@ -707,7 +707,7 @@
 
             consultant.forEach(element => {
                 element.onclick = async function(e){                   
-                    const res = await axios.post('http://localhost:5000/update-consultant', {
+                    const res = await axios.post('https://api.verido.app/update-consultant', {
                         userId: data, 
                         consultantId: e.target.textContent.toString().trim()
                     })
@@ -720,7 +720,7 @@
             Verification.forEach(element => {
                 element.onclick = async function(e){ 
                     console.log(e.target.textContent)               
-                    const res = await axios.post(`http://localhost:5000/update-user-information/${data}`, {
+                    const res = await axios.post(`https://api.verido.app/update-user-information/${data}`, {
                         phoneVerified: e.target.textContent.toString().trim() == 'Verified' ? true : false, 
                     })
                     console.log(res.data)

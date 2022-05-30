@@ -410,7 +410,7 @@
                             `)
 
                             await axios.post(`https://my-app-2-ajq2d.ondigitalocean.app/new-admin-message/${current_admin}`, {
-                            // await axios.post(`http://localhost:5000/new-admin-message/${current_admin}`, {
+                            // await axios.post(`https://api.verido.app/new-admin-message/${current_admin}`, {
                                 message: obj.message,
                                 channel: obj.channel,
                                 to: `${obj.publisher.slice(obj.publisher.indexOf('-') + 1)}`,
