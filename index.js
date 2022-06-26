@@ -22,7 +22,7 @@ const schedule = require('node-schedule');
 
 let server, io;
 
-const live = "https://api.verido.app"
+const live = "https:// api.verido.app"
 
 const sessionConfig = {
     secret: 'thisshouldbeabettersecret',
@@ -97,7 +97,6 @@ app.get('/homepage/:id', async (req, res) => {
     // const data_three = await axios.get('https://api.verido.app/admin-business')
     .then(resp => resp.data.response)
 
-    console.log(videos, '===============')
 
     const data = await axios.get('https://api.verido.app/fetch-consultant')
     // const data = await axios.get('https://api.verido.app/fetch-consultant')
@@ -287,6 +286,14 @@ app.post('/login', async( req, res) => {
         req.session.username = data.response.username
     } else {
         res.render('login', {message: "Username or Password is incorrect"})
+    }
+})
+
+app.get('/edit-video/:videoID/:adminID', async(req, res) => {
+    const data = await axios.post(`https://api.verido.app/edit-vidoes/${req.params.videoID}`)
+    console.log(data)
+    if(data.status == 200){
+        res.redirect(`/homepage/${req.params.adminID}`)
     }
 })
 
@@ -504,7 +511,6 @@ app.get('/chat/:details/:admin/:id', async (req, res) => {
 
     }
 
-console.log(prev_messages, chat_data)
 
     res.render('user-chat', {data: chat_data, 
         prev_messages: prev_messages,
@@ -574,7 +580,6 @@ app.get('/dashboard-consultant/:id', async (req, res) => {
     // const data = await axios.get(`https://api.verido.app/fetch-consultant/${id}`)
     .then(resp => resp.data.consultant)
 
-    console.log(data)
     // const data_thre = data.find(element => element._id === id)
 
     let val = DateFormatter(data_three)
@@ -732,7 +737,6 @@ app.get('/admin-chat/:admin/:id', async (req, res) => {
 
     }
 
-    console.log(current_admin._id, messages)
 
     res.render('consultant/admin-chat', {id: data._id,
         prev_messages: prev_messages,
@@ -756,7 +760,6 @@ app.get('/consultant-chat-page/:id', async (req, res) => {
 //    const admins = await axios.get(`https://api.verido.app/fetch-admins`)
    .then(resp => resp.data.admins)
 
-   console.log(admins)
 
     res.render('consultant/chat-index', {id:data._id,
         user: data,
@@ -764,6 +767,15 @@ app.get('/consultant-chat-page/:id', async (req, res) => {
 
 
 })
+
+
+app.post('/update_full_name/:admin/:business/:id', async(req, res) => {
+    const data = await axios.post(`https://api.verido.app/update-fullname/${req.params.id}`, {...req.body} )
+    if(data.status == 200){
+        res.redirect(`/business/${req.params.admin}/${req.params.business}`)
+    }
+})
+
 
 
 const PORT = process.env.PORT || 8000

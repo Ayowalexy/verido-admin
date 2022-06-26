@@ -318,16 +318,43 @@
                                                     <div class="form-group row">
                                                         <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Consultant</label>
 
-
-                                                        
-
+                                                        <div class="modal fade" id="suspendModalDefault" tabindex="-1" role="dialog" aria-labelledby="suspendModalDefaultLabel" aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h6 class="modal-title m-0" id="exampleModalDefaultLabel">
+                                                                          
+                                                                        </h6>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div><!--end modal-header-->
+                                                                    <div class="modal-body">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-3 text-center align-self-center">
+                                                                                <img src="assets/images/widgets/btc.png" alt="" class="img-fluid">
+                                                                            </div><!--end col-->
+                                                                            <div class="col-lg-9">
+                                                                                <h4>Please Confirm</h4>
+                                                                                
+                                                                               <p>Are you sure you want to update the consultant for this user?</p>
+                                                                                   
+                                                                                <!-- </ul> -->
+                                                                            </div><!--end col-->
+                                                                        </div><!--end row-->                                                      
+                                                                    </div><!--end modal-body-->
+                                                                    <div class="modal-footer"> 
+                                                                                                                   
+                                                                        <button type="button" class="btn btn-soft-primary btn-sm" id="accept-btn">Confirm</button>
+                                                                        <button type="button" class="btn btn-soft-secondary btn-sm decline-btn" data-bs-dismiss="modal">Close</button>
+                                                                    </div><!--end modal-footer-->
+                                                                </div><!--end modal-content-->
+                                                            </div><!--end modal-dialog-->
+                                                        </div><!--end modal-->
+                                            
 
                                                         <div class="col-lg-9 col-xl-8">
                                                             <!-- <input class="form-control" type="text" value="<%=consultant %> " disabled> -->
 
-
-
-
+                                                            
                                                             <div class="card" style="margin-top: 10px;">                                                               
                                                                 <!-- <div class="card-body">                                     -->
                                                                     <div class="button-items">
@@ -344,9 +371,10 @@
                                                                         </button>
                                                                         <div class="dropdown-menu">
                                                                             <% for( let index = 0; index < allConsultants.length; index++ ) { %>
-                                                                                <div class="consultant-click" style="cursor: pointer;">
-                                                                                    <a class="dropdown-item" > <%=allConsultants[index].consultant_id%></a>
-                                                                                </div>
+                                                                                <!-- <div class="consultant-click" style="cursor: pointer;">
+                                                                                    <a class="" > </a>
+                                                                                </div> -->
+                                                                                <a data-bs-target="#suspendModalDefault" data-bs-toggle="modal" type="submit" class="btn dropdown-item consultant-click"><%=allConsultants[index].consultant_id%></a>
                                                                             <% } %>
                                                                            
                                                                         </div>
@@ -400,6 +428,37 @@
                                                         <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Phone Verification</label>
                                                         <div class="col-lg-9 col-xl-8">
 
+                                                            <div class="modal fade" id="suspendPhoneModalDefault" tabindex="-1" role="dialog" aria-labelledby="suspendPhoneModalDefaultLabel" aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h6 class="modal-title m-0" id="exampleModalDefaultLabel">
+                                                                              
+                                                                            </h6>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                        </div><!--end modal-header-->
+                                                                        <div class="modal-body">
+                                                                            <div class="row">
+                                                                                <div class="col-lg-3 text-center align-self-center">
+                                                                                    <img src="assets/images/widgets/btc.png" alt="" class="img-fluid">
+                                                                                </div><!--end col-->
+                                                                                <div class="col-lg-9">
+                                                                                    <h4>Please Confirm</h4>
+                                                                                    
+                                                                                   <p>Are you sure you want to update the phone verification for this user?</p>
+                                                                                       
+                                                                                    <!-- </ul> -->
+                                                                                </div><!--end col-->
+                                                                            </div><!--end row-->                                                      
+                                                                        </div><!--end modal-body-->
+                                                                        <div class="modal-footer"> 
+                                                                                                                       
+                                                                            <button type="button" class="btn btn-soft-primary btn-sm" id="phone-btn">Confirm</button>
+                                                                            <button type="button" class="btn btn-soft-secondary btn-sm decline-btn" data-bs-dismiss="modal">Close</button>
+                                                                        </div><!--end modal-footer-->
+                                                                    </div><!--end modal-content-->
+                                                                </div><!--end modal-dialog-->
+                                                            </div><!--end modal-->
 
                                                             <div class="card" style="margin-top: 10px;">                                                               
                                                                 <!-- <div class="card-body">                                     -->
@@ -416,12 +475,14 @@
                                                                             <i class="mdi mdi-chevron-down"></i>
                                                                         </button>
                                                                         <div class="dropdown-menu">
-                                                                                <div class="Verified-click" style="cursor: pointer;">
-                                                                                    <a class="dropdown-item" >Verified</a>
-                                                                                </div>
-                                                                                <div class="Verified-click" style="cursor: pointer;">
-                                                                                    <a class="dropdown-item" >Not Verified</a>
-                                                                                </div>
+                                                                            <a data-bs-target="#suspendPhoneModalDefault" data-bs-toggle="modal" type="submit" class="btn dropdown-item Verified-click">
+                                                                                Verified
+                                                                            </a>
+                                                                            <a data-bs-target="#suspendPhoneModalDefault" data-bs-toggle="modal" type="submit" class="btn dropdown-item Verified-click">
+                                                                                Not Verified
+                                                                            </a>
+
+                                                                               
                                                                            
                                                                         </div>
                                                                     </div><!-- /button-items -->
@@ -471,25 +532,60 @@
                                                     <h4 class="card-title">Subscription Details</h4>
                                                 </div><!--end card-header-->
                                                 <div class="card-body"> 
-                                                        <div class="form-group row">
-                                                            <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Subscription Status</label>
-                                                            <div class="col-lg-9 col-xl-8">
-                                                                <input style="text-transform: capitalize;" class="form-control custom-input" type="text" disabled  value="<%=data.subscription_status.type%> "  >
+                                                        <form class="submit-sub">
+                                                            <div class="form-group row">
+                                                                <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Subscription Status</label>
+                                                                <div class="col-lg-9 col-xl-8">
+                                                                    <div class="button-items">
+                                                                        <button id="sub-btn" type="button" 
+                                                                            style="width: 100%; text-align: left;" 
+                                                                            class="btn btn-soft-secondary dropdown-toggle" 
+                                                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                                                            <% if (data.subscription_status.type == 'trial') { %>
+                                                                                <%='Trial' %> 
+                                                                            <% } else if(data.subscription_status.type == 'Subscribed') { %>
+                                                                                <%='Subscribed' %> 
+                                                                            <% } else { %>
+                                                                                <%='Expired' %> 
+                                                                                <% } %> 
+                                                                            <i class="mdi mdi-chevron-down"></i>
+                                                                        </button>
+                                                                        <div class="dropdown-menu">
+                                                                                <div style="cursor: pointer;">
+                                                                                    <a  class="dropdown-item sub-click" >Subscribed</a>
+                                                                                </div>
+                                                                                <div  style="cursor: pointer;">
+                                                                                    <a class="dropdown-item sub-click"  >Trial</a>
+                                                                                </div>
+                                                                                <div  style="cursor: pointer;">
+                                                                                    <a class="dropdown-item sub-click" >Expired</a>
+                                                                                </div>
+                                                                           
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- <input style="text-transform: capitalize;" class="form-control custom-input" type="text" disabled  value=""  > -->
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Subscription Started</label>
-                                                            <div class="col-lg-9 col-xl-8">
-                                                                <input class="form-control custom-input"  type="text" value="<%=data.subscription_status.started %> "  >
+                                                            <div class="form-group row">
+                                                                <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Subscription Started</label>
+                                                                <div class="col-lg-9 col-xl-8">
+                                                                    <input class="form-control custom-input started"   type="date" value="<%=
+                                                                            `${data.subscription_status.started.split('/')[2]}-${data.subscription_status.started.split('/')[0]?.length == 1 ? '0'.concat(data.subscription_status.started.split('/')[0]) : data.subscription_status.started.split('/')[0]}-${data.subscription_status.started.split('/')[1]?.length == 1 ? '0'.concat(data.subscription_status.started.split('/')[1]) : data.subscription_status.started.split('/')[1]}`%>"  >
+                                                                    %>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Subscription Expires</label>
-                                                            <div class="col-lg-9 col-xl-8">
-                                                                <input class="form-control custom-input"  type="text" value="<%=data.subscription_status.expires %> "  >
+                                                            <div class="form-group row">
+                                                                <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Subscription Expires</label>
+                                                                <div class="col-lg-9 col-xl-8">
+                                                                    <date-input date="{{date}}" timezone="[[timezone]]"></date-input>
+                                                                    <input class="form-control custom-input expires"  type="date" value="<%=
+                                                                            `${data.subscription_status.expires.split('/')[2]}-${data.subscription_status.expires.split('/')[0]?.length == 1 ? '0'.concat(data.subscription_status.expires.split('/')[0]) : data.subscription_status.expires.split('/')[0]}-${data.subscription_status.expires.split('/')[1]?.length == 1 ? '0'.concat(data.subscription_status.expires.split('/')[1]) : data.subscription_status.expires.split('/')[1]}`%>"  >
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                       
+
+                                                            <button style="float: right;" class="btn btn-success btn-sm">UPDATE SUBSCRIPTION</button>
+                                                           
+                                                        </form>
                                                        
 
                                                     
@@ -648,6 +744,29 @@
                                                     
                                                 </div><!--end card-body-->
                                             </div><!--end card-->
+
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4 class="card-title">Username</h4>
+                                                    
+                                                </div><!--end card-header-->
+                                                <div class="card-body"> 
+                                                    <form action="/update_full_name/<%=admin_id%>/<%=business_id %>/<%=data._id %> " method="POST">
+                                                       
+                                                        <div class="form-group row">
+                                                            <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center">Username</label>
+                                                            <div class="col-lg-9 col-xl-8">
+                                                                <input class="form-control"  name="full_name" type="text" placeholder="<%=data.full_name %>"  >
+                                                            </div>
+                                                        </div>
+                                                        <div style="float: right;" class="px-5">
+                                                            <button  class="btn btn-success btn-sm">UPDATE</button>
+                                                        </div>
+                                                    </form>
+
+                                                    
+                                                </div><!--end card-body-->
+                                            </div><!--end card-->
                                             
                                         </div> <!-- end col -->                                                                              
                                     </div><!--end row-->
@@ -690,6 +809,7 @@
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script>
             const data =  <%- JSON.stringify(business_id) %>
+            const subID = <%- JSON.stringify(data) %>
         </script>
         
         <script>
@@ -704,33 +824,83 @@
 
             const consultant = document.querySelectorAll('.consultant-click');
             const Verification = document.querySelectorAll('.Verified-click');
+            const acceptBtn = document.querySelector('#accept-btn')
+            const phoneBtn = document.querySelector('#phone-btn')
+
+            let consultantId;
+
 
             consultant.forEach(element => {
-                element.onclick = async function(e){                   
-                    const res = await axios.post('https://api.verido.app/update-consultant', {
+                element.onclick = function(e){     
+                    localStorage.setItem('id', `${e.target.textContent.toString().trim()}`)
+              
+                }
+            })
+
+            acceptBtn.onclick = async function(){
+                const res = await axios.post('https://api.verido.app/update-consultant', {
                         userId: data, 
-                        consultantId: e.target.textContent.toString().trim()
+                        consultantId: localStorage.getItem('id')
                     })
                     if(res.status === 200){
                         window.location.reload(true)
                     }
-                }
-            })
+            }
 
             Verification.forEach(element => {
                 element.onclick = async function(e){ 
-                    console.log(e.target.textContent)               
-                    const res = await axios.post(`https://api.verido.app/update-user-information/${data}`, {
-                        phoneVerified: e.target.textContent.toString().trim() == 'Verified' ? true : false, 
-                    })
-                    console.log(res.data)
-                    if(res.status === 200){
-                        window.location.reload(true)
+                    if(e.target.textContent.toString().trim() == 'Verified'){
+                        localStorage.setItem('phone', 'true')
+                    } else {
+                        localStorage.setItem('phone', 'false')
                     }
                 }
             })
+
+            phoneBtn.onclick = async function(){
+
+                const d_a = localStorage.getItem('phone')
+                const res = await axios.post(`https://api.verido.app/update-user-information/${data}`, {
+                        phoneVerified: d_a == 'true' ? true : false
+                    })
+                    if(res.status === 200){
+                        window.location.reload(true)
+                    }
+            }
+
            
 
+        </script>
+
+        <script>
+            const sub = document.querySelectorAll('.sub-click')
+            const btn_sub = document.querySelector('#sub-btn')
+            Array.from(sub).forEach(element => {
+                element.onclick = function(e){
+                    console.log(element.textContent)
+                    btn_sub.textContent = element.textContent
+
+                }
+            })
+
+            const subForm = document.querySelector('.submit-sub')
+            const startedSub = document.querySelector('.started')
+            const endedSub = document.querySelector('.expires')
+
+            subForm.onsubmit = async function(e){
+                e.preventDefault();
+                const payload = {
+                    started: new Date(startedSub.value).toLocaleDateString(),
+                    expires: new Date(endedSub.value).toLocaleDateString(),
+                    type: btn_sub.textContent.toLowerCase()
+                }
+
+                const updateSub = await axios.post(`https://api.verido.app/update-subscription/${subID.subscription_status._id}`, payload)
+                console.log(updateSub.data)
+                if(updateSub.status == 200){
+                    window.location.reload(true)
+                }
+            }
         </script>
         
     </body>
